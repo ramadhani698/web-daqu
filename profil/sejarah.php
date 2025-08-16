@@ -73,7 +73,7 @@
       </div>
     </section>
 
-    <section class="container py-5" style="top-80px;">
+    <section class="container py-5" style="top: 80px;">
       <div class="row align-items-center">
         <div class="col-md-6" data-aos="fade-left">
           <h2 class="mb-3">Sejarah Yayasan Al Jannah Daarussalam</h2>
