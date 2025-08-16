@@ -34,7 +34,7 @@
     <!-- My style -->
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <!-- <link rel="stylesheet" href="css/stats.css" /> -->
+    <link rel="stylesheet" href="css/stats.css" />
 
   </head>
 
@@ -68,7 +68,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Berita Pilihan</a></li>
                 <li><a class="dropdown-item" href="./news/info-akademik.php">Info Akademik</a></li>
-                <li><a class="dropdown-item" href="#">Info Santri</a></li>
+                <li><a class="dropdown-item" href="./news/info-santri.php">Info Santri</a></li>
                 <li><a class="dropdown-item" href="#">Info Alumni</a></li>
               </ul>
             </li>
