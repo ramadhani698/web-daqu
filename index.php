@@ -19,9 +19,6 @@
       rel="stylesheet"
     />
 
-    <!-- Flickiky CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
-
     <!-- font awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -37,11 +34,109 @@
     <!-- My style -->
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/stats.css" />
+
   </head>
 
-<?php include('assets/header.php') ?>
-
   <body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="img/logo2.jpg" alt="Logo2" height="40">
+        </a>
+
+        <!-- Tombol hamburger -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu yang bisa di-collapse -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item dropdown hover-zone">
+              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">Profil</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="./profil/sejarah.php">Sejarah Pesantren</a></li>
+                <li><a class="dropdown-item" href="./profil/visi-misi.php">Visi Misi</a></li>
+                <li><a class="dropdown-item" href="./profil/daqu-method.php">Daqu Method</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown hover-zone">
+              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">News</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Berita Pilihan</a></li>
+                <li><a class="dropdown-item" href="./news/info-akademik.php">Info Akademik</a></li>
+                <li><a class="dropdown-item" href="#">Info Santri</a></li>
+                <li><a class="dropdown-item" href="#">Info Alumni</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Galeri</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">DEC</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Pendaftaran</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="carouselSlider" class="carousel slide hero-slider-main" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <div class="position-relative">
+            <img src="img/1.jpg" class="d-block w-100" alt="Image 1" />
+            <div class="tagline-container">
+              <span class="tagline">Menebar Cahaya Ilmu dan Al-Qur’an</span>
+            </div>
+            <div class="loading-spinner-wrapper">
+              <svg viewBox="25 25 50 50" class="loading-spinner">
+                <circle cx="50" cy="50" r="20" class="loader-circle"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="position-relative">
+            <img src="img/sujud.jpg" class="d-block w-100" alt="Image 2" />
+            <div class="tagline-container">
+              <span class="tagline">Membentuk Generasi Hafidz Berakhlak Qur’ani</span>
+            </div>
+            <div class="loading-spinner-wrapper">
+              <svg viewBox="25 25 50 50" class="loading-spinner">
+                <circle cx="50" cy="50" r="20" class="loader-circle"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="position-relative">
+            <img src="img/4.jpg" class="d-block w-100" alt="Image 3" />
+            <div class="tagline-container">
+              <span class="tagline">16 Tahun Menyalakan Lentera Qur’an di Hati Bangsa</span>
+            </div>
+            <div class="loading-spinner-wrapper">
+              <svg viewBox="25 25 50 50" class="loading-spinner">
+                <circle cx="50" cy="50" r="20" class="loader-circle"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigasi -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
     
     <!-- Home Section -->
     <section class="home-section" id="home-section">
@@ -605,24 +700,42 @@
       </div>
     </section>
 
-    <section class="donation-impact" data-aos="fade-up">
-      <div class="impact-wrapper row">
-        <!-- Kiri: Teks -->
-        <div class="col-md-6 impact-text">
-          <div class="impact-number"><span id="donor-count">+0</span></div>
-          <p class="impact-title">Kemudahan Beramal di Laznas PPPA Daarul Qur’an</p>
-          <p class="impact-desc">
-            Mulai dari sedekah harian, zakat penghasilan, hingga wakaf produktif—
-            semua bisa dilakukan dengan aman, cepat, dan penuh keberkahan.
-          </p>
+    <section class="stats">
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="stat-number">500+</div>
+            <p>Santri Aktif</p>
+          </div>
         </div>
-
-        <!-- Kanan: Carousel Gambar -->
-        <div class="col-md-6 impact-carousel">
-          <div class="carousel" data-flickity='{ "autoPlay": true, "wrapAround": true }'>
-            <div class="carousel-cell"><img src="img/1.jpg" alt="Donasi 1" /></div>
-            <div class="carousel-cell"><img src="img/masjid.jpg" alt="Donasi 2" /></div>
-            <div class="carousel-cell"><img src="img/PG-3.jpg" alt="Donasi 3" /></div>
+        <div class="stat-card">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-quran"></i>
+            </div>
+            <div class="stat-number">200+</div>
+            <p>Hafidz Alumni</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <div class="stat-number">25+</div>
+            <p>Ustadz Berpengalaman</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="stat-number">15+</div>
+            <p>Tahun Berdiri</p>
           </div>
         </div>
       </div>
@@ -718,13 +831,11 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Flickity JS -->
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
     <!-- AOS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
     <script src="script/script.js"></script>
+    <script src="script/stats.js"></script>
   </body>
 </html>
