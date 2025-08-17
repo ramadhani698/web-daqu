@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link
@@ -40,87 +41,113 @@
   </head>
   <body>
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" style="margin-top: 70px;">
       <div class="hero-content">
         <h1 class="hero-title">Informasi Santri Tahfidz</h1>
         <p class="hero-subtitle">
           Platform informasi digital santri tahfidz Qur'an
         </p>
+        <p class="hero-ayat">
+          وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ
+        </p>
+      </div>
+    </section>
+
+    <section class="stat-section">
+      <div class="stat-container">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number">1,245</div>
+            <div class="stat-label">Total Santri</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">32</div>
+            <div class="stat-label">Asrama</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">45</div>
+            <div class="stat-label">Pengajar</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">17</div>
+            <div class="stat-label">Program Tahfiz</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Main Content -->
     <main class="main-container">
       <!-- Profile Section -->
-       <section id="profile" class="profil-section">
-  <div class="profil-container">
-    <h2 class="profil-title">Profil Santri</h2>
-    <div class="profil-divider"></div>
+      <section id="profile" class="profil-section">
+        <div class="profil-container">
+          <h2 class="profil-title">Profil Santri</h2>
+          <div class="profil-divider"></div>
 
-    <div class="table-wrapper">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Lengkap</th>
-            <th>NIS</th>
-            <th>TTL</th>
-            <th>Kelas</th>
-            <th>Asrama</th>
-            <th>Program</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Ahmad Zulfikar</td>
-            <td>2023001</td>
-            <td>Jakarta, 12 Mei 2007</td>
-            <td>X IPA 1</td>
-            <td>Al-Farabi</td>
-            <td>Tahfidz Reguler</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Siti Aminah</td>
-            <td>2023002</td>
-            <td>Bandung, 3 Maret 2008</td>
-            <td>XI IPS 2</td>
-            <td>Aisyah</td>
-            <td>Tahfidz Intensif</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Muhammad Rizki</td>
-            <td>2023003</td>
-            <td>Bekasi, 25 Januari 2006</td>
-            <td>XII IPA 2</td>
-            <td>Umar</td>
-            <td>Tahfidz Reguler</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Fatimah Azzahra</td>
-            <td>2023004</td>
-            <td>Semarang, 9 Juli 2007</td>
-            <td>X IPA 3</td>
-            <td>Khadijah</td>
-            <td>Tahfidz Khusus</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Tim Al-Amin</td>
-            <td>2023005</td>
-            <td>Surabaya, 17 Agustus 2008</td>
-            <td>XI IPA & IPS</td>
-            <td>Ibnu Sina</td>
-            <td>LKTI & Tahfidz</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+          <div class="santri-wrapper">
+            <table class="santri-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Lengkap</th>
+                  <th>NIS</th>
+                  <th>TTL</th>
+                  <th>Kelas</th>
+                  <th>Asrama</th>
+                  <th>Program</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ahmad Zulfikar</td>
+                  <td>2023001</td>
+                  <td>Jakarta, 12 Mei 2007</td>
+                  <td>X IPA 1</td>
+                  <td>Al-Farabi</td>
+                  <td>Tahfidz Reguler</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Siti Aminah</td>
+                  <td>2023002</td>
+                  <td>Bandung, 3 Maret 2008</td>
+                  <td>XI IPS 2</td>
+                  <td>Aisyah</td>
+                  <td>Tahfidz Intensif</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Muhammad Rizki</td>
+                  <td>2023003</td>
+                  <td>Bekasi, 25 Januari 2006</td>
+                  <td>XII IPA 2</td>
+                  <td>Umar</td>
+                  <td>Tahfidz Reguler</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Fatimah Azzahra</td>
+                  <td>2023004</td>
+                  <td>Semarang, 9 Juli 2007</td>
+                  <td>X IPA 3</td>
+                  <td>Khadijah</td>
+                  <td>Tahfidz Khusus</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Tim Al-Amin</td>
+                  <td>2023005</td>
+                  <td>Surabaya, 17 Agustus 2008</td>
+                  <td>XI IPA & IPS</td>
+                  <td>Ibnu Sina</td>
+                  <td>LKTI & Tahfidz</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
      
 
       <!-- Achievements Section -->
@@ -187,101 +214,101 @@
             <h2 class="hafalan-title">Hafalan Qur'an</h2>
             <div class="hafalan-divider"></div>
 
-            <div class="table-wrapper">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Santri</th>
-                    <th>Juz</th>
-                    <th>Surah Terakhir</th>
-                    <th>Ayat Terakhir</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                    <div class="profile-cell">
-                        <img src="https://placehold.co/40x40" alt="Foto Ahmad Zulfikar" />
-                        <div>
-                        <p class="profile-name">Ahmad Zulfikar</p>
-                        <p class="profile-location">X IPA 1</p>
-                        </div>
-                    </div>
-                    </td>
-                    <td>15</td>
-                    <td>Al-Kahfi</td>
-                    <td>Ayat 10</td>
-                    <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                    <div class="profile-cell">
-                        <img src="https://placehold.co/40x40" alt="Foto Siti Aminah" />
-                        <div>
-                        <p class="profile-name">Siti Aminah</p>
-                        <p class="profile-location">XI IPS 2</p>
-                        </div>
-                    </div>
-                    </td>
-                    <td>22</td>
-                    <td>Al-Ahzab</td>
-                    <td>Ayat 45</td>
-                    <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                    <div class="profile-cell">
-                        <img src="https://placehold.co/40x40" alt="Foto Muhammad Rizki" />
-                        <div>
-                        <p class="profile-name">Muhammad Rizki</p>
-                        <p class="profile-location">XII IPA 2</p>
-                        </div>
-                    </div>
-                    </td>
-                    <td>30</td>
-                    <td>An-Nas</td>
-                    <td>Ayat 6</td>
-                    <td><span class="status-badge khatam">Khatam</span></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>
-                    <div class="profile-cell">
-                        <img src="https://placehold.co/40x40" alt="Foto Fatimah Azzahra" />
-                        <div>
-                        <p class="profile-name">Fatimah Azzahra</p>
-                        <p class="profile-location">X IPA 3</p>
-                        </div>
-                    </div>
-                    </td>
-                    <td>18</td>
-                    <td>Al-Mu’minun</td>
-                    <td>Ayat 20</td>
-                    <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>
-                    <div class="profile-cell">
-                        <img src="https://placehold.co/40x40" alt="Foto Tim Al-Amin" />
-                        <div>
-                        <p class="profile-name">Tim Al-Amin</p>
-                        <p class="profile-location">XI IPA & IPS</p>
-                        </div>
-                    </div>
-                    </td>
-                    <td>25</td>
-                    <td>Fussilat</td>
-                    <td>Ayat 12</td>
-                    <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="hafalan-wrapper">
+              <table class="hafalan-table">
+                  <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>Nama Santri</th>
+                      <th>Juz</th>
+                      <th>Surah Terakhir</th>
+                      <th>Ayat Terakhir</th>
+                      <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>
+                      <div class="profile-cell">
+                          <img src="https://placehold.co/40x40" alt="Foto Ahmad Zulfikar" />
+                          <div>
+                          <p class="profile-name">Ahmad Zulfikar</p>
+                          <p class="profile-location">X IPA 1</p>
+                          </div>
+                      </div>
+                      </td>
+                      <td>15</td>
+                      <td>Al-Kahfi</td>
+                      <td>Ayat 10</td>
+                      <td><span class="status-badge">Aktif</span></td>
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                      <td>
+                      <div class="profile-cell">
+                          <img src="https://placehold.co/40x40" alt="Foto Siti Aminah" />
+                          <div>
+                          <p class="profile-name">Siti Aminah</p>
+                          <p class="profile-location">XI IPS 2</p>
+                          </div>
+                      </div>
+                      </td>
+                      <td>22</td>
+                      <td>Al-Ahzab</td>
+                      <td>Ayat 45</td>
+                      <td><span class="status-badge">Aktif</span></td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>
+                      <div class="profile-cell">
+                          <img src="https://placehold.co/40x40" alt="Foto Muhammad Rizki" />
+                          <div>
+                          <p class="profile-name">Muhammad Rizki</p>
+                          <p class="profile-location">XII IPA 2</p>
+                          </div>
+                      </div>
+                      </td>
+                      <td>30</td>
+                      <td>An-Nas</td>
+                      <td>Ayat 6</td>
+                      <td><span class="status-badge khatam">Khatam</span></td>
+                  </tr>
+                  <tr>
+                      <td>4</td>
+                      <td>
+                      <div class="profile-cell">
+                          <img src="https://placehold.co/40x40" alt="Foto Fatimah Azzahra" />
+                          <div>
+                          <p class="profile-name">Fatimah Azzahra</p>
+                          <p class="profile-location">X IPA 3</p>
+                          </div>
+                      </div>
+                      </td>
+                      <td>18</td>
+                      <td>Al-Mu’minun</td>
+                      <td>Ayat 20</td>
+                      <td><span class="status-badge">Aktif</span></td>
+                  </tr>
+                  <tr>
+                      <td>5</td>
+                      <td>
+                      <div class="profile-cell">
+                          <img src="https://placehold.co/40x40" alt="Foto Tim Al-Amin" />
+                          <div>
+                          <p class="profile-name">Tim Al-Amin</p>
+                          <p class="profile-location">XI IPA & IPS</p>
+                          </div>
+                      </div>
+                      </td>
+                      <td>25</td>
+                      <td>Fussilat</td>
+                      <td>Ayat 12</td>
+                      <td><span class="status-badge">Aktif</span></td>
+                  </tr>
+                  </tbody>
+              </table>
             </div>
         </div>
     </section>
