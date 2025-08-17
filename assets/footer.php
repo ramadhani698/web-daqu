@@ -4,7 +4,7 @@
           <div class="col-lg-5 col-md-6 mb-5">
             <div class="footer-brand-section">
               <div class="footer-brand">
-                <img src="img/logo2.jpg" alt="Logo 2">
+                <img src="../img/logo2.jpg" alt="Logo 2">
               </div>
               <p class="footer-text">
                 Daarul Qur'an Al-Jannah

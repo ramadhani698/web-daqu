@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="../img/logo2.jpg" alt="Logo2" height="40">
+          <img src="../img/logo2.jpg" alt="Logo2" height="70">
         </a>
 
         <!-- Tombol hamburger -->
@@ -38,5 +38,3 @@
         </div>
       </div>
     </nav>
-
-    

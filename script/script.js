@@ -45,38 +45,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 5000);
 });
 
-function animateCounter(id, start, end, duration) {
-  let obj = document.getElementById(id);
-  let range = end - start;
-  let current = start;
-  let increment = Math.ceil(range / (duration / 50));
-  let timer = setInterval(function () {
+// Counter Animation for Stats
+function animateCounter(element, target) {
+  let current = 0;
+  const increment = target / 100;
+  const timer = setInterval(() => {
     current += increment;
-    if (current >= end) {
-      current = end;
+    if (current >= target) {
+      current = target;
       clearInterval(timer);
     }
-    obj.textContent = "+" + current.toLocaleString("id-ID");
-  }, 50);
+    element.textContent = Math.floor(current) + "+";
+  }, 20);
 }
 
-// Observer setup
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateCounter("donor-count", 0, 120000, 5000);
-        observer.unobserve(entry.target); // Stop observing after trigger
-      }
-    });
-  },
-  {
-    threshold: 0.5, // Trigger when 50% of section is visible
-  }
-);
-
-// Start observing the section
-document.addEventListener("DOMContentLoaded", function () {
-  const target = document.querySelector(".donation-impact");
-  if (target) observer.observe(target);
+// Animate counters when stats section is visible
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const numbers = entry.target.querySelectorAll(".stat-number");
+      numbers.forEach((num) => {
+        const target = parseInt(num.textContent);
+        animateCounter(num, target);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
 });
+
+// Start observing the stats section
+const statsSection = document.querySelector(".stats");
+if (statsSection) {
+  statsObserver.observe(statsSection);
+}
