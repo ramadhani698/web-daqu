@@ -1573,6 +1573,65 @@ section em {
   vertical-align: middle;
 }
 
+.santri-search-wrapper {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+.santri-search-input,
+.hafalan-search-input {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 30px;
+  font-size: 0.9rem;
+  color: var(--main-text);
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+.santri-search-input,
+.hafalan-search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.santri-pagination-info {
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--secondary-text);
+}
+
+.santri-pagination-nav {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  color: #718096;
+  transition: background-color 0.3s ease;
+  margin-left: 0.25rem;
+  border-radius: 0.375rem;
+}
+
+.pagination-btn:hover {
+  background-color: #f7fafc;
+}
+
+.pagination-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
 .prestasi-section {
   padding: 4rem 0;
   background-color: white;
@@ -1794,6 +1853,503 @@ section em {
   background-color: #c6f6d5;
   color: #276749;
 } */
+
+/* Info Alumni Page */
+.hero-section-alumni {
+  height: 500px;
+  background: url("../img/7.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.hero-section-alumni::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content-alumni {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-content-alumni .hero-alumni-title {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--bg-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content-alumni .hero-alumni-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btn-alumni {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background-color: var(--accent-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 1rem;
+  border: none;
+}
+
+.btn-alumni:hover {
+  background-color: #d19e04;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.section-alumni-title {
+  text-align: center;
+  margin: 4rem 0 2rem;
+  color: var(--primary-color);
+  position: relative;
+}
+
+.section-alumni-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--accent-color);
+  margin: 1rem auto 0;
+}
+
+.section-alumni-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: #666;
+}
+
+.alumni-prestasi {
+  padding: 4rem 0 3rem;
+}
+
+.alumni-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.alumni-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.alumni-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.alumni-img {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.alumni-img::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+
+.alumni-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.alumni-card:hover .alumni-img img {
+  transform: scale(1.05);
+}
+
+.alumni-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.alumni-info {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.alumni-info h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.alumni-info p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.alumni-juz {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.2rem 0.8rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.lihat-lebih {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* Gallery Pages */
+.hero-gallery {
+  height: 60vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/de61a2ff-443e-49e1-8427-6fba7d3d2b13.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--bg-color);
+  margin-top: 64px;
+}
+
+.hero-content-gallery {
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero-title-gallery {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--bg-color);
+  font-family: "Amiri", serif;
+}
+
+.hero-subtitle-gallery {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Gallery Section */
+.gallery-section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header-gallery {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-gallery-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-family: "Amiri", serif;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-gallery-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--accent-color);
+}
+
+.section-gallery-subtitle {
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.gallery-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-button {
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.filter-button:hover,
+.filter-button.active {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 95, 65, 0.9);
+  color: var(--bg-color);
+  padding: 1rem;
+  transition: bottom 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  bottom: 0;
+}
+
+.gallery-caption h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-family: "Amiri", serif;
+}
+
+.gallery-caption p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  overflow: auto;
+}
+
+.modal-content {
+  position: relative;
+  margin: 5% auto;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.modal-img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-caption {
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* DEC Pages */
+.hero-dec {
+  background: linear-gradient(rgba(12, 75, 51, 0.7), rgba(12, 75, 51, 0.7)),
+    url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2c3fda6-83c2-42a6-89ac-31553b01d863.png")
+      no-repeat center center/cover;
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.hero-content-dec {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-title-dec {
+  font-size: 2.5rem;
+  color: var(--bg-color);
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle-dec {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: var(--bg-color);
+}
+
+.btn-produk {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-produk:hover {
+  background-color: #d19e04;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Products Section */
+.products {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title-produk {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--primary);
+}
+
+.section-produk-title h2 {
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.section-produk-title h2::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+.product-image {
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 1.5rem;
+}
+
+.product-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.product-info p {
+  margin-bottom: 1rem;
+  color: #666;
+}
 
 /* Media Queries */
 @media (max-width: 768px) {

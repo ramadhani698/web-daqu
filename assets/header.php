@@ -28,11 +28,11 @@
                 <li><a class="dropdown-item" href="#">Berita Pilihan</a></li>
                 <li><a class="dropdown-item" href="../news/info-akademik.php">Info Akademik</a></li>
                 <li><a class="dropdown-item" href="../news/info-santri.php">Info Santri</a></li>
-                <li><a class="dropdown-item" href="#">Info Alumni</a></li>
+                <li><a class="dropdown-item" href="../news/info-alumni.php">Info Alumni</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link">Galeri</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">DEC</a></li>
+            <li class="nav-item"><a href="../gallery/gallery.php" class="nav-link">Galeri</a></li>
+            <li class="nav-item"><a href="../dec/dec.php" class="nav-link">DEC</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Pendaftaran</a></li>
           </ul>
         </div>
