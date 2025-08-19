@@ -65,7 +65,7 @@
             <li class="nav-item dropdown hover-zone">
               <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">News</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Berita Pilihan</a></li>
+                <li><a class="dropdown-item" href="./news/berita.php">Berita Pilihan</a></li>
                 <li><a class="dropdown-item" href="./news/info-akademik.php">Info Akademik</a></li>
                 <li><a class="dropdown-item" href="./news/info-santri.php">Info Santri</a></li>
                 <li><a class="dropdown-item" href="./news/info-alumni.php">Info Alumni</a></li>
@@ -275,13 +275,12 @@
                 <div class="pendidikan-icon-container">
                   <i class="fas fa-book-open"></i>
                 </div>
-                <h4>Kurikulum Lengkap</h4>
+                <h4>Kurikulum Muadalah</h4>
               </div>
               <p>
-                Kombinasi pelajaran sekolah dan kajian pesantren—dari
-                Matematika, IPA, hingga fiqih dan sejarah Islam. Semua dirancang
-                harmonis agar santri tumbuh dengan ilmu yang seimbang dan akhlak
-                yang kokoh.
+                Perpaduan pelajaran umum dan kajian pesantren yang dirancang selaras. 
+                Santri belajar Matematika, IPA, fiqih, hingga sejarah Islam dengan 
+                pendekatan yang seimbang dan membentuk akhlak kuat.
               </p>
               <div class="pendidikan-cta">
                 <a href="#">Lanjut baca &raquo; </a>
@@ -304,7 +303,6 @@
           id="ekskulTab"
           role="tablist"
           data-aos="fade-up"
-          data-aos-delay="300"
         >
           <li class="nav-item" role="presentation">
             <button
@@ -470,7 +468,10 @@
             <p>
               Hadroh adalah seni musik Islami yang menggunakan alat pukul seperti rebana dan marawis. Ekskul ini bertujuan memperkuat ekspresi spiritual, kekompakan tim, dan semangat dakwah melalui irama.
             </p>
-            <img src="img/hadroh.jpg" alt="Hadroh" class="img-fluid rounded shadow">
+            <div class="text-center">
+              <img src="img/hadroh1.jpg" alt="Hadroh" class="img-fluid rounded shadow" style="max-width:400px">
+              <img src="img/hadroh2.jpg" alt="Hadroh" class="img-fluid rounded shadow" style="max-width:400px">
+            </div>
           </div>
         </div>
       </div>
@@ -493,7 +494,10 @@
               <li>Latihan membuat karya kaligrafi untuk lomba atau dekorasi</li>
               <li>Menumbuhkan rasa cinta terhadap Al-Qur’an melalui seni</li>
             </ul>
-            <img src="img/kaligrafi.jpg" alt="Kaligrafi" class="img-fluid rounded shadow mt-3">
+            <div class="text-center">
+              <img src="img/kaligrafi1.jpg" alt="Kaligrafi" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+              <img src="img/kaligrafi2.jpg" alt="Kaligrafi" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+            </div>
           </div>
         </div>
       </div>
@@ -516,7 +520,10 @@
               <li>Simulasi pertahanan diri dalam situasi nyata</li>
               <li>Menanamkan nilai sportivitas dan kontrol diri</li>
             </ul>
-            <img src="img/beladiri.jpg" alt="Beladiri" class="img-fluid rounded shadow mt-3">
+            <div class="text-center">
+              <img src="img/beladiri1.jpg" alt="Beladiri" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+              <img src="img/beladiri2.jpg" alt="Beladiri" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+            </div>
           </div>
         </div>
       </div>
@@ -539,7 +546,10 @@
               <li>Kompetisi internal dan antar sekolah</li>
               <li>Menanamkan semangat fair play dan kerja tim</li>
             </ul>
-            <img src="img/olahraga.jpg" alt="Olahraga" class="img-fluid rounded shadow mt-3">
+            <div class="text-center">
+              <img src="img/olahraga1.jpg" alt="Olahraga" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+              <img src="img/olahraga2.jpg" alt="Olahraga" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+            </div>
           </div>
         </div>
       </div>
@@ -585,7 +595,10 @@
               <li>Penguatan bahasa dan gaya komunikasi</li>
               <li>Simulasi tampil di depan publik dan lomba pidato</li>
             </ul>
-            <img src="img/muhadhoroh.jpg" alt="Muhadhoroh" class="img-fluid rounded shadow mt-3">
+            <div class="text-center">
+              <img src="img/muhadhoroh1.jpg" alt="Muhadhoroh" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+              <img src="img/muhadhoroh2.jpg" alt="Muhadhoroh" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+            </div>
           </div>
         </div>
       </div>
@@ -608,7 +621,9 @@
               <li>Kegiatan alam terbuka dan simulasi survival</li>
               <li>Penguatan karakter, tanggung jawab, dan kepemimpinan</li>
             </ul>
-            <img src="img/pramuka.jpg" alt="Pramuka" class="img-fluid rounded shadow mt-3">
+            <div class="text-center">
+              <img src="img/pramuka1.jpeg" alt="Pramuka" class="img-fluid rounded shadow mt-3" style="max-width:400px">
+            </div>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@
             <li class="nav-item dropdown hover-zone">
               <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">News</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Berita Pilihan</a></li>
+                <li><a class="dropdown-item" href="../news/berita.php">Berita Pilihan</a></li>
                 <li><a class="dropdown-item" href="../news/info-akademik.php">Info Akademik</a></li>
                 <li><a class="dropdown-item" href="../news/info-santri.php">Info Santri</a></li>
                 <li><a class="dropdown-item" href="../news/info-alumni.php">Info Alumni</a></li>
