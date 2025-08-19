@@ -2483,6 +2483,177 @@ section em {
   background-color: var(--accent-color);
 }
 
+/* Tahfizh Pages */
+.hero-tahfizh {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  background-image: url("https://placehold.co/1920x1080");
+  background-size: cover;
+  background-position: center;
+  color: var(--bg-color);
+  text-align: center;
+  margin-top: 80px;
+}
+
+.hero-overlay-tahfizh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content-tahfizh {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title-tahfizh {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.hero-subtitle-tahfizh {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.btn-tahfizh {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background-color: var(--accent-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 1rem;
+  border: none;
+}
+
+.btn-tahfizh:hover {
+  background-color: #d19e04;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.section-title-tahfizh {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.section-divider-tahfizh {
+  width: 80px;
+  height: 4px;
+  background-color: var(--secondary-color);
+  margin: 0 auto 40px;
+}
+
+.program {
+  padding: 80px 0;
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.program-card {
+  background-color: var(--supporting-color);
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+}
+
+.program-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background-color: rgba(4, 106, 56, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  font-size: 2rem;
+}
+
+.card-tahfizh-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--accent-color);
+}
+
+.card-tahfizh-subtitle {
+  color: var(--secondary-text);
+}
+
+.metode-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.metode-img {
+  flex: 1;
+}
+
+.metode-img img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metode-text {
+  flex: 1;
+}
+
+.metode-title {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+.metode-subtitle {
+  margin-bottom: 30px;
+  color: var(--secondary-text);
+}
+
+.metode-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.metode-item {
+  display: flex;
+  align-items: center;
+}
+
+.metode-item i {
+  color: var(--secondary-color);
+  margin-right: 10px;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   html {

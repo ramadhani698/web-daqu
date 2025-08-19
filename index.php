@@ -237,7 +237,7 @@
                 <div class="pendidikan-icon-container">
                   <i class="fas fa-mosque"></i>
                 </div>
-                <h4>Tahfidz Al-Qur'an</h4>
+                <h4>Tahfizh Al-Qur'an</h4>
               </div>
               <p>
                 Program unggulan untuk membentuk santri penghafal Qur’an dengan
@@ -246,7 +246,7 @@
                 bagian dari karakter santri.
               </p>
               <div class="pendidikan-cta">
-                <a href="#">Lanjut baca &raquo; </a>
+                <a href="./components/tahfizh.php">Lanjut baca &raquo; </a>
               </div>
             </div>
           </div>
@@ -293,7 +293,7 @@
 
     <section class="ekskul-section py-5">
       <div class="container">
-        <h2 class="mb-5 text-center" data-aos="fade-up">
+        <h2 class="mb-5 text-center">
           Kegiatan Ekstrakurikuler
         </h2>
 
@@ -302,7 +302,6 @@
           class="nav nav-pills justify-content-center mb-4"
           id="ekskulTab"
           role="tablist"
-          data-aos="fade-up"
         >
           <li class="nav-item" role="presentation">
             <button

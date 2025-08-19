@@ -43,14 +43,14 @@
   </head>
   <body>
     <!-- Hero Section -->
-    <section class="hero" style="margin-top: 70px;">
-      <div class="hero-content">
-        <h2 class="hero-title">Informasi Akademik</h2>
-        <p class="hero-subtitle">
+    <section class="hero-akademik" style="margin-top: 70px;">
+      <div class="hero-content-akademik">
+        <h2 class="hero-title-akademik">Informasi Akademik</h2>
+        <p class="hero-subtitle-akademik">
           Program Pendidikan dan Kurikulum Tahfidz Qur'an di Pesantren Daarul
           Qur'an Al-Jannah
         </p>
-        <div class="hero-divider"></div>
+        <div class="hero-divider-akademik"></div>
         <p class="hero-arabic">
           وَمَا كَانَ الْمُؤْمِنُونَ لِيَنفِرُوا كَآفَّةً ۚ فَلَوْلَا نَفَرَ
           مِن كُلِّ فِرْقَةٍ مِّنْهُمْ طَآئِفَةٌ لِّيَتَفَقَّهُوا۟ فِى ٱلدِّينِ
@@ -62,29 +62,26 @@
     <main class="main-content">
       <div class="content-grid">
         <!-- Sidebar Menu -->
-        <aside class="sidebar fixed-sidebar">
-            <h3 class="sidebar-title">Menu Akademik</h3>
-            <ul class="sidebar-menu">
-                <li><a href="#kurikulum" class="sidebar-menu-item">Kurikulum Pendidikan</a></li>
-                <li><a href="#jadwal" class="sidebar-menu-item">Jadwal Harian Santri</a></li>
-                <li><a href="#evaluasi" class="sidebar-menu-item">Sistem Evaluasi</a></li>
-                <li><a href="#prestasi" class="sidebar-menu-item">Prestasi Santri</a></li>
-            </ul>
+        <button class="sidebar-toggle">☰ Menu Akademik</button>
 
+        <aside class="sidebar fixed-sidebar" id="sidebar">
+          <h3 class="sidebar-title">Menu Akademik</h3>
+          <ul class="sidebar-menu">
+            <li><a href="#kurikulum" class="sidebar-menu-item">Kurikulum Pendidikan</a></li>
+            <li><a href="#jadwal" class="sidebar-menu-item">Jadwal Harian Santri</a></li>
+            <li><a href="#evaluasi" class="sidebar-menu-item">Sistem Evaluasi</a></li>
+            <li><a href="#prestasi" class="sidebar-menu-item">Prestasi Santri</a></li>
+          </ul>
 
           <div class="sidebar-announcement">
             <h3 class="sidebar-title">Pengumuman</h3>
             <div class="announcement-list">
               <div class="announcement-item warning">
-                <p class="announcement-text">
-                  Pengumuman Hasil Ujian Tengah Semester
-                </p>
+                <p class="announcement-text">Pengumuman Hasil Ujian Tengah Semester</p>
                 <p class="announcement-date">12 Juni 2023</p>
               </div>
               <div class="announcement-item success">
-                <p class="announcement-text">
-                  Pendaftaran Program Tahfidz Gelombang 2
-                </p>
+                <p class="announcement-text">Pendaftaran Program Tahfidz Gelombang 2</p>
                 <p class="announcement-date">1 Juli 2023</p>
               </div>
             </div>
@@ -291,6 +288,17 @@
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.querySelector('.sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        toggleBtn.addEventListener('click', function () {
+          sidebar.classList.toggle('show');
+        });
+      });
+    </script>
 
     <!-- AOS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
