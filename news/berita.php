@@ -32,23 +32,13 @@
     />
 
     <!-- My style -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
 
   </head>
-<?php include('../assets/header.php') ?>
+<?php include('../includes/navbar.php') ?>
   <body>
-    <section class="hero-berita">
-        <div class="hero-content-berita">
-            <h1 class="hero-berita-title">
-                Selamat Datang di Halaman Berita Pilihan
-            </h1>
-            <p class="hero-berita-subtitle">
-                Informasi terbaru seputar kegiatan dan kejadian di Pesantren Tahfidz
-                Daarul Qur'an Al-Jannah
-            </p>
-        </div>
-    </section>
+    <section class="hero-berita"></section>
     
     <div class="container-berita">
       <h2 class="section-title-berita">Berita Terkini</h2>
@@ -110,7 +100,7 @@
         </div>
       </div>
     </div>
-<?php include('../assets/footer.php') ?>
+<?php include('../includes/footer.php') ?>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
@@ -121,7 +111,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="script/script.js"></script>
-    <script src="script/stats.js"></script>
+    <!-- <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/stats.js"></script> -->
   </body>
 </html>

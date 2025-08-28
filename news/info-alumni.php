@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+assets/<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -34,16 +34,17 @@
     />
 
     <!-- My style -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     
     
-<?php include('../assets/header.php') ?>
-  </head>
-  <body>
+</head>
+<body>
+    <?php include('../includes/navbar.php') ?>
+
     <!-- Hero Section-->
      <section class="hero-section-alumni" id="beranda">
-        <div class="hero-content-alumni fade-in">
+        <div class="hero-content-alumni">
             <h2 class="hero-alumni-title">Bergabung Dengan Komunitas Alumni Tahfidz</h2>
             <p class="hero-alumni-subtitle">
                 Menjadi bagian dari jaringan alumni Pondok Pesantren Daarul Qu'ran Al-Jannah.
@@ -165,7 +166,7 @@
             </div>
         </div>
       </section>
-    <?php include('../assets/footer.php') ?>
+    <?php include('../includes/footer.php') ?>
   
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -177,6 +178,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="../script/script.js"></script>
+    <script src="../assets/js/script.js"></script>
   </body>
 </html>

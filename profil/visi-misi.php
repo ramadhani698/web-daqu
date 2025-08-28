@@ -32,17 +32,18 @@
     />
 
      <!-- My style -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
-<?php include('../assets/header.php') ?>
   <body>
     <body>
+      <?php include('../includes/navbar.php') ?>
+
       <section class="container py-5" style="margin-top: 60px;">
         <div class="row justify-content-center">
           <div class="col-lg-8" data-aos="fade-up">
             <div class="text-center mb-4">
-              <img src="../img/masjid.jpg" alt="Visi Misi Pesantren" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
+              <img src="../assets/img/masjid.jpg" alt="Visi Misi Pesantren" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
             </div>
             <h2 class="mb-4 text-center">Visi & Misi Pesantren</h2>
             <div class="mb-4">
@@ -61,7 +62,7 @@
         </div>
       </section>
 
-    <?php include('../assets/footer.php') ?>
+    <?php include('../includes/footer.php') ?>
   
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -73,6 +74,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="../script/script.js"></script>
+    <script src="../assets/js/script.js"></script>
   </body>
 </html>

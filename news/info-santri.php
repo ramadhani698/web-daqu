@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+assets/<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,13 +33,14 @@
     />
 
     <!-- My style -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/santri.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/santri.css" />
     
-<?php include('../assets/header.php') ?>
   </head>
   <body>
+    <?php include('../includes/navbar.php') ?>
+
     <!-- Hero Section -->
     <section class="hero-section" style="margin-top: 70px;">
       <div class="hero-content">
@@ -391,7 +392,7 @@
         </div>
       </section>
     </main>
-    <?php include('../assets/footer.php') ?>
+    <?php include('../includes/footer.php') ?>
   
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -500,6 +501,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="../script/script.js"></script>
+    <!-- <script src="../script/script.js"></script> -->
   </body>
 </html>

@@ -32,17 +32,18 @@
     />
 
     <!-- My style -->
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
 
-<?php include('../assets/header.php') ?>
-
+  
   <body>
+    <?php include('../includes/navbar.php') ?>
+
     <section class="container py-5" style="margin-top: 70px;">
       <div class="row align-items-center">
         <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-          <img src="../img/lingkungan_asri.jpg" alt="Sejarah Pesantren" class="img-fluid rounded shadow" />
+          <img src="../assets/img/lingkungan_asri.jpg" alt="Sejarah Pesantren" class="img-fluid rounded shadow" />
         </div>
         <div class="col-md-6" data-aos="fade-left">
           <h2 class="mb-3">Sejarah Pesantren</h2>
@@ -82,11 +83,11 @@
           </p>
         </div>
         <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-          <img src="../img/lingkungan_asri.jpg" alt="Sejarah Pesantren" class="img-fluid rounded shadow" />
+          <img src="../assets/img/lingkungan_asri.jpg" alt="Sejarah Pesantren" class="img-fluid rounded shadow" />
         </div>
     </section>
 
-    <?php include('../assets/footer.php') ?>
+    <?php include('../includes/footer.php') ?>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
@@ -97,6 +98,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="../script/script.js"></script>
+    <script src="../assets/js/script.js"></script>
   </body>
 </html>

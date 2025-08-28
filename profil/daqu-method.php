@@ -32,17 +32,17 @@
     />
 
     <!-- My style -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     
-<?php include('../assets/header.php') ?>
+<?php include('../includes/navbar.php') ?>
   </head>
   <body>
     <section class="container py-5" style="margin-top: 70px;">
       <div class="row justify-content-center">
         <div class="col-lg-8" data-aos="fade-up">
           <div class="text-center mb-4">
-            <img src="../img/pengajar_profesional.jpg" alt="Daqu Method" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
+            <img src="../assets/img/pengajar_profesional.jpg" alt="Daqu Method" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
           </div>
           <h2 class="mb-4 text-center">Daqu Method</h2>
           <ol class="list-group list-group-numbered mb-4">
@@ -57,7 +57,7 @@
         </div>
       </div>
     </section>
-    <?php include('../assets/footer.php') ?>
+    <?php include('../includes/footer.php') ?>
   
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -69,6 +69,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="../script/script.js"></script>
+    <script src="../assets/js/script.js"></script>
   </body>
 </html>

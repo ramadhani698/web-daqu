@@ -8,7 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-      crossorigin="anonymous"
+      crossorigin="anonymous"assets/
     />
 
     <!-- Fonts google -->
@@ -34,13 +34,14 @@
     />
 
     <!-- My style -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     
     
-<?php include('../assets/header.php') ?>
   </head>
   <body>
+    <?php include('../includes/navbar.php') ?>
+
     <section class="hero-dec">
         <div class="hero-content-dec">
             <h2 class="hero-title-dec">
@@ -121,7 +122,7 @@
       </div>
     </section>
 
-    <?php include('../assets/footer.php') ?>
+    <?php include('../includes/footer.php') ?>
   
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -133,6 +134,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- Javascript -->
-    <script src="../script/script.js"></script>
+    <!-- <script src="../script/script.js"></script> -->
   </body>
 </html>
