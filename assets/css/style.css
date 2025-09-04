@@ -1837,8 +1837,8 @@ section em {
 }
 
 .alumni-info p {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--secondary-text);
+  font-size: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -2145,7 +2145,7 @@ section em {
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-10px) !important;
 }
 
 .product-image {
@@ -2194,13 +2194,15 @@ section em {
   position: relative;
 }
 
-.section-title::after {
+.section-title-berita::after {
   content: "";
-  display: block;
-  width: 80px;
-  height: 3px;
-  background-color: var(--secondary-color);
-  margin: 0.5rem auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--accent-color);
+  animation: underlineGrow 2s ease-out 1.5s both;
 }
 
 .news-section {
@@ -2219,7 +2221,7 @@ section em {
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 

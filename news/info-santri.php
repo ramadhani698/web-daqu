@@ -1,4 +1,4 @@
-assets/<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,8 +35,6 @@ assets/<!DOCTYPE html>
     <!-- My style -->
     <link rel="stylesheet" href="../assets/css/reset.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/santri.css" />
-    
   </head>
   <body>
     <?php include('../includes/navbar.php') ?>
@@ -102,59 +100,26 @@ assets/<!DOCTYPE html>
                 <tr>
                   <th>No</th>
                   <th>Nama Lengkap</th>
-                  <th>NIS</th>
-                  <th>TTL</th>
                   <th>Kelas</th>
-                  <th>Asrama</th>
-                  <th>Program</th>
+                  <th>Hafalan</th>
+                  <th>Asal</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Ahmad Zulfikar</td>
-                  <td>2023001</td>
-                  <td>Jakarta, 12 Mei 2007</td>
-                  <td>X IPA 1</td>
-                  <td>Al-Farabi</td>
-                  <td>Tahfidz Reguler</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Siti Aminah</td>
-                  <td>2023002</td>
-                  <td>Bandung, 3 Maret 2008</td>
-                  <td>XI IPS 2</td>
-                  <td>Aisyah</td>
-                  <td>Tahfidz Intensif</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Muhammad Rizki</td>
-                  <td>2023003</td>
-                  <td>Bekasi, 25 Januari 2006</td>
-                  <td>XII IPA 2</td>
-                  <td>Umar</td>
-                  <td>Tahfidz Reguler</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Fatimah Azzahra</td>
-                  <td>2023004</td>
-                  <td>Semarang, 9 Juli 2007</td>
-                  <td>X IPA 3</td>
-                  <td>Khadijah</td>
-                  <td>Tahfidz Khusus</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Tim Al-Amin</td>
-                  <td>2023005</td>
-                  <td>Surabaya, 17 Agustus 2008</td>
-                  <td>XI IPA & IPS</td>
-                  <td>Ibnu Sina</td>
-                  <td>LKTI & Tahfidz</td>
-                </tr>
+                <?php
+                include __DIR__ . '/../admin/config/config.php';
+                $no = 1;
+                $result = $conn->query("SELECT * FROM santri ORDER BY id DESC LIMIT 10");
+                while ($row = $result->fetch_assoc()):
+                ?>
+                  <tr>
+                    <td><?= $no++ ?></td>
+                    <td><?= htmlspecialchars($row['nama']) ?></td>
+                    <td><?= htmlspecialchars($row['kelas']) ?></td>
+                    <td><?= htmlspecialchars($row['hafalan']) ?></td>
+                    <td><?= htmlspecialchars($row['asal']) ?></td>
+                  </tr>
+                <?php endwhile; ?>
               </tbody>
             </table>
           </div>
@@ -163,12 +128,12 @@ assets/<!DOCTYPE html>
           <div class="santri-pagination-info">
             <p class="text-sm text-gray-700">
               Menampilkan <span class="font-medium" id="startIndex">1</span>
-              sampai <span class="font-medium" id="endIndex">5</span>
-              dari <span class="font-medium" id="totalResult">5</span> hasil
+              sampai <span class="font-medium" id="endIndex"><?= $result->num_rows ?></span>
+              dari <span class="font-medium" id="totalResult"><?= $result->num_rows ?></span> hasil
             </p>
           </div>
 
-          <!-- Navigasi Pagination -->
+          <!-- Navigasi Pagination (bisa diatur manual / AJAX nanti) -->
           <div class="santri-pagination-nav">
             <nav
               class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
@@ -197,201 +162,39 @@ assets/<!DOCTYPE html>
                 <h2 class="prestasi-title">Prestasi Santri</h2>
                 <div class="prestasi-divider"></div>
             </div>
+
             <div class="prestasi-grid">
-                <!-- Card Prestasi -->
-                 <div class="prestasi-card">
-                    <img src="https://placehold.co/600x400" alt="Santri MTQ" class="prestasi-image">
-                    <div class="prestasi-content">
-                        <div class="prestasi-label">Lomba Tilawah</div>
-                        <h3 class="prestasi-heading">Juara 1 MTQ Nasional 2024</h3>
-                        <p class="prestasi-desc">
-                            Muhammad Rizki berhasil meraih juara 1 Musabaqah Tilawatil Quran tingkat nasional mewakili Provinsi Jawa Barat.
-                        </p>
-                        <div class="prestasi-profile">
-                            <img src="https://placehold.co/40x40" alt="Profil Rizki" class="prestasi-avatar">
-                            <p class="prestasi-name">Muhammad Rizki</p>
-                            <p class="prestasi-class">XII IPA 2</p>
+                <?php
+                include __DIR__ . '/../admin/config/config.php';
+                $prestasi = $conn->query("SELECT * FROM prestasi ORDER BY created_at DESC");
+                ?>
+
+                <?php if ($prestasi->num_rows > 0): ?>
+                    <?php while($p = $prestasi->fetch_assoc()): ?>
+                        <div class="prestasi-card">
+                            <img src="../uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['judul']) ?>" class="prestasi-image">
+                            <div class="prestasi-content">
+                                <div class="prestasi-label"><?= htmlspecialchars($p['kategori']) ?></div>
+                                <h3 class="prestasi-heading"><?= htmlspecialchars($p['judul']) ?></h3>
+                                <p class="prestasi-desc">
+                                    <?= strip_tags($p['deskripsi']) ?>
+                                </p>
+                                <div class="prestasi-profile">
+                                    <img src="https://placehold.co/40x40" alt="<?= htmlspecialchars($p['nama']) ?>" class="prestasi-avatar">
+                                    <p class="prestasi-name"><?= htmlspecialchars($p['nama']) ?></p>
+                                    <p class="prestasi-class"><?= htmlspecialchars($p['kelas']) ?></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                 </div>
-                 <div class="prestasi-card">
-                    <img src="https://placehold.co/600x400" alt="Santri LKTI" class="prestasi-image">
-                    <div class="prestasi-content">
-                        <div class="prestasi-label">Karya Tulis</div>
-                        <h3 class="prestasi-heading">Inovasi Teknologi Ramah Lingkungan</h3>
-                        <p class="prestasi-desc">
-                            Tim santri Daqu Al-Jannah berhasil meraih juara 2 LKTI tingkat provinsi dengan karya inovasi pengelolaan sampah berbasis digital.
-                        </p>
-                        <div class="prestasi-profile">
-                            <img src="https://placehold.co/40x40" alt="Profil Tim Al-Jannah" class="prestasi-avatar">
-                            <p class="prestasi-name">Tim Al-Jannah</p>
-                            <p class="prestasi-class">XI IPA & IPS</p>
-                        </div>
-                    </div>
-                 </div>
-                 <div class="prestasi-card">
-                    <img src="https://placehold.co/600x400" alt="Santri OSN" class="prestasi-image">
-                    <div class="prestasi-content">
-                        <div class="prestasi-label">Olimpiade</div>
-                        <h3 class="prestasi-heading">Medali Perak OSN Matematika</h3>
-                        <p class="prestasi-desc">
-                            Fatimah Azzahra berhasil meraih medali perak Olimpiade Sains Nasional bidang Matematika mewakili Jawa Barat.
-                        </p>
-                        <div class="prestasi-profile">
-                            <img src="https://placehold.co/40x40" alt="Profil Fatimah" class="prestasi-avatar">
-                            <p class="prestasi-name">Fatimah Azzahra</p>
-                            <p class="prestasi-class">XII IPA 2</p>
-                        </div>
-                    </div>
-                 </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p>Belum ada data prestasi.</p>
+                <?php endif; ?>
             </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Quran Memorization Section -->
-      <section id="quran-memorization" class="hafalan-section">
-        <div class="hafalan-container">
-          <h2 class="hafalan-title">Hafalan Qur'an</h2>
-          <div class="hafalan-divider"></div>
 
-          <!-- Pencarian -->
-          <div class="hafalan-search-wrapper">
-            <input
-              type="text"
-              id="searchHafalan"
-              placeholder="Cari nama santri..."
-              class="hafalan-search-input"
-            />
-          </div>
-
-          <!-- Tabel Hafalan -->
-          <div class="hafalan-wrapper">
-            <table class="hafalan-table">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Santri</th>
-                  <th>Juz</th>
-                  <th>Surah Terakhir</th>
-                  <th>Ayat Terakhir</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <div class="profile-cell">
-                      <img src="https://placehold.co/40x40" alt="Foto Ahmad Zulfikar" />
-                      <div>
-                        <p class="profile-name">Ahmad Zulfikar</p>
-                        <p class="profile-location">X IPA 1</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>15</td>
-                  <td>Al-Kahfi</td>
-                  <td>Ayat 10</td>
-                  <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <div class="profile-cell">
-                      <img src="https://placehold.co/40x40" alt="Foto Siti Aminah" />
-                      <div>
-                        <p class="profile-name">Siti Aminah</p>
-                        <p class="profile-location">XI IPS 2</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>22</td>
-                  <td>Al-Ahzab</td>
-                  <td>Ayat 45</td>
-                  <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    <div class="profile-cell">
-                      <img src="https://placehold.co/40x40" alt="Foto Muhammad Rizki" />
-                      <div>
-                        <p class="profile-name">Muhammad Rizki</p>
-                        <p class="profile-location">XII IPA 2</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>30</td>
-                  <td>An-Nas</td>
-                  <td>Ayat 6</td>
-                  <td><span class="status-badge khatam">Khatam</span></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>
-                    <div class="profile-cell">
-                      <img src="https://placehold.co/40x40" alt="Foto Fatimah Azzahra" />
-                      <div>
-                        <p class="profile-name">Fatimah Azzahra</p>
-                        <p class="profile-location">X IPA 3</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>18</td>
-                  <td>Al-Mu’minun</td>
-                  <td>Ayat 20</td>
-                  <td><span class="status-badge">Aktif</span></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>
-                    <div class="profile-cell">
-                      <img src="https://placehold.co/40x40" alt="Foto Tim Al-Amin" />
-                      <div>
-                        <p class="profile-name">Tim Al-Amin</p>
-                        <p class="profile-location">XI IPA & IPS</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>25</td>
-                  <td>Fussilat</td>
-                  <td>Ayat 12</td>
-                  <td><span class="status-badge">Aktif</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Info Jumlah Hasil -->
-          <div class="hafalan-pagination-info">
-            <p class="text-sm text-gray-700">
-              Menampilkan <span class="font-medium" id="hafalanStart">1</span>
-              sampai <span class="font-medium" id="hafalanEnd">5</span>
-              dari <span class="font-medium" id="hafalanTotal">5</span> hasil
-            </p>
-          </div>
-
-          <!-- Navigasi Pagination -->
-          <div class="hafalan-pagination-nav">
-            <nav
-              class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-              aria-label="Pagination"
-            >
-              <a href="#" class="pagination-btn prev-page">
-                <span class="sr-only">Sebelumnya</span>
-                <i class="fas fa-chevron-left"></i>
-              </a>
-              <a href="#" class="pagination-btn active">1</a>
-              <a href="#" class="pagination-btn">2</a>
-              <a href="#" class="pagination-btn next-page">
-                <span class="sr-only">Berikutnya</span>
-                <i class="fas fa-chevron-right"></i>
-              </a>
-            </nav>
-          </div>
-        </div>
-      </section>
-    </main>
     <?php include('../includes/footer.php') ?>
   
     <script

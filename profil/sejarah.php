@@ -40,52 +40,47 @@
   <body>
     <?php include('../includes/navbar.php') ?>
 
-    <section class="container py-5" style="margin-top: 70px;">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-          <img src="../assets/img/lingkungan_asri.jpg" alt="Sejarah Pesantren" class="img-fluid rounded shadow" />
-        </div>
-        <div class="col-md-6" data-aos="fade-left">
-          <h2 class="mb-3">Sejarah Pesantren</h2>
-          <p>
-            Pesantren Tahfidz Daarul Qur'an Al-Jannah didirikan pada tahun 2009 sebagai wujud kepedulian terhadap pendidikan Al-Qur'an di tengah masyarakat. Berawal dari sebuah rumah sederhana, pesantren ini tumbuh menjadi lembaga pendidikan yang berfokus pada pembinaan generasi Qur'ani.
-          </p>
-          <p>
-            Dengan semangat <em>“Mencetak Generasi Penghafal Qur’an yang Berakhlak Mulia”</em>, Daarul Qur'an Al-Jannah terus berkembang, baik dari segi fasilitas, tenaga pengajar, maupun jumlah santri. Hingga kini, pesantren telah meluluskan ratusan hafidz yang berkontribusi di berbagai bidang.
-          </p>
-          <p>
-            Dukungan masyarakat dan para donatur menjadi kunci keberhasilan pesantren dalam menjalankan visi dan misinya. Kami berkomitmen untuk terus memberikan pendidikan terbaik berbasis Al-Qur'an dan nilai-nilai Islam.
-          </p>
-        </div>
-      </div>
-    </section>
+    <?php
+include __DIR__ . '/../admin/config/config.php';
 
-    <section class="container py-5" style= "top: 80px;">
-      <div class="row align-items-center">
-        <div class="container" data-aos="fade-up">
-            <h2 class="content-title">Sejarah Yayasan Al Jannah Daarussalam</h2>
-            <p class="content-text">
-                Yayasan didirikan dengan tujuan menjadi wadah yang menampung amal sholeh kaum Muslimin dan Muslimat yang menyalurkan zakat, infaq dan sodaqoh untuk membiayai pendidikan anak-anak yatim dan anak-anak dari keluarga yang kurang mampu (dhuafa) khususnya di bidang tahfidz Qur’an dan pendidikan Muadalah setingkat SMU. Pendiri Yayasan terdiri dari Ibu Hj. Siti Hatijah Siregar, Ibu Hj. Herawati, Ibu Hj. Ina Suhaenah, Ibu Hj. Ernawati (alm), Ibu Hj. Umi Kalsum.
-            </p>
-            <p class="content-text">
-                Diawali dari memberikan bea siswa dan bantuan pendidikan kepada anak-anak yatim dan dhuafa di sekitar tempat tinggal para pendiri, dibantu oleh beberapa ibu-ibu relawan dan donatur perorangan untuk mewujudkan visi dan misi tersebut di atas maka dikembangkan hingga mendirikan Pesantren tahfidz Al Qur’an yang program dan standar serta metode pengajarannya menginduk kepada Pondok Pesantren tahfidz Qur’an Daarul Qur’an asuhan Ustadz Yusuf Mansur. Fokus Yayasan Al Jannah Daarussalam adalah untuk membantu anak yatim dan dhuafa agar mendapat pendidikan Muadalah setingkat SMU yang memiliki keistimewaan iman, taqwa dan Hafiz Al Qur’an dengan TIDAK BERBAYAR atau GRATIS.
-            </p>
-        </div> 
-      </div>
-    </section>
+// Ambil data sejarah pesantren
+$pesantren = $conn->query("SELECT * FROM sejarah WHERE section='pesantren' ORDER BY id DESC LIMIT 1")->fetch_assoc();
 
-    <section class="container py-5" style="top: 80px;">
-      <div class="row align-items-center">
-        <div class="col-md-6" data-aos="fade-left">
-          <h2 class="mb-3">Sejarah Yayasan Al Jannah Daarussalam</h2>
-          <p>
-            Yayasan didirikan dengan tujuan menjadi wadah yang menampung amal sholeh kaum Muslimin
-          </p>
-        </div>
-        <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-          <img src="../assets/img/lingkungan_asri.jpg" alt="Sejarah Pesantren" class="img-fluid rounded shadow" />
-        </div>
-    </section>
+// Ambil data sejarah yayasan
+$yayasan = $conn->query("SELECT * FROM sejarah WHERE section='yayasan' ORDER BY id DESC LIMIT 1")->fetch_assoc();
+?>
+
+<section class="container py-5" style="margin-top: 70px;">
+  <div class="row align-items-center">
+    <?php if ($pesantren): ?>
+      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+        <img src="../uploads/<?= htmlspecialchars($pesantren['image']) ?>" 
+             alt="<?= htmlspecialchars($pesantren['title']) ?>" 
+             class="img-fluid rounded shadow" />
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <h2 class="mb-3"><?= htmlspecialchars($pesantren['title']) ?></h2>
+        <p><?= nl2br($pesantren['content']) ?></p>
+      </div>
+    <?php endif; ?>
+  </div>
+</section>
+
+<section class="container py-5" style="top: 80px;">
+  <div class="row align-items-center">
+    <?php if ($yayasan): ?>
+      <div class="col-md-6" data-aos="fade-left">
+        <h2 class="mb-3"><?= htmlspecialchars($yayasan['title']) ?></h2>
+        <p><?= nl2br($yayasan['content']) ?></p>
+      </div>
+      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+        <img src="../uploads/<?= htmlspecialchars($yayasan['image']) ?>" 
+             alt="<?= htmlspecialchars($yayasan['title']) ?>" 
+             class="img-fluid rounded shadow" />
+      </div>
+    <?php endif; ?>
+  </div>
+</section>
 
     <?php include('../includes/footer.php') ?>
     <script

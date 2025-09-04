@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="mb-3">
           <label>Deskripsi</label>
-          <textarea id="editor" name="deskripsi" class="form-control" required><?= isset($data['deskripsi']) ? htmlspecialchars($data['deskripsi']) : '' ?></textarea>
+          <textarea id="editor" name="deskripsi" class="form-control"><?= isset($data['deskripsi']) ? htmlspecialchars($data['deskripsi']) : '' ?></textarea>
         </div>
         <div class="mb-3">
             <label>Link</label>

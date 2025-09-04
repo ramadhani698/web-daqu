@@ -1,8 +1,10 @@
-AOS.init({
-  duration: 1200,
-  once: true,
-  offset: 100,
-  easing: "ease-out-cubic",
+document.addEventListener("DOMContentLoaded", function () {
+  AOS.init({
+    duration: 500,
+    once: true,
+    offset: 120,
+    easing: "ease-out-cubic",
+  });
 });
 
 // Navbar scroll efect

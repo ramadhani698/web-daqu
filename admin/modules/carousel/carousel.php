@@ -19,10 +19,10 @@ if (isset($_GET['delete'])) {
 $carousels = $conn->query("SELECT * FROM carousel ORDER BY urutan ASC");
 ?>
 <?php include '../../includes/header.php'; ?>
-<div class="wrapper">
-  <?php include '../../includes/navbar.php'; ?>
-  <?php include '../../includes/sidebar.php'; ?>
+<?php include '../../includes/navbar.php'; ?>
+<?php include '../../includes/sidebar.php'; ?>
 
+<div class="wrapper">
   <div class="content-wrapper p-3">
     <div class="content-header">
       <h1 class="m-0">Carousel</h1>

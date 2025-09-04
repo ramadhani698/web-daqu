@@ -1,9 +1,13 @@
-assets/<!DOCTYPE html>
+<?php
+include __DIR__ . '/../admin/config/config.php';
+$alumni = $conn->query("SELECT * FROM alumni ORDER BY tahun_lulus ASC");
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info Akademik</title>
+    <title>Info Alumni</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,8 +22,6 @@ assets/<!DOCTYPE html>
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
-
 
     <!-- Font Awesome -->
     <link
@@ -28,22 +30,18 @@ assets/<!DOCTYPE html>
     />
 
     <!-- AOS -->
-     <link
+    <link
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
       rel="stylesheet"
     />
-
-    <!-- My style -->
     <link rel="stylesheet" href="../assets/css/reset.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    
-    
-</head>
+  </head>
 <body>
     <?php include('../includes/navbar.php') ?>
 
     <!-- Hero Section-->
-     <section class="hero-section-alumni" id="beranda">
+    <section class="hero-section-alumni" id="beranda">
         <div class="hero-content-alumni">
             <h2 class="hero-alumni-title">Bergabung Dengan Komunitas Alumni Tahfidz</h2>
             <p class="hero-alumni-subtitle">
@@ -53,10 +51,10 @@ assets/<!DOCTYPE html>
                 <a href="#alumni" class="btn-alumni">Lihat Alumni</a>
             </div>
         </div>
-     </section>
+    </section>
 
-     <!-- Alumni Prestasi Section -->
-      <section class="alumni-prestasi" id="alumni">
+    <!-- Alumni Prestasi Section -->
+    <section class="alumni-prestasi" id="alumni">
         <div class="container">
             <h2 class="section-alumni-title">Daftar Alumni</h2>
             <p class="section-alumni-subtitle">
@@ -64,120 +62,42 @@ assets/<!DOCTYPE html>
             </p>
 
             <div class="alumni-container">
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img
-                            src="https://placehold.co/400x500"
-                            alt="Ustadz Abdullah, alumni tahun 2010, mengenakan gamis putih dan kopiah, berdiri di depan masjid"
-                        />
-                        <span class="alumni-badge">Dai Nasional</span>
-                    </div>
-                    <div class="alumni-info">
-                        <h3>Ustadz Abdullah, S.Ag</h3>
-                        <p>Tahun Lulus: 2010</p>
-                        <p>Kontributor Utama di Majelis Dakwah Nasional</p>
-                        <span class="alumni-juz">Hafal 30 Juz</span>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img
-                            src="https://placehold.co/400x500"
-                            alt="Dr. Hafsah, alumni tahun 2012, berhijab syar'i dengan buku di tangan, sedang mengajar di kampus"
-                        />
-                        <span class="alumni-badge">Dosen</span>
-                    </div>
-                    <div class="alumni-info">
-                        <h3>Dr. Hafsah, M.Pd</h3>
-                        <p>Tahun Lulus: 2012</p>
-                        <p>Dosen Tafsir di Universitas Islam Negeri</p>
-                        <span class="alumni-juz">Hafal 30 Juz</span>
+              <?php while($row = $alumni->fetch_assoc()): ?>
+                <div class="wrapper"  data-aos="fade-up">
+                    <div class="alumni-card">
+                        <div class="alumni-img">
+                            <img 
+                              src="../<?= htmlspecialchars($row['foto']) ?>" 
+                              alt="<?= htmlspecialchars($row['nama']) ?>, alumni tahun <?= htmlspecialchars($row['tahun_lulus']) ?>, profesi <?= htmlspecialchars($row['profesi']) ?>"
+                            />
+                            <?php if (!empty($row['badge'])): ?>
+                              <span class="alumni-badge"><?= htmlspecialchars($row['badge']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="alumni-info">
+                            <h3><?= htmlspecialchars($row['nama']) ?></h3>
+                            <p>Tahun Lulus: <?= htmlspecialchars($row['tahun_lulus']) ?></p>
+                            <p><?= strip_tags($row['deskripsi']) ?></p>
+                            <?php if (!empty($row['juz_hafalan'])): ?>
+                              <span class="alumni-juz">Hafal <?= htmlspecialchars($row['juz_hafalan']) ?> Juz</span>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img
-                            src="https://placehold.co/400x500"
-                            alt="Ahmad Fauzi, alumni tahun 2015, berpakaian formal modern dengan laptop, di ruang kerja"
-                        />
-                        <span class="alumni-badge">Pengusaha</span>
-                    </div>
-                    <div class="alumni-info">
-                        <h3>Ahmad Fauzi, S.T</h3>
-                        <p>Tahun Lulus: 2015</p>
-                        <p>Pendiri Startup Halal pertama di Indonesia</p>
-                        <span class="alumni-juz">Hafal 20 Juz</span>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img
-                            src="https://placehold.co/400x500"
-                            alt="Ahmad Fauzi, alumni tahun 2015, berpakaian formal modern dengan laptop, di ruang kerja"
-                        />
-                        <span class="alumni-badge">Pengusaha</span>
-                    </div>
-                    <div class="alumni-info">
-                        <h3>Ahmad Fauzi, S.T</h3>
-                        <p>Tahun Lulus: 2015</p>
-                        <p>Pendiri Startup Halal pertama di Indonesia</p>
-                        <span class="alumni-juz">Hafal 20 Juz</span>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img
-                            src="https://placehold.co/400x500"
-                            alt="Ahmad Fauzi, alumni tahun 2015, berpakaian formal modern dengan laptop, di ruang kerja"
-                        />
-                        <span class="alumni-badge">Pengusaha</span>
-                    </div>
-                    <div class="alumni-info">
-                        <h3>Ahmad Fauzi, S.T</h3>
-                        <p>Tahun Lulus: 2015</p>
-                        <p>Pendiri Startup Halal pertama di Indonesia</p>
-                        <span class="alumni-juz">Hafal 20 Juz</span>
-                    </div>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-img">
-                        <img
-                            src="https://placehold.co/400x500"
-                            alt="Ahmad Fauzi, alumni tahun 2015, berpakaian formal modern dengan laptop, di ruang kerja"
-                        />
-                        <span class="alumni-badge">Pengusaha</span>
-                    </div>
-                    <div class="alumni-info">
-                        <h3>Ahmad Fauzi, S.T</h3>
-                        <p>Tahun Lulus: 2015</p>
-                        <p>Pendiri Startup Halal pertama di Indonesia</p>
-                        <span class="alumni-juz">Hafal 20 Juz</span>
-                    </div>
-                </div>  
+              <?php endwhile; ?>
             </div>
 
             <div class="lihat-lebih">
                 <a href="#" class="btn-alumni">Lihat Selengkapnya →</a>
             </div>
         </div>
-      </section>
+    </section>
+
     <?php include('../includes/footer.php') ?>
   
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-    <!-- Javascript -->
     <script src="../assets/js/script.js"></script>
+    <script>AOS.init();</script>
   </body>
 </html>

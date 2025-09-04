@@ -59,9 +59,39 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="contact.php" class="nav-link">
-            <i class="nav-icon fas fa-phone"></i>
-            <p>Contact</p>
+          <a href="/web-daqu-aljannah-final/admin/modules/sejarah/sejarah.php" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>Sejarah</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/web-daqu-aljannah-final/admin/modules/akademik/akademik.php" class="nav-link">
+            <i class="nav-icon fas fa-university"></i>
+            <p>Info Akademik</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/web-daqu-aljannah-final/admin/modules/santri/santri.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Info Santri</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/web-daqu-aljannah-final/admin/modules/alumni/alumni.php" class="nav-link">
+              <i class="nav-icon fas fa-user-graduate"></i>
+              <p>Alumni</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/web-daqu-aljannah-final/admin/modules/galeri/galeri.php" class="nav-link">
+              <i class="nav-icon fas fa-images"></i>
+              <p>Galeri</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/web-daqu-aljannah-final/admin/modules/dec/dec.php" class="nav-link">
+              <i class="nav-icon fas fa-store"></i>
+              <p>Produk Daqu (DEC)</p>
           </a>
         </li>
       </ul>

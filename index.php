@@ -125,22 +125,31 @@
     <section class="home-section" id="home-section">
       <div class="container">
         <div class="row justify-content-center mb-3">
-          <div class="home-title">
+          <div class="home-title text-center">
             <h4 data-aos="fade-up">Selamat Datang di</h4>
-            <h2 data-aos="fade-up" data-aos-delay="300">
-              Daarul Qur'an </br>
+            <h2 data-aos="zoom-in" data-aos-delay="150">
+              Daarul Qur'an <br />
               Al-Jannah
             </h2>
-            <p data-aos="fade-up" data-aos-delay="600">
-              Tempat tumbuhnya generasi Qur'ani yang berakhlak mulia dan cinta
-              ilmu. Bergabunglah dalam lingkungan islami yang damai, inspiratif,
-              dan penuh keberkahan
+            <p data-aos="fade-up" data-aos-delay="400">
+              Tempat tumbuhnya generasi Qur'ani yang berakhlak mulia dan cinta ilmu.
+              Bergabunglah dalam lingkungan islami yang damai, inspiratif, dan penuh
+              keberkahan.
             </p>
           </div>
         </div>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,288L120,261.3C240,235,480,181,720,149.3C960,117,1200,107,1320,101.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+
+      <!-- Wave SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,288L120,261.3C240,235,480,181,720,149.3C960,117,1200,107,1320,101.3L1440,96V320H0Z"
+        ></path>
+      </svg>
     </section>
+
 
     <section class="daqu-benefit-section py-5">
       <div class="container">
@@ -149,22 +158,21 @@
           include __DIR__ . '/admin/config/config.php';
           $benefits = $conn->query("SELECT * FROM benefit ORDER BY id ASC");
           ?>
-
           <div class="col-md-6" data-aos="fade-right">
             <div class="why-section">
               <h3 class="mb-4">Kenapa harus mondok di Daarul Qur'an Al-Jannah?</h3>
             </div>
             <ul class="list-unstyled">
               <?php 
-              $delay = 200; 
+              $delay = 100; 
               while ($row = $benefits->fetch_assoc()): 
               ?>
-                <li data-aos="fade-right" data-aos-delay="<?= $delay ?>">
+                <li data-aos="fade-right" data-aos-delay="<?= $delay ?>" data-aos-duration="1000">
                   <strong><?= htmlspecialchars($row['title']) ?></strong> – 
                   <?= htmlspecialchars($row['description']) ?>
                 </li>
               <?php 
-                $delay += 200; 
+                $delay += 150; 
               endwhile; 
               ?>
             </ul>
@@ -203,15 +211,18 @@
       <div class="container">
         <h2 class="pendidikan-title">Pendidikan di Daarul Qur'an Al-Jannah</h2>
         <div class="row justify-content-center">
-          <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-12 text-center">
             <p class="pendidikan-intro">
               Di Daarul Qur'an, pendidikan bukan cuma soal duduk di kelas. Di sini, santri dibimbing buat jadi pribadi yang berilmu, berakhlak mulia, dan cinta Al-Qur’an. Gaya belajarnya dikemas modern tapi tetap kental nilai Islam, jadi gak cuma siap hadapi dunia, tapi juga punya bekal dari langit. Programnya dirancang buat bantu mereka tumbuh jadi pemimpin, kreatif, dan berjiwa tangguh—karakter yang pastinya bikin kita semua bangga.
             </p>
           </div>
         </div>
         <div class="row pendidikan-row g-4" data-aos="fade-up">
-          <?php while($row = $pendidikan->fetch_assoc()): ?>
-          <div class="col-lg-4">
+          <?php
+            $delay = 300;
+            while($row = $pendidikan->fetch_assoc()):
+          ?>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
             <div class="pendidikan-card">
               <div class="pendidikan-header">
                 <div class="pendidikan-icon-container">
@@ -225,7 +236,9 @@
               </div>
             </div>
           </div>
-          <?php endwhile; ?>
+          <?php
+            $delay += 300;
+            endwhile; ?>
         </div>
       </div>
     </section>
@@ -261,13 +274,16 @@
           <?php $active='show active'; foreach($tabs as $tab): ?>
           <div class="tab-pane fade <?= $active ?>" id="<?= $tab ?>">
             <div class="row g-4">
-              <?php if (!empty($ekskul[$tab])): foreach($ekskul[$tab] as $item): ?>
-              <div class="col-md-6">
+              <?php
+              $delay = 300;
+              if (!empty($ekskul[$tab])): foreach($ekskul[$tab] as $item): ?>
+              <div class="col-md-6" data-aos="flip-left" data-aos-delay="<?= $delay ?>">
                 <div class="ekskul-card" data-bs-toggle="modal" data-bs-target="#modal<?= $item['id'] ?>">
                   <i class="<?= $item['icon'] ?>"></i>
                   <h5><?= $item['nama'] ?></h5>
                   <p><?= $item['deskripsi'] ?></p>
                 </div>
+                <?php $delay += 300; ?>
               </div>
 
               <!-- Modal -->
@@ -297,12 +313,12 @@
     </section>
 
 
-    <?php
-    include __DIR__ . '/admin/config/config.php';
+      <?php
+      include __DIR__ . '/admin/config/config.php';
 
-    // ambil data kegiatan karakter
-    $karakter = $conn->query("SELECT * FROM karakter ORDER BY id DESC");
-    ?>
+      // ambil data kegiatan karakter
+      $karakter = $conn->query("SELECT * FROM karakter ORDER BY id DESC");
+      ?>
 
     <section id="pendidikan-karakter" class="container py-5">
       <div class="row mb-3">
@@ -360,8 +376,10 @@
       <div class="stats-container">
         <?php
         $stats = $conn->query("SELECT * FROM stats");
+        $delay = 300;
         while($s = $stats->fetch_assoc()):
         ?>
+        <div class="wrapper" data-aos="fade-down" data-aos-delay="<?= $delay ?>">
           <div class="stat-card">
             <div class="stat-item">
               <div class="stat-icon">
@@ -371,42 +389,51 @@
               <p><?= htmlspecialchars($s['deskripsi']) ?></p>
             </div>
           </div>
-        <?php endwhile; ?>
+        </div>
+        <?php
+          $delay += 300;
+          endwhile; ?>
       </div>
     </section>
 
     <?php
     include __DIR__ . '/admin/config/config.php';
-    $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT 4");
+    $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT 6");
     ?>
 
     <section id="berita" class="news-section">
       <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Berita Terbaru</h2>
+        <h2 class="section-title-berita" data-aos="fade-up">Berita Terbaru</h2>
         
         <div class="news-grid mb-5">
-          <?php while($b = $berita->fetch_assoc()): ?>
-            <div class="news-card" data-aos="fade-up">
-              <div class="news-image">
-                <img
-                  src="<?= htmlspecialchars($b['gambar']) ?>"
-                  alt="<?= htmlspecialchars($b['judul']) ?>"
-                />
-              </div>
-              <div class="news-content">
-                <div class="news-date">
-                  <?= date("d M Y", strtotime($b['created_at'])) ?>
+          <?php
+            $delay = 200;
+            while($b = $berita->fetch_assoc()): ?>
+            <div class="wrapper" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+              <div class="news-card">
+                <div class="news-image">
+                  <img
+                    src="<?= htmlspecialchars($b['gambar']) ?>"
+                    alt="<?= htmlspecialchars($b['judul']) ?>"
+                  />
                 </div>
-                <h3 class="news-title"><?= htmlspecialchars($b['judul']) ?></h3>
-                <p class="news-excerpt">
-                  <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
-                </p>
-                <a href="berita/detail.php?id=<?= $b['id'] ?>" class="read-more">
-                  Baca Selengkapnya
-                </a>
+                <div class="news-content">
+                  <div class="news-date">
+                    <?= date("d M Y", strtotime($b['created_at'])) ?>
+                  </div>
+                  <h3 class="news-title"><?= htmlspecialchars($b['judul']) ?></h3>
+                  <p class="news-excerpt">
+                    <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
+                  </p>
+                  <a href="berita/detail.php?id=<?= $b['id'] ?>" class="read-more">
+                    Baca Selengkapnya
+                  </a>
+                </div>
               </div>
             </div>
-          <?php endwhile; ?>
+          <?php 
+            $delay += 200;
+            endwhile; ?>
         </div>
       </div>
     </section>
