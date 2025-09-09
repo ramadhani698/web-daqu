@@ -33,8 +33,8 @@ $benefits = $conn->query("SELECT * FROM benefit ORDER BY id DESC");
               <td><?= htmlspecialchars($row['description']) ?></td>
               <td><i class="<?= $row['icon'] ?>"></i></td>
               <td>
-                <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau hapus?')">Hapus</a>
+                <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau hapus?')"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
             <?php endwhile; ?>

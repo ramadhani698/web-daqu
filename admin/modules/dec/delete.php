@@ -11,7 +11,7 @@ if ($data && !empty($data['gambar'])) {
     }
 }
 
-$conn->query("DELETE FROM dec WHERE id=$id");
+$conn->query("DELETE FROM daqu_produk WHERE id=$id");
 
 header("Location: dec.php?deleted=1");
 exit;

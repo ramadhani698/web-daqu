@@ -44,7 +44,7 @@
           <div class="text-center mb-4">
             <img src="../assets/img/pengajar_profesional.jpg" alt="Daqu Method" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
           </div>
-          <h2 class="mb-4 text-center">Daqu Method</h2>
+          <h2 class="daqu-title mb-4 text-center">Daqu Method</h2>
           <ol class="list-group list-group-numbered mb-4">
             <li class="list-group-item">Shalat Berjamaah &amp; Jaga Hati, Jaga Sikap</li>
             <li class="list-group-item">Tahajjud, Dhuha &amp; Qabliyah Ba’diyah</li>

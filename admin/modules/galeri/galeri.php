@@ -30,8 +30,8 @@ $galeri = $conn->query("SELECT * FROM galeri ORDER BY created_at DESC");
           <td><?= htmlspecialchars($g['kategori']) ?></td>
           <td><?= strip_tags($g['deskripsi']) ?></td>
           <td>
-            <a href="edit.php?id=<?= $g['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="delete.php?id=<?= $g['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+            <a href="edit.php?id=<?= $g['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $g['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         <?php endwhile; ?>

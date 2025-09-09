@@ -432,70 +432,62 @@ body {
 }
 
 /* Responsive Design */
-@media (min-width: 768px) {
-  .header-container {
-    padding: 1rem 2rem;
-  }
-
-  .main-nav {
-    display: block;
-  }
-
-  .mobile-menu-button {
-    display: none;
-  }
-
-  .sidebar-toggle {
-    display: none;
-  }
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .content-grid {
-    grid-template-columns: 1fr 3fr;
-  }
-
-  .two-column-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .header-container {
-    padding: 1rem 4rem;
-  }
-
-  .hero-content {
-    padding: 0 4rem;
-  }
-
-  .main-content {
-    padding: 3rem 4rem;
-  }
-}
-
-/* Mobile Menu */
+/* Mobile First Responsive */
+/* Mobile First Responsive */
 @media (max-width: 767px) {
-  .fixed-sidebar {
-    position: static;
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    padding: 1rem;
-    box-shadow: none;
-    display: none;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* default tidak klik */
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+  }
+  .sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* aktif saat tampil */
   }
 
+  .fixed-sidebar {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 85%;
+    max-width: 320px;
+    height: calc(100% - 70px);
+    background: #fff;
+    padding: 1rem;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 2001; /* di atas overlay */
+  }
   .fixed-sidebar.show {
-    display: block;
+    transform: translateX(0);
+    opacity: 1;
   }
 
   .content-grid {
     grid-template-columns: 1fr;
+  }
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 280px 1fr; /* sidebar + konten */
+  }
+
+  .two-column-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

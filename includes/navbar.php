@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="../assets/img/logo2.jpg" alt="Logo2" height="70">
+          <img src="../assets/img/LOGO-DQ-CARIU-scaled.png" alt="Logo2" height="70">
         </a>
 
         <!-- Tombol hamburger -->

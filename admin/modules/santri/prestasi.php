@@ -33,8 +33,8 @@ $prestasi = $conn->query("SELECT * FROM prestasi ORDER BY created_at DESC");
           <td><?= htmlspecialchars($p['nama']) ?></td>
           <td><?= htmlspecialchars($p['kelas']) ?></td>
           <td>
-            <a href="prestasi_edit.php?id=<?= $p['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="prestasi_delete.php?id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+            <a href="prestasi_edit.php?id=<?= $p['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="prestasi_delete.php?id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         <?php endwhile; ?>

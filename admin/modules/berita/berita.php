@@ -24,10 +24,10 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
         <tr>
           <td><img src="../../../<?= htmlspecialchars($b['gambar']) ?>" width="100"></td>
           <td><?= htmlspecialchars($b['judul']) ?></td>
-          <td><?= htmlspecialchars(mb_strimwidth($b['deskripsi'],0,50,"...")) ?></td>
+          <td><?= strip_tags(mb_strimwidth($b['deskripsi'],0,50,"...")) ?></td>
           <td>
-            <a href="edit.php?id=<?= $b['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="delete.php?id=<?= $b['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+            <a href="edit.php?id=<?= $b['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $b['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         <?php endwhile; ?>

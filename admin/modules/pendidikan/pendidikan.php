@@ -33,8 +33,8 @@ $result = $conn->query("SELECT * FROM pendidikan ORDER BY id DESC");
           <td><?= htmlspecialchars(substr($row['description'], 0, 100)) ?>...</td>
           <td><?= htmlspecialchars($row['link']) ?></td>
           <td>
-            <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</a>
+            <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         <?php endwhile; ?>

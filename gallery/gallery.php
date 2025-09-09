@@ -51,9 +51,7 @@ include __DIR__ . '/../admin/config/config.php';
 
       <!-- FILTER BUTTONS -->
       <div class="gallery-filter" data-aos="fade-up" data-aos-delay="100">
-        <button class="filter-button active" data-filter="all">Semua</button>
-        <button class="filter-button" data-filter="kegiatan">Kegiatan</button>
-        <button class="filter-button" data-filter="pembelajaran">Pembelajaran</button>
+        <button class="filter-button active" data-filter="kegiatan">Kegiatan</button>
         <button class="filter-button" data-filter="prestasi">Prestasi</button>
         <button class="filter-button" data-filter="fasilitas">Fasilitas</button>
       </div>
@@ -100,47 +98,68 @@ include __DIR__ . '/../admin/config/config.php';
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const filterButtons = document.querySelectorAll(".filter-button");
-        const galleryItems = document.querySelectorAll(".gallery-item");
+  const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
+  const galleryItems = document.querySelectorAll(".gallery-item");
 
-        // FILTER
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            button.classList.add("active");
+  // === FILTER ===
+  function applyFilter(filter) {
+    const f = (filter || "").trim().toLowerCase();
+    galleryItems.forEach((item) => {
+      const category = (item.dataset.category || "").trim().toLowerCase();
+      if (category === f) {
+        item.style.display = ""; // tampil
+      } else {
+        item.style.display = "none"; // sembunyi
+      }
+    });
+  }
 
-            const filter = button.dataset.filter;
-            galleryItems.forEach((item) => {
-              const category = item.dataset.category;
-              if (filter === "all" || category === filter) {
-                item.style.display = ""; // pakai default grid/flex
-              } else {
-                item.style.display = "none";
-              }
-            });
-          });
-        });
+  // Event click tombol filter
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
 
-        // MODAL POPUP
-        const modal = new bootstrap.Modal(document.getElementById("galleryModal"));
-        const modalImage = document.getElementById("modalImage");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalDesc = document.getElementById("modalDesc");
+      const filter = button.dataset.filter;
+      applyFilter(filter);
+    });
+  });
 
-        galleryItems.forEach((item) => {
-          item.addEventListener("click", () => {
-            const img = item.querySelector("img");
-            const title = item.querySelector(".gallery-caption h3").innerText;
-            const desc = item.querySelector(".gallery-caption p").innerText;
+  // Default filter: kegiatan
+  const defaultFilter = "kegiatan";
+  const defaultBtn = filterButtons.find(
+    (btn) => (btn.dataset.filter || "").trim().toLowerCase() === defaultFilter
+  );
+  if (defaultBtn) {
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    defaultBtn.classList.add("active");
+  }
+  applyFilter(defaultFilter);
 
-            modalImage.src = img.src;
-            modalImage.alt = img.alt;
-            modalTitle.innerText = title;
-            modalDesc.innerText = desc;
-            modal.show();
-          });
-        });
-      });
+  // === MODAL POPUP ===
+  const modal = new bootstrap.Modal(document.getElementById("galleryModal"));
+  const modalImage = document.getElementById("modalImage");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDesc");
+
+  galleryItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // hanya jalankan modal kalau item sedang ditampilkan
+      if (item.style.display === "none") return;
+
+      const img = item.querySelector("img");
+      const title = item.querySelector(".gallery-caption h3").innerText;
+      const desc = item.querySelector(".gallery-caption p").innerText;
+
+      modalImage.src = img.src;
+      modalImage.alt = img.alt;
+      modalTitle.innerText = title;
+      modalDesc.innerText = desc;
+      modal.show();
+    });
+  });
+});
+
     </script>
 
     <!-- AOS -->

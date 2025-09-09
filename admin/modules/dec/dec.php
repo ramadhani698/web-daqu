@@ -34,8 +34,8 @@ $produk = $conn->query("SELECT * FROM daqu_produk ORDER BY created_at DESC");
           <td><?= strip_tags(substr($p['deskripsi'],0,50)) ?>...</td>
           <td><?= htmlspecialchars($p['harga']) ?></td>
           <td>
-            <a href="edit.php?id=<?= $p['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="delete.php?id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</a>
+            <a href="edit.php?id=<?= $p['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         <?php endwhile; ?>

@@ -162,7 +162,7 @@ body {
 .loading-spinner {
   width: 100%;
   transform-origin: center;
-  animation: rotate4 1s linear infinite;
+  animation: rotate4 5s linear infinite; /* ganti durasi jadi 5s */
 }
 
 .loader-circle {
@@ -807,7 +807,7 @@ section.container.py-5 {
 
 section img {
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 1);
   transition: transform 0.3s ease;
 }
 section img:hover {
@@ -833,11 +833,35 @@ section em {
 }
 
 /* Daqu Method Page */
+
+.daqu-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  position: relative;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.daqu-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--accent-color);
+  animation: underlineGrow 2s ease-out 1.5s both;
+}
+
 .list-group-numbered .list-group-item {
   background-color: transparent;
   border: none;
-  color: var(--main-text);
+  color: var(--secondary-text);
   font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .list-group-numbered .list-group-item + .list-group-item {
@@ -847,6 +871,45 @@ section em {
 .list-group-numbered .list-group-item::before {
   color: var(--primary-color);
   font-weight: bold;
+}
+
+/* Visi Misi Pages */
+.visi-misi-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  position: relative;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.visi-misi-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--accent-color);
+  animation: underlineGrow 2s ease-out 1.5s both;
+}
+
+.visi-title,
+.misi-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.visi-paragraph,
+.misi-paragraph {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: var(--secondary-text);
 }
 
 /* Info Akademik Page */
@@ -2513,108 +2576,12 @@ section em {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.registration-form {
-  background-color: white;
-  padding: 30px;
+.requirements-daftar {
+  margin-top: 40px;
+  background-color: var(--bg-color);
+  padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-}
-
-.form-title {
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--primary-color);
-  position: relative;
-}
-
-.form-title::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 3px;
-  background-color: var(--secondary-color);
-  margin: 10px auto 0;
-}
-
-.form-group {
-  margin-bottom: 20px;
-  color: var(--secondary-text);
-}
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.form-col {
-  flex: 1;
-  min-width: 250px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: var(--accent-color);
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border-color 0.3s;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--accent-color);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
-}
-
-.radio-group {
-  display: flex;
-  gap: 20px;
-  margin-top: 5px;
-}
-
-.radio-option {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.btn-submit-daftar {
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  margin: 30px auto 0;
-}
-
-.btn-submit-daftar:hover {
-  background-color: var(--secondary-color);
+  border-left: 5px solid var(--secondary-color);
 }
 
 .requirements-daftar {
@@ -2642,6 +2609,18 @@ textarea {
 }
 
 /* Media Queries */
+@media (max-width: 991.98px) {
+  .navbar {
+    background-color: #fff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: none;
+  }
+
+  .navbar .navbar-collapse {
+    background-color: #fff;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 70%;
@@ -2668,17 +2647,9 @@ textarea {
     right: auto;
     z-index: auto;
   }
-}
 
-@media (max-width: 991.98px) {
-  .navbar {
-    background-color: #fff !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* opsional, biar ada depth */
-    backdrop-filter: none;
-  }
-
-  .navbar .navbar-collapse {
-    background-color: #fff;
+  .gallery-img {
+    height: 160px; /* lebih kecil supaya pas di tablet/HP */
   }
 }
 
@@ -2701,5 +2672,9 @@ textarea {
   .tagline {
     width: 90%;
     font-size: 2.2rem;
+  }
+
+  .gallery-img {
+    height: 140px; /* lebih pendek di HP kecil */
   }
 }

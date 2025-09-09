@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label>Kategori</label>
             <select name="kategori" class="form-control" required>
                 <option value="kegiatan" <?= $data['kategori']=='kegiatan'?'selected':'' ?>>Kegiatan</option>
-                <option value="pembelajaran" <?= $data['kategori']=='pembelajaran'?'selected':'' ?>>Pembelajaran</option>
                 <option value="prestasi" <?= $data['kategori']=='prestasi'?'selected':'' ?>>Prestasi</option>
                 <option value="fasilitas" <?= $data['kategori']=='fasilitas'?'selected':'' ?>>Fasilitas</option>
             </select>

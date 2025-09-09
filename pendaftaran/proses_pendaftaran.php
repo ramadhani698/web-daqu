@@ -1,57 +1,78 @@
 <?php
-// Koneksi ke database
-$host = "localhost";
-$user = "root"; // ganti kalau ada user lain
-$pass = "";
-$db   = "pesantren_daqu";
+include __DIR__ . '/../admin/config/config.php';
 
-$conn = new mysqli($host, $user, $pass, $db);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil data dari form
+    $nama_lengkap = $_POST['nama_lengkap'];
+    $nik = $_POST['nik'];
+    $nisn = $_POST['nisn'];
+    $kip = $_POST['kip'];
+    $tempat_lahir = $_POST['tempat_lahir'];
+    $tanggal_lahir = $_POST['tanggal_lahir'];
+    $anak_ke = $_POST['anak_ke'];
+    $jumlah_saudara = $_POST['jumlah_saudara'];
+    $cita_cita = $_POST['cita_cita'];
+    $hobi = $_POST['hobi'];
+    $pembiaya_sekolah = $_POST['pembiaya_sekolah'];
 
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
+    $no_kk = $_POST['no_kk'];
+    $nama_kepala_keluarga = $_POST['nama_kepala_keluarga'];
+    $nama_ayah = $_POST['nama_ayah'];
+    $status_ayah = $_POST['status_ayah'];
+    $nik_ayah = $_POST['nik_ayah'];
+    $tempat_lahir_ayah = $_POST['tempat_lahir_ayah'];
+    $tanggal_lahir_ayah = $_POST['tanggal_lahir_ayah'];
+    $pendidikan_ayah = $_POST['pendidikan_ayah'];
+    $pekerjaan_ayah = $_POST['pekerjaan_ayah'];
+    $penghasilan_ayah = $_POST['penghasilan_ayah'];
+    $hp_ayah = $_POST['hp_ayah'];
 
-// Ambil data dari form
-$nama_lengkap       = $_POST['nama_lengkap'];
-$nama_panggilan     = $_POST['nama_panggilan'];
-$tempat_lahir       = $_POST['tempat_lahir'];
-$tanggal_lahir      = $_POST['tanggal_lahir'];
-$jenis_kelamin      = $_POST['jenis_kelamin'];
-$alamat             = $_POST['alamat'];
-$no_hp              = $_POST['no_hp'];
-$nama_ortu          = $_POST['nama_ortu'];
-$pendidikan_terakhir= $_POST['pendidikan_terakhir'];
-$nama_sekolah       = $_POST['nama_sekolah'];
-$tahun_lulus        = $_POST['tahun_lulus'];
-$hafalan            = $_POST['hafalan'];
-$motivasi           = $_POST['motivasi'];
-$harapan            = $_POST['harapan'];
-$sumber_info        = $_POST['sumber_info'];
+    $nama_ibu = $_POST['nama_ibu'];
+    $status_ibu = $_POST['status_ibu'];
+    $nik_ibu = $_POST['nik_ibu'];
+    $tempat_lahir_ibu = $_POST['tempat_lahir_ibu'];
+    $tanggal_lahir_ibu = $_POST['tanggal_lahir_ibu'];
+    $pendidikan_ibu = $_POST['pendidikan_ibu'];
+    $pekerjaan_ibu = $_POST['pekerjaan_ibu'];
+    $penghasilan_ibu = $_POST['penghasilan_ibu'];
+    $hp_ibu = $_POST['hp_ibu'];
 
-// Upload foto
-$foto = "";
-if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
-    $targetDir = "uploads/";
-    if (!file_exists($targetDir)) {
-        mkdir($targetDir, 0777, true);
+    $provinsi = $_POST['provinsi'];
+    $kabupaten = $_POST['kabupaten'];
+    $kecamatan = $_POST['kecamatan'];
+    $kelurahan = $_POST['kelurahan'];
+    $rt_rw = $_POST['rt_rw'];
+    $alamat = $_POST['alamat'];
+
+    // Upload file
+    $file_kk = "";
+    if (!empty($_FILES['upload_kk']['name'])) {
+        $file_kk = "uploads/" . time() . "_kk_" . basename($_FILES['upload_kk']['name']);
+        move_uploaded_file($_FILES['upload_kk']['tmp_name'], $file_kk);
     }
-    $foto = $targetDir . time() . "_" . basename($_FILES["foto"]["name"]);
-    move_uploaded_file($_FILES["foto"]["tmp_name"], $foto);
+
+    $file_ijazah = "";
+    if (!empty($_FILES['upload_ijazah']['name'])) {
+        $file_ijazah = "uploads/" . time() . "_ijazah_" . basename($_FILES['upload_ijazah']['name']);
+        move_uploaded_file($_FILES['upload_ijazah']['tmp_name'], $file_ijazah);
+    }
+
+    // Simpan ke DB
+    $sql = "INSERT INTO pendaftaran_santri 
+    (nama_lengkap, nik, nisn, kip, tempat_lahir, tanggal_lahir, anak_ke, jumlah_saudara, cita_cita, hobi, pembiaya_sekolah,
+    no_kk, nama_kepala_keluarga, nama_ayah, status_ayah, nik_ayah, tempat_lahir_ayah, tanggal_lahir_ayah, pendidikan_ayah, pekerjaan_ayah, penghasilan_ayah, hp_ayah,
+    nama_ibu, status_ibu, nik_ibu, tempat_lahir_ibu, tanggal_lahir_ibu, pendidikan_ibu, pekerjaan_ibu, penghasilan_ibu, hp_ibu,
+    provinsi, kabupaten, kecamatan, kelurahan, rt_rw, alamat, file_kk, file_ijazah) 
+    VALUES 
+    ('$nama_lengkap', '$nik', '$nisn', '$kip', '$tempat_lahir', '$tanggal_lahir', '$anak_ke', '$jumlah_saudara', '$cita_cita', '$hobi', '$pembiaya_sekolah',
+    '$no_kk', '$nama_kepala_keluarga', '$nama_ayah', '$status_ayah', '$nik_ayah', '$tempat_lahir_ayah', '$tanggal_lahir_ayah', '$pendidikan_ayah', '$pekerjaan_ayah', '$penghasilan_ayah', '$hp_ayah',
+    '$nama_ibu', '$status_ibu', '$nik_ibu', '$tempat_lahir_ibu', '$tanggal_lahir_ibu', '$pendidikan_ibu', '$pekerjaan_ibu', '$penghasilan_ibu', '$hp_ibu',
+    '$provinsi', '$kabupaten', '$kecamatan', '$kelurahan', '$rt_rw', '$alamat', '$file_kk', '$file_ijazah')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Pendaftaran berhasil disimpan!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
-
-// Simpan ke database
-$stmt = $conn->prepare("INSERT INTO pendaftaran 
-    (nama_lengkap, nama_panggilan, tempat_lahir, tanggal_lahir, jenis_kelamin, alamat, no_hp, nama_ortu, pendidikan_terakhir, nama_sekolah, tahun_lulus, hafalan, motivasi, harapan, sumber_info, foto) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssssssssisssss",
-    $nama_lengkap, $nama_panggilan, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $alamat, $no_hp, $nama_ortu, $pendidikan_terakhir, $nama_sekolah, $tahun_lulus, $hafalan, $motivasi, $harapan, $sumber_info, $foto);
-
-if ($stmt->execute()) {
-    echo "<script>alert('Pendaftaran berhasil!'); window.location.href='pendaftaran.php';</script>";
-} else {
-    echo "Error: " . $stmt->error;
-}
-
-$stmt->close();
-$conn->close();
 ?>

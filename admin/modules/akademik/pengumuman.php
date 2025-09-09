@@ -34,8 +34,8 @@ include '../../includes/sidebar.php';
             <td><?= ucfirst($row['tipe']) ?></td>
             <td><?= substr(strip_tags($row['isi']), 0, 100) ?>...</td>
             <td>
-            <a href="pengumuman_edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-            <a href="pengumuman_delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus?')" class="btn btn-sm btn-danger">Hapus</a>
+            <a href="pengumuman_edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+            <a href="pengumuman_delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
             </td>
         </tr>
         <?php endwhile; ?>

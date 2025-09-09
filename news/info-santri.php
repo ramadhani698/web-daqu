@@ -52,7 +52,7 @@
       </div>
     </section>
 
-    <section class="stat-section">
+    <!-- <section class="stat-section">
       <div class="stat-container">
         <div class="stat-grid">
           <div class="stat-card">
@@ -73,7 +73,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Main Content -->
     <main class="main-container">
@@ -180,7 +180,6 @@
                                     <?= strip_tags($p['deskripsi']) ?>
                                 </p>
                                 <div class="prestasi-profile">
-                                    <img src="https://placehold.co/40x40" alt="<?= htmlspecialchars($p['nama']) ?>" class="prestasi-avatar">
                                     <p class="prestasi-name"><?= htmlspecialchars($p['nama']) ?></p>
                                     <p class="prestasi-class"><?= htmlspecialchars($p['kelas']) ?></p>
                                 </div>

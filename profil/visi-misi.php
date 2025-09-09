@@ -45,16 +45,16 @@
             <div class="text-center mb-4">
               <img src="../assets/img/masjid.jpg" alt="Visi Misi Pesantren" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
             </div>
-            <h2 class="mb-4 text-center">Visi & Misi Pesantren</h2>
+            <h2 class="visi-misi-title mb-4 text-center">Visi & Misi Pesantren</h2>
             <div class="mb-4">
-              <h4>Visi</h4>
-              <p>
+              <h4 class="visi-title">Visi</h4>
+              <p class="visi-paragraph">
                 Melahirkan generasi pemimpin bangsa dan dunia yang shaleh dan berkarakter Qur'an serta berjiwa entrepreneur dalam membangun peradaban Islam masa depan.
               </p>
             </div>
             <div>
-              <h4>Misi</h4>
-              <p>
+              <h4 class="misi-title">Misi</h4>
+              <p class="misi-paragraph">
                 Mewujudkan lembaga pendidikan berbasis daqu method (Iqoomatu waajib wa ihyaaussunnah) yang unggul, kompetitif, global dan rahmatan lil 'alamin.
               </p>
             </div>

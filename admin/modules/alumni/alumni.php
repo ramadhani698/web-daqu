@@ -36,8 +36,8 @@ $alumni = $conn->query("SELECT * FROM alumni ORDER BY created_at DESC");
           <td><?= htmlspecialchars($a['badge']) ?></td>
           <td><?= htmlspecialchars($a['juz_hafalan']) ?> Juz</td>
           <td>
-            <a href="edit.php?id=<?= $a['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="delete.php?id=<?= $a['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+            <a href="edit.php?id=<?= $a['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $a['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         <?php endwhile; ?>

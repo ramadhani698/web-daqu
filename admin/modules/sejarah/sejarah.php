@@ -35,8 +35,8 @@ $result = $conn->query("SELECT * FROM sejarah ORDER BY id DESC");
             <?php endif; ?>
           </td>
           <td>
-            <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-            <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin mau hapus?')" class="btn btn-danger btn-sm">Hapus</a>
+            <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin mau hapus?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
       <?php endwhile; ?>
