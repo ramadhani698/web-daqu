@@ -44,18 +44,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rt_rw = $_POST['rt_rw'];
     $alamat = $_POST['alamat'];
 
-    // Upload file
+    // Upload file KK
     $file_kk = "";
-    if (!empty($_FILES['upload_kk']['name'])) {
-        $file_kk = "uploads/" . time() . "_kk_" . basename($_FILES['upload_kk']['name']);
-        move_uploaded_file($_FILES['upload_kk']['tmp_name'], $file_kk);
-    }
+        if (!empty($_FILES['upload_kk']['name'])) {
+            $targetDir = __DIR__ . '/../admin/modules/pendaftaran/uploads/';
+            if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
+            $kk_filename = time() . "_kk_" . basename($_FILES['upload_kk']['name']);
+            $file_kk_path = $targetDir . $kk_filename;
+            move_uploaded_file($_FILES['upload_kk']['tmp_name'], $file_kk_path);
+            // Simpan hanya nama file ke DB
+            $file_kk = $kk_filename;
+        }
 
-    $file_ijazah = "";
-    if (!empty($_FILES['upload_ijazah']['name'])) {
-        $file_ijazah = "uploads/" . time() . "_ijazah_" . basename($_FILES['upload_ijazah']['name']);
-        move_uploaded_file($_FILES['upload_ijazah']['tmp_name'], $file_ijazah);
-    }
+        $file_ijazah = "";
+        if (!empty($_FILES['upload_ijazah']['name'])) {
+            $targetDir = __DIR__ . '/../admin/modules/pendaftaran/uploads/';
+            if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
+            $ijazah_filename = time() . "_ijazah_" . basename($_FILES['upload_ijazah']['name']);
+            $file_ijazah_path = $targetDir . $ijazah_filename;
+            move_uploaded_file($_FILES['upload_ijazah']['tmp_name'], $file_ijazah_path);
+            // Simpan hanya nama file ke DB
+            $file_ijazah = $ijazah_filename;
+        }
 
     // Simpan ke DB
     $sql = "INSERT INTO pendaftaran_santri 

@@ -285,7 +285,6 @@ body {
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
 }
 
 .schedule-table th,

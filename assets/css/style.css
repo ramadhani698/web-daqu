@@ -133,20 +133,19 @@ body {
 
 /* Slider Section */
 .hero-slider-main .carousel-inner,
-.hero-slider-main .carousel-item,
-.hero-slider-main .carousel-item img {
-  top: 10%;
-  height: 100vh;
-  object-fit: cover;
-}
-
 .hero-slider-main .carousel-item {
-  transition: transform 1.5s ease, opacity 1.5s ease;
+  height: 100vh; /* penuh layar di desktop */
 }
 
-.hero-slider-main .carousel-control-prev,
-.hero-slider-main .carousel-control-next {
-  top: 50%;
+.hero-slider-main .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* gambar penuh layar */
+  display: block;
+}
+
+.hero-slider-main {
+  margin-top: 80px; /* turun sesuai tinggi navbar */
 }
 
 /* Spinner container */
@@ -295,7 +294,10 @@ body {
   position: absolute;
   max-width: 300px;
   transition: transform 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.photo img {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
 }
 
@@ -716,10 +718,10 @@ body {
 }
 
 /* Footer Section */
-footer {
+/* footer {
   background-color: #1f1f1f;
   color: #f0f0f0;
-  padding: 60px 0;
+  padding: 2rem 0;
 }
 
 .footer-brand img {
@@ -795,44 +797,107 @@ footer {
 
 .footer-links a:hover {
   color: #f39c12;
+} */
+
+.footer {
+  background: #1f1f1f;
+  color: #f0f0f0;
+  padding: 3rem 0;
+}
+
+.footer-logo {
+  max-width: 80px;
+  height: auto;
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #f39c12;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #888787;
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.footer-socials a:hover {
+  background-color: #fff;
+  color: #f39c12;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer-divider {
+  border-color: #ddd;
 }
 
 /* Sejarah Page */
-section.container.py-5 {
+.sejarah-section {
   background-color: var(--supporting-color);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  color: var(--main-text);
 }
 
-section img {
+.sejarah-image img {
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 1);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease;
 }
-section img:hover {
+
+.sejarah-image img:hover {
   transform: scale(1.02);
 }
 
-section h2 {
+.sejarah-content h2 {
   font-weight: 700;
   font-size: 2rem;
   color: var(--primary-color);
 }
 
-section p {
+.sejarah-content p {
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1rem;
-}
-
-section em {
-  color: var(--accent-color);
-  font-style: normal;
-  font-weight: 600;
+  color: var(--secondary-text);
 }
 
 /* Daqu Method Page */
+.daqu-image img {
+  border-radius: 12px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.daqu-image img:hover {
+  transform: scale(1.02);
+}
 
 .daqu-title {
   text-align: center;
@@ -874,6 +939,16 @@ section em {
 }
 
 /* Visi Misi Pages */
+.visi-misi-image img {
+  border-radius: 12px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.visi-misi-image img:hover {
+  transform: scale(1.02);
+}
+
 .visi-misi-title {
   text-align: center;
   margin-bottom: 2rem;
@@ -1803,7 +1878,7 @@ section em {
 
 .section-alumni-title {
   text-align: center;
-  margin: 4rem 0 2rem;
+  margin: 2rem 2rem;
   color: var(--primary-color);
   position: relative;
 }
@@ -1833,6 +1908,10 @@ section em {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+}
+
+.alumni-card-grid {
+  justify-items: center;
 }
 
 .alumni-card {
@@ -2163,6 +2242,10 @@ section em {
 }
 
 /* Products Section */
+.hero-title-dec {
+  margin-top: 3rem;
+}
+
 .products {
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -2180,6 +2263,7 @@ section em {
   position: relative;
   display: inline-block;
   margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 .section-produk-title::after {
@@ -2191,6 +2275,11 @@ section em {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.section-produk-subtitle {
+  color: var(--secondary-text);
+  font-size: 1.2rem;
 }
 
 .products-grid {
@@ -2208,7 +2297,7 @@ section em {
 }
 
 .product-card:hover {
-  transform: translateY(-10px) !important;
+  transform: translateY(-10px);
 }
 
 .product-image {
@@ -2619,11 +2708,38 @@ section em {
   .navbar .navbar-collapse {
     background-color: #fff;
   }
+
+  .alumni-card {
+    max-width: 160px; /* Perkecil card, sesuaikan sesuai kebutuhan */
+    margin: 8px auto;
+    padding: 8px;
+  }
+  .alumni-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
 }
 
+/* === Mobile Style (mirip IDAQU) === */
 @media (max-width: 768px) {
   html {
     font-size: 70%;
+  }
+
+  /* ubah carousel biar ikut rasio asli gambar */
+  .hero-slider-main .carousel-inner,
+  .hero-slider-main .carousel-item {
+    height: auto; /* hilangkan full screen */
+  }
+
+  .hero-slider-main .carousel-item img {
+    width: 100%;
+    height: auto; /* ikut tinggi asli gambar */
+    object-fit: contain; /* biar gambar tidak kepotong */
+    display: block;
+    margin: 0 auto;
   }
 
   .photo-stack-wrapper {
@@ -2653,6 +2769,7 @@ section em {
   }
 }
 
+/* === Extra Small Mobile === */
 @media (max-width: 480px) {
   .navbar {
     padding: 10px 20px;

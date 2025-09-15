@@ -66,5 +66,4 @@ $carousels = $conn->query("SELECT * FROM carousel ORDER BY urutan ASC");
     </section>
   </div>
 </div>
-</body>
-</html>
+<?php include '../../includes/footer.php'; ?>

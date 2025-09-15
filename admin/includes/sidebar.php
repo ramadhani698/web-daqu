@@ -94,6 +94,12 @@
               <p>Produk Daqu (DEC)</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/web-daqu-aljannah-final/admin/modules/pendaftaran/dashboard.php" class="nav-link">
+            <i class="nav-icon fas fa-user-plus"></i>
+            <p>Pendaftaran</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

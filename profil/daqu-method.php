@@ -38,11 +38,11 @@
 <?php include('../includes/navbar.php') ?>
   </head>
   <body>
-    <section class="container py-5" style="margin-top: 70px;">
+    <section class="container py-5 daqu-section" style="margin-top: 70px;">
       <div class="row justify-content-center">
         <div class="col-lg-8" data-aos="fade-up">
-          <div class="text-center mb-4">
-            <img src="../assets/img/pengajar_profesional.jpg" alt="Daqu Method" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
+          <div class="text-center mb-4 daqu-image">
+            <img src="../assets/img/pengajar_profesional.jpg" alt="Daqu Method" class="img-fluid rounded sejarah-image" style="max-height:300px;object-fit:cover;">
           </div>
           <h2 class="daqu-title mb-4 text-center">Daqu Method</h2>
           <ol class="list-group list-group-numbered mb-4">

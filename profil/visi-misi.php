@@ -39,11 +39,11 @@
     <body>
       <?php include('../includes/navbar.php') ?>
 
-      <section class="container py-5" style="margin-top: 60px;">
+      <section class="container py-5 visi-misi-section" style="margin-top: 60px;">
         <div class="row justify-content-center">
           <div class="col-lg-8" data-aos="fade-up">
-            <div class="text-center mb-4">
-              <img src="../assets/img/masjid.jpg" alt="Visi Misi Pesantren" class="img-fluid rounded shadow" style="max-height:300px;object-fit:cover;">
+            <div class="text-center mb-4 visi-misi-image">
+              <img src="../assets/img/masjid.jpg" alt="Visi Misi Pesantren" class="img-fluid rounded" style="max-height:300px;object-fit:cover;">
             </div>
             <h2 class="visi-misi-title mb-4 text-center">Visi & Misi Pesantren</h2>
             <div class="mb-4">

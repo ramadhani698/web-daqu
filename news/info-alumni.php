@@ -63,7 +63,7 @@ $alumni = $conn->query("SELECT * FROM alumni ORDER BY tahun_lulus ASC");
 
             <div class="alumni-container">
               <?php $delay = 200; while($row = $alumni->fetch_assoc()): ?>
-                <div class="wrapper"  data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+                  <div class="wrapper"  data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="alumni-card">
                         <div class="alumni-img">
                             <img 

@@ -83,7 +83,12 @@
             <div class="product-info">
               <h3><?= htmlspecialchars($row['nama']) ?></h3>
               <p><?= strip_tags($row['deskripsi']) ?></p>
-              <a href="#contact" class="btn-produk">Info Pesan</a>
+              <p class="product-price">Harga: Rp <?= htmlspecialchars($row['harga']) ?></p>
+              <?php
+                $nama_produk = ($row['nama'] == 'air mineral') ? "aiq'30" : $row['nama'];
+                $pesan = "halo, saya ingin memesan " . $nama_produk . " ini";
+              ?>
+              <a href="https://wa.me/6281288674507?text=<?= urlencode($pesan) ?>" class="btn-produk" target="_blank">Info Pesan</a>
             </div>
           </div>
         </div>

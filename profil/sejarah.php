@@ -41,46 +41,46 @@
     <?php include('../includes/navbar.php') ?>
 
     <?php
-include __DIR__ . '/../admin/config/config.php';
+    include __DIR__ . '/../admin/config/config.php';
 
-// Ambil data sejarah pesantren
-$pesantren = $conn->query("SELECT * FROM sejarah WHERE section='pesantren' ORDER BY id DESC LIMIT 1")->fetch_assoc();
+    // Ambil data sejarah pesantren
+    $pesantren = $conn->query("SELECT * FROM sejarah WHERE section='pesantren' ORDER BY id DESC LIMIT 1")->fetch_assoc();
 
-// Ambil data sejarah yayasan
-$yayasan = $conn->query("SELECT * FROM sejarah WHERE section='yayasan' ORDER BY id DESC LIMIT 1")->fetch_assoc();
-?>
+    // Ambil data sejarah yayasan
+    $yayasan = $conn->query("SELECT * FROM sejarah WHERE section='yayasan' ORDER BY id DESC LIMIT 1")->fetch_assoc();
+    ?>
 
-<section class="container py-5" style="margin-top: 70px;">
-  <div class="row align-items-center">
-    <?php if ($pesantren): ?>
-      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-        <img src="../uploads/<?= htmlspecialchars($pesantren['image']) ?>" 
-             alt="<?= htmlspecialchars($pesantren['title']) ?>" 
-             class="img-fluid rounded shadow" />
+    <section class="container py-5 sejarah-section" style="margin-top: 70px;">
+      <div class="row align-items-center">
+        <?php if ($pesantren): ?>
+          <div class="col-md-6 mb-4 mb-md-0 sejarah-image" data-aos="fade-right">
+            <img src="../uploads/<?= htmlspecialchars($pesantren['image']) ?>" 
+                alt="<?= htmlspecialchars($pesantren['title']) ?>" 
+                class="img-fluid rounded" />
+          </div>
+          <div class="col-md-6 sejarah-content" data-aos="fade-left">
+            <h2 class="mb-3"><?= htmlspecialchars($pesantren['title']) ?></h2>
+            <p><?= nl2br($pesantren['content']) ?></p>
+          </div>
+        <?php endif; ?>
       </div>
-      <div class="col-md-6" data-aos="fade-left">
-        <h2 class="mb-3"><?= htmlspecialchars($pesantren['title']) ?></h2>
-        <p><?= nl2br($pesantren['content']) ?></p>
-      </div>
-    <?php endif; ?>
-  </div>
-</section>
+    </section>
 
-<section class="container py-5" style="top: 80px;">
-  <div class="row align-items-center">
-    <?php if ($yayasan): ?>
-      <div class="col-md-6" data-aos="fade-left">
-        <h2 class="mb-3"><?= htmlspecialchars($yayasan['title']) ?></h2>
-        <p><?= nl2br($yayasan['content']) ?></p>
+    <section class="container py-5 sejarah-section" style="top: 80px;">
+      <div class="row align-items-center">
+        <?php if ($yayasan): ?>
+          <div class="col-md-6 sejarah-content" data-aos="fade-left">
+            <h2 class="mb-3"><?= htmlspecialchars($yayasan['title']) ?></h2>
+            <p><?= nl2br($yayasan['content']) ?></p>
+          </div>
+          <div class="col-md-6 mb-4 mb-md-0 sejarah-image" data-aos="fade-right">
+            <img src="../uploads/<?= htmlspecialchars($yayasan['image']) ?>" 
+                alt="<?= htmlspecialchars($yayasan['title']) ?>" 
+                class="img-fluid rounded" />
+          </div>
+        <?php endif; ?>
       </div>
-      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-        <img src="../uploads/<?= htmlspecialchars($yayasan['image']) ?>" 
-             alt="<?= htmlspecialchars($yayasan['title']) ?>" 
-             class="img-fluid rounded shadow" />
-      </div>
-    <?php endif; ?>
-  </div>
-</section>
+    </section>
 
     <?php include('../includes/footer.php') ?>
     <script
