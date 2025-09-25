@@ -11,6 +11,18 @@
       crossorigin="anonymous"
     />
 
+    <?php
+    require_once __DIR__ . '/admin/config/config.php';
+    $seo = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='index' LIMIT 1");
+    $meta = mysqli_fetch_assoc($seo);
+    echo '<title>'.$meta['title'].'</title>';
+    echo '<meta name="description" content="'.$meta['description'].'">';
+    echo '<meta name="keywords" content="'.$meta['keywords'].'">';
+    echo '<meta property="og:title" content="'.$meta['og_title'].'">';
+    echo '<meta property="og:description" content="'.$meta['og_description'].'">';
+    echo '<meta property="og:image" content="'.$meta['og_image'].'">';
+    ?>
+
     <!-- Fonts google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,6 +30,11 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
 
     <!-- font awesome -->
     <link
@@ -128,26 +145,16 @@
           <div class="home-title text-center">
             <h4 data-aos="fade-up">Selamat Datang di</h4>
             <h2 data-aos="zoom-in" data-aos-delay="150">
-              Daarul Qur'an <br />
-              Al-Jannah
+              Daarul Qur'an Al-Jannah
             </h2>
-            <p data-aos="fade-up" data-aos-delay="400">
+            <!-- <p data-aos="fade-up" data-aos-delay="400">
               Tempat tumbuhnya generasi Qur'ani yang berakhlak mulia dan cinta ilmu.
               Bergabunglah dalam lingkungan islami yang damai, inspiratif, dan penuh
               keberkahan.
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
-
-      <!-- Wave SVG -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="1"
-          d="M0,288L120,261.3C240,235,480,181,720,149.3C960,117,1200,107,1320,101.3L1440,96V320H0Z"
-        ></path>
-      </svg>
     </section>
 
 
@@ -160,7 +167,7 @@
           ?>
           <div class="col-md-6" data-aos="fade-right">
             <div class="why-section">
-              <h3 class="mb-4">Kenapa harus mondok di Daarul Qur'an Al-Jannah?</h3>
+              <h3 class="mb-4">Kenapa Sih, Harus Mondok Di DaQu Al-Jannah?</h3>
             </div>
             <ul class="list-unstyled">
               <?php 
@@ -209,7 +216,7 @@
 
     <section class="pendidikan-daqu" id="pendidikan-daqu">
       <div class="container">
-        <h2 class="pendidikan-title">Pendidikan di Daarul Qur'an Al-Jannah</h2>
+        <h2 class="pendidikan-title">Sistem Kurikulum di DaQu Al-Jannah</h2>
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
             <p class="pendidikan-intro">
@@ -259,7 +266,7 @@
 
         <!-- Tabs -->
         <ul class="nav nav-pills justify-content-center mb-4" id="ekskulTab" role="tablist">
-          <?php $tabs = ['seni','fisik','kesehatan','leadership']; $active='active'; ?>
+          <?php $tabs = ['seni','beladiri','kesehatan','leadership']; $active='active'; ?>
           <?php foreach($tabs as $tab): ?>
           <li class="nav-item">
             <button class="nav-link <?= $active ?>" data-bs-toggle="pill" data-bs-target="#<?= $tab ?>" type="button">
@@ -364,7 +371,7 @@
             <h3><?= htmlspecialchars($k['judul']) ?></h3>
             <p><?= nl2br(htmlspecialchars($k['deskripsi'])) ?></p>
             <?php if (!empty($k['link'])): ?>
-              <a href="<?= htmlspecialchars($k['link']) ?>" class="btn btn-karakter mt-3">Baca Selengkapnya</a>
+              <a href="pages/organisasi.php" class="btn btn-karakter mt-3">Baca Selengkapnya</a>
             <?php endif; ?>
           </div>
         </div>
@@ -435,6 +442,9 @@
             $delay += 200;
             endwhile; ?>
         </div>
+        <div class="text-center mb-4">
+          <a href="news/berita.php" class="btn btn-karakter">Berita Lainnya</a>
+        </div>
       </div>
     </section>
 
@@ -442,13 +452,12 @@
     <section id="alamat" class="alamat-section">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-6 mt-5 mb-5">
+          <div class="alamat-col">
             <div class="alamat-text">
               <h2>Pesantren Tahfidz Daarul Qur'an Al-Jannah</h2>
               <p>
-                Jl. Tegal Salam Rt/Rw 022/008<br />
-                Kecamatan Cariu<br />
-                Kabupaten Bogor, Jawa Barat, 16840
+                Jl. Tegal Salam, Rt/Rw 022/008<br />
+                Kecamatan Cariu Kabupaten Bogor, Jawa Barat, 16840
               </p>
               <a href="https://wa.me/6281288674507?text=Halo%20saya%20ingin%20bertanya" target="_blank"><i class="fab fa-whatsapp"></i>
                 Chat untuk info lebih lanjut

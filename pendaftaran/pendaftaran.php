@@ -158,7 +158,7 @@
 
     <main>
       <h1 id="registrationForm">Form Pendaftaran Santri</h1>
-      <form action="proses_pendaftaran.php" method="post" enctype="multipart/form-data" novalidate>
+      <form action="proses_pendaftaran.php" method="post" enctype="multipart/form-data">
         <fieldset>
           <legend>A. Pendataan Santri</legend>
 

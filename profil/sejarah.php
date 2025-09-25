@@ -11,6 +11,19 @@
       crossorigin="anonymous"
     />
 
+    <?php
+    require_once __DIR__.'/../admin/config/config.php';
+    $page = 'sejarah';
+    $result = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='$page' LIMIT 1");
+    $meta = mysqli_fetch_assoc($result);
+    ?>
+    <title><?php echo $meta['title']; ?></title>
+    <meta name="description" content="<?php echo $meta['description']; ?>">
+    <meta name="keywords" content="<?php echo $meta['keywords']; ?>">
+    <meta property="og:title" content="<?php echo $meta['og_title']; ?>">
+    <meta property="og:description" content="<?php echo $meta['og_description']; ?>">
+    <meta property="og:image" content="<?php echo $meta['og_image']; ?>">
+
     <!-- Fonts google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

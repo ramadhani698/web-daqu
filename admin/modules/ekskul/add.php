@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label>Kategori</label>
       <select name="kategori" class="form-control" required>
         <option value="seni">Seni</option>
-        <option value="fisik">Fisik</option>
+        <option value="beladiri">Beladiri</option>
         <option value="kesehatan">Kesehatan</option>
         <option value="leadership">Leadership</option>
       </select>

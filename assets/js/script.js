@@ -66,3 +66,19 @@ const statsSection = document.querySelector(".stats");
 if (statsSection) {
   statsObserver.observe(statsSection);
 }
+
+// ... existing code ...
+function toggleAnimatedSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (section.classList.contains("show")) {
+    section.classList.remove("show");
+    setTimeout(() => {
+      section.style.display = "none";
+    }, 400); // match transition duration
+  } else {
+    section.style.display = "flex";
+    setTimeout(() => {
+      section.classList.add("show");
+    }, 10); // allow display to apply before animating
+  }
+}

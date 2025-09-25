@@ -1,5 +1,8 @@
 <?php
 include('../admin/config/config.php');
+$page = 'berita';
+$result = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='$page' LIMIT 1");
+$meta = mysqli_fetch_assoc($result);
 
 // Ambil semua berita dari DB, urutkan terbaru
 $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
@@ -9,7 +12,12 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Berita Terkini</title>
+    <title><?php echo $meta['title']; ?></title>
+    <meta name="description" content="<?php echo $meta['description']; ?>">
+    <meta name="keywords" content="<?php echo $meta['keywords']; ?>">
+    <meta property="og:title" content="<?php echo $meta['og_title']; ?>">
+    <meta property="og:description" content="<?php echo $meta['og_description']; ?>">
+    <meta property="og:image" content="<?php echo $meta['og_image']; ?>">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -42,7 +50,6 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
 
   <body>
     <?php include('../includes/navbar.php') ?>
-
     <section class="hero-berita"></section>
     
     <div class="container-berita">
@@ -51,22 +58,24 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
         <?php
           $delay = 200;
           while($b = $berita->fetch_assoc()): ?>
-          <div class="news-card" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
-            <div class="news-image">
-              <img 
-                src="../<?= htmlspecialchars($b['gambar']) ?>" 
-                alt="<?= htmlspecialchars($b['judul']) ?>" 
-              />
-            </div>
-            <div class="news-content">
-              <div class="news-date">
-                <?= date("d M Y", strtotime($b['created_at'])) ?>
+          <div class="wrapper" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+            <div class="news-card">
+              <div class="news-image">
+                <img 
+                  src="../<?= htmlspecialchars($b['gambar']) ?>" 
+                  alt="<?= htmlspecialchars($b['judul']) ?>" 
+                />
               </div>
-              <h3 class="news-title"><?= htmlspecialchars($b['judul']) ?></h3>
-              <p class="news-excerpt">
-                <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
-              </p>
-              <a href="../berita/detaill.php?id=<?= $b['id'] ?>" class="read-more">Baca Selengkapnya</a>
+              <div class="news-content">
+                <div class="news-date">
+                  <?= date("d M Y", strtotime($b['created_at'])) ?>
+                </div>
+                <h3 class="news-title"><?= htmlspecialchars($b['judul']) ?></h3>
+                <p class="news-excerpt">
+                  <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
+                </p>
+                <a href="../berita/detaill.php?id=<?= $b['id'] ?>" class="read-more">Baca Selengkapnya</a>
+              </div>
             </div>
           </div>
         <?php

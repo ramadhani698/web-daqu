@@ -1,36 +1,40 @@
 <?php
-include __DIR__ . '/../admin/config/config.php';
+include '../admin/config/config.php';
+$page = 'galeri';
+$meta = null;
+$result = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='$page' LIMIT 1");
+if ($result && mysqli_num_rows($result) > 0) {
+    $meta = mysqli_fetch_assoc($result);
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galeri Pesantren</title>
+    <title><?php echo isset($meta['title']) ? $meta['title'] : 'Galeri Daqu Al Jannah'; ?></title>
+    <meta name="description" content="<?php echo isset($meta['description']) ? $meta['description'] : 'Kumpulan foto kegiatan dan fasilitas Daqu Al Jannah'; ?>">
+    <meta name="keywords" content="<?php echo isset($meta['keywords']) ? $meta['keywords'] : 'galeri, foto, kegiatan, daqu'; ?>">
+    <meta property="og:title" content="<?php echo isset($meta['og_title']) ? $meta['og_title'] : 'Galeri Daqu Al Jannah'; ?>">
+    <meta property="og:description" content="<?php echo isset($meta['og_description']) ? $meta['og_description'] : 'Kumpulan foto kegiatan dan fasilitas Daqu Al Jannah'; ?>">
+    <meta property="og:image" content="<?php echo isset($meta['og_image']) ? $meta['og_image'] : '/assets/img/logo.jpg'; ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <!-- Fonts google -->
+    <!-- Fonts Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
     <!-- AOS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
-
-    <!-- My style -->
     <link rel="stylesheet" href="../assets/css/reset.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
     <?php include('../includes/navbar.php') ?>
-
-    <!-- HERO -->
     <section class="hero-gallery">
       <div class="hero-content-gallery">
         <h2 class="hero-title-gallery">Galeri Pesantren Tahfidz Daarul Qur'an Al-Jannah</h2>
@@ -39,8 +43,6 @@ include __DIR__ . '/../admin/config/config.php';
         </p>
       </div>
     </section>
-    
-    <!-- GALLERY -->
     <section class="gallery-section">
       <div class="section-header-gallery" data-aos="fade-up">
         <h2 class="section-gallery-title">Momen Terindah Kami</h2>
@@ -48,26 +50,18 @@ include __DIR__ . '/../admin/config/config.php';
           Berikut adalah dokumentasi kegiatan dan keseharian para santri dalam program tahfidz Al-Qur'an
         </p>
       </div>
-
-      <!-- FILTER BUTTONS -->
       <div class="gallery-filter" data-aos="fade-up" data-aos-delay="100">
         <button class="filter-button active" data-filter="kegiatan">Kegiatan</button>
         <button class="filter-button" data-filter="prestasi">Prestasi</button>
         <button class="filter-button" data-filter="fasilitas">Fasilitas</button>
       </div>
-
-      <!-- GRID -->
       <div class="gallery-grid">
         <?php
           $result = $conn->query("SELECT * FROM galeri ORDER BY id DESC");
           while ($row = $result->fetch_assoc()):
         ?>
           <div class="gallery-item" data-category="<?= $row['kategori'] ?>" data-aos="zoom-in" data-aos-delay="200">
-            <img
-              src="../img/<?= htmlspecialchars($row['gambar']) ?>"
-              alt="<?= htmlspecialchars($row['judul']) ?>"
-              class="gallery-img"
-            />
+            <img src="../img/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['judul']) ?>" class="gallery-img" />
             <div class="gallery-overlay">
               <div class="gallery-caption">
                 <h3><?= htmlspecialchars($row['judul']) ?></h3>
@@ -78,8 +72,6 @@ include __DIR__ . '/../admin/config/config.php';
         <?php endwhile; ?>
       </div>
     </section>
-
-    <!-- MODAL -->
     <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -91,41 +83,31 @@ include __DIR__ . '/../admin/config/config.php';
         </div>
       </div>
     </div>
-
     <?php include('../includes/footer.php') ?>
-  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
       document.addEventListener("DOMContentLoaded", () => {
   const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
   const galleryItems = document.querySelectorAll(".gallery-item");
-
-  // === FILTER ===
   function applyFilter(filter) {
     const f = (filter || "").trim().toLowerCase();
     galleryItems.forEach((item) => {
       const category = (item.dataset.category || "").trim().toLowerCase();
       if (category === f) {
-        item.style.display = ""; // tampil
+        item.style.display = "";
       } else {
-        item.style.display = "none"; // sembunyi
+        item.style.display = "none";
       }
     });
   }
-
-  // Event click tombol filter
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       filterButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
-
       const filter = button.dataset.filter;
       applyFilter(filter);
     });
   });
-
-  // Default filter: kegiatan
   const defaultFilter = "kegiatan";
   const defaultBtn = filterButtons.find(
     (btn) => (btn.dataset.filter || "").trim().toLowerCase() === defaultFilter
@@ -135,22 +117,16 @@ include __DIR__ . '/../admin/config/config.php';
     defaultBtn.classList.add("active");
   }
   applyFilter(defaultFilter);
-
-  // === MODAL POPUP ===
   const modal = new bootstrap.Modal(document.getElementById("galleryModal"));
   const modalImage = document.getElementById("modalImage");
   const modalTitle = document.getElementById("modalTitle");
   const modalDesc = document.getElementById("modalDesc");
-
   galleryItems.forEach((item) => {
     item.addEventListener("click", () => {
-      // hanya jalankan modal kalau item sedang ditampilkan
       if (item.style.display === "none") return;
-
       const img = item.querySelector("img");
       const title = item.querySelector(".gallery-caption h3").innerText;
       const desc = item.querySelector(".gallery-caption p").innerText;
-
       modalImage.src = img.src;
       modalImage.alt = img.alt;
       modalTitle.innerText = title;
@@ -159,10 +135,7 @@ include __DIR__ . '/../admin/config/config.php';
     });
   });
 });
-
     </script>
-
-    <!-- AOS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>AOS.init();</script>
     <script src="../assets/js/navbar.js"></script>

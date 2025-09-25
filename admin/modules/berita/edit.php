@@ -10,13 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $gambar = $data['gambar'];
     if (!empty($_FILES['gambar']['name'])) {
-        $targetDir = __DIR__ . "/../../../uploads/"; 
+        $targetDir = __DIR__ . "/../../../uploads/";
         if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
 
         $filename = time() . "_" . basename($_FILES['gambar']['name']);
         $targetFile = $targetDir . $filename;
 
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $targetFile)) {
+            // Hapus file lama jika ada dan bukan kosong
+            if (!empty($data['gambar']) && file_exists(__DIR__ . "/../../../" . $data['gambar'])) {
+                unlink(__DIR__ . "/../../../" . $data['gambar']);
+            }
             $gambar = "uploads/" . $filename;
         }
     }

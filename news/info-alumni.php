@@ -1,13 +1,24 @@
 <?php
 include __DIR__ . '/../admin/config/config.php';
+$page = 'info-alumni';
+$meta = null;
+$result = $conn->query("SELECT * FROM seo_meta WHERE page='$page' LIMIT 1");
+if ($result && $result->num_rows > 0) {
+  $meta = $result->fetch_assoc();
+}
 $alumni = $conn->query("SELECT * FROM alumni ORDER BY tahun_lulus ASC");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info Alumni</title>
+    <title><?php echo isset($meta['title']) ? $meta['title'] : 'Info Alumni'; ?></title>
+    <meta name="description" content="<?php echo isset($meta['description']) ? $meta['description'] : ''; ?>">
+    <meta name="keywords" content="<?php echo isset($meta['keywords']) ? $meta['keywords'] : ''; ?>">
+    <meta property="og:title" content="<?php echo isset($meta['og_title']) ? $meta['og_title'] : ''; ?>">
+    <meta property="og:description" content="<?php echo isset($meta['og_description']) ? $meta['og_description'] : ''; ?>">
+    <meta property="og:image" content="<?php echo isset($meta['og_image']) ? $meta['og_image'] : ''; ?>">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"

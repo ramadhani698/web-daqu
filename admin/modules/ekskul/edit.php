@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Kategori</label>
                 <select name="kategori" class="form-control" required>
                     <option value="seni" <?= $ekskul['kategori']=='seni'?'selected':'' ?>>Seni</option>
-                    <option value="fisik" <?= $ekskul['kategori']=='fisik'?'selected':'' ?>>Fisik</option>
+                    <option value="beladiri" <?= $ekskul['kategori']=='beladiri'?'selected':'' ?>>Beladiri</option>
                     <option value="kesehatan" <?= $ekskul['kategori']=='kesehatan'?'selected':'' ?>>Kesehatan</option>
                     <option value="leadership" <?= $ekskul['kategori']=='leadership'?'selected':'' ?>>Leadership</option>
                 </select>

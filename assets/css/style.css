@@ -134,18 +134,19 @@ body {
 /* Slider Section */
 .hero-slider-main .carousel-inner,
 .hero-slider-main .carousel-item {
-  height: 100vh; /* penuh layar di desktop */
+  height: auto;
 }
 
 .hero-slider-main .carousel-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* gambar penuh layar */
+  height: auto;
   display: block;
+  object-fit: contain;
 }
 
 .hero-slider-main {
-  margin-top: 80px; /* turun sesuai tinggi navbar */
+  margin-top: 80px;
+  margin-bottom: 0;
 }
 
 /* Spinner container */
@@ -198,29 +199,54 @@ body {
 .home-section {
   background: linear-gradient(
     45deg,
-    var(--primary-color) 45%,
+    var(--primary-color) 40%,
     var(--secondary-color)
   );
   position: relative;
+  margin-top: 0;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.home-section .container,
+.home-section .row {
+  margin: 0;
+  padding: 0;
+}
+
+.home-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .home-title h4 {
-  font-size: 1.2rem;
+  font-size: 2rem;
   letter-spacing: 2px;
+  font-family: "Pacifico", cursive;
   font-weight: 300;
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   color: var(--bg-color);
 }
 
 .home-title h2 {
   margin: 0 auto;
-  font-size: 6rem;
+  font-size: 5rem;
+  font-family: "Merriweather", serif;
   font-weight: 900;
   text-align: center;
   color: var(--bg-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  width: 100%;
 }
 
 .home-title p {
@@ -233,6 +259,7 @@ body {
   text-align: center;
   text-shadow: 1px 1px 1px #000;
   overflow: hidden;
+  width: 100%;
 }
 
 /* Benefit Section */
@@ -246,7 +273,7 @@ body {
 .why-section h3::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   left: 0;
   height: 2px;
   width: 0%;
@@ -261,6 +288,7 @@ body {
 }
 
 .list-unstyled {
+  padding-top: 20px;
   padding-left: 0.5rem; /* biar konten ga terlalu mepet */
   font-size: 1rem;
   line-height: 1.8;
@@ -269,7 +297,7 @@ body {
 }
 
 .list-unstyled li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   position: relative;
   padding-left: 1.2rem;
 }
@@ -364,7 +392,8 @@ body {
   font-size: 2.6rem;
   font-weight: 900;
   text-align: center;
-  margin-bottom: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background: linear-gradient(
     45deg,
     var(--primary-color) 50%,
@@ -380,11 +409,12 @@ body {
   margin: 0 auto 4rem;
   padding: 0 20px;
   font-weight: 400;
+  line-height: 1.7;
 }
 
 .pendidikan-card {
   margin-bottom: 30px;
-  padding: 45px 35px;
+  padding: 10px 35px;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -468,13 +498,22 @@ body {
     var(--primary-color) 45%,
     var(--secondary-color)
   );
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  min-height: 50px;
 }
 
 .ekskul-section h2 {
   font-size: 2.5rem;
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
+  font-weight: 700;
+  border-radius: 50px;
+  background-color: #fff;
+  color: var(--accent-color);
+  font-family: "Bricolage Grotesque", sans-serif;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: inline-block;
 }
 
 .ekskul-card {
@@ -532,7 +571,7 @@ body {
   position: relative;
   font-size: 2.2rem;
   font-weight: 800;
-  color: var(--primary-color);
+  color: #dd6e06;
 }
 
 #pendidikan-karakter h2::after {
@@ -563,7 +602,7 @@ body {
   position: relative;
   font-size: 1.9rem;
   font-weight: 800;
-  color: var(--primary-color);
+  color: #dd6e06;
 }
 
 .karakter-text p {
@@ -635,13 +674,14 @@ body {
 }
 
 .stat-card {
-  background-color: #fff;
+  background-color: var(--supporting-color);
   text-align: center;
-  padding: 2rem;
-  border-radius: 10px;
+  padding: 1.5rem;
+  border-radius: 1rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s;
 }
+
 .stat-card:hover {
   transform: translateY(-5px);
 }
@@ -651,7 +691,7 @@ body {
   height: 80px;
   background: linear-gradient(
     135deg,
-    var(--accent-color),
+    var(--primary-color),
     var(--secondary-color)
   );
   color: white;
@@ -664,7 +704,7 @@ body {
 }
 
 .stat-number {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--accent-color);
   margin-bottom: 0.5rem;
@@ -673,8 +713,9 @@ body {
 .stat-item p {
   text-align: center;
   font-size: 1rem;
-  color: #353333;
-  font-weight: 500;
+  color: #184201;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* Alamat Section */
@@ -684,19 +725,26 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-blend-mode: overlay;
+  padding: 60px 0;
+  min-height: 400px;
 }
 
-.alamat-section .col-md-6 {
+.alamat-col {
   position: relative;
   min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
 }
 
 .alamat-text h2 {
   color: var(--bg-color);
+  text-transform: uppercase;
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 1px;
   text-shadow: 1px 1px 2px #000;
+  margin-bottom: 2rem;
 }
 
 .alamat-text p {
@@ -705,6 +753,7 @@ body {
   font-weight: 600;
   letter-spacing: 1px;
   line-height: 1;
+  margin-bottom: 3rem;
   text-shadow: 1px 1px 2px #000;
 }
 
@@ -715,6 +764,16 @@ body {
   letter-spacing: 1px;
   text-decoration: none;
   text-shadow: 1px 1px 2px #000;
+  background-color: #029935;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.alamat-text a:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-5px);
 }
 
 /* Footer Section */
@@ -1452,25 +1511,6 @@ body {
   .stat-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-.stat-card {
-  background-color: var(--supporting-color);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.stat-number {
-  color: var(--accent-color);
-  font-size: 2.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  color: var(--secondary-text);
-  font-size: 1rem;
 }
 
 .profil-section {
@@ -2340,10 +2380,18 @@ body {
 }
 
 .section-title-berita {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: var(--primary-color);
   position: relative;
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 2rem 2rem;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color) 45%,
+    var(--secondary-color)
+  );
+  background-clip: text;
+  color: transparent;
+  text-align: center;
 }
 
 .section-title-berita::after {
@@ -2360,7 +2408,7 @@ body {
 .news-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; /* kasih jarak kiri-kanan */
+  padding: 0 20px;
 }
 
 .news-grid {
@@ -2699,6 +2747,10 @@ body {
 
 /* Media Queries */
 @media (max-width: 991.98px) {
+  html {
+    font-size: 80%;
+  }
+
   .navbar {
     background-color: #fff !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -2709,20 +2761,42 @@ body {
     background-color: #fff;
   }
 
-  .alumni-card {
-    max-width: 160px; /* Perkecil card, sesuaikan sesuai kebutuhan */
-    margin: 8px auto;
-    padding: 8px;
+  .photo-stack-wrapper {
+    height: 220px;
+    padding: 1rem;
   }
-  .alumni-card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    justify-items: center;
+  .photo {
+    position: absolute;
+    max-width: 200px;
+  }
+  .photo-right {
+    right: -60px;
+    top: 70px;
+  }
+  .photo-left {
+    left: 50px;
+    top: 30px;
+  }
+  .photo-center {
+    top: 155px;
+    left: 50px;
+  }
+
+  .pendidikan-row > .col-lg-4 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+
+  .prestasi-card {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
   }
 }
 
-/* === Mobile Style (mirip IDAQU) === */
 @media (max-width: 768px) {
   html {
     font-size: 70%;
@@ -2743,29 +2817,87 @@ body {
   }
 
   .photo-stack-wrapper {
-    flex-direction: column;
-    height: auto;
-    padding: 2rem 1rem;
+    height: 220px;
+    padding: 1rem;
   }
-
   .photo {
-    position: static;
-    margin-bottom: 1.5rem;
-    width: 100%;
-    max-width: 300px;
+    position: absolute;
+    max-width: 200px;
+  }
+  .photo-right {
+    right: 30px;
+    top: 70px;
+  }
+  .photo-left {
+    left: 50px;
+    top: 10px;
+  }
+  .photo-center {
+    top: 155px;
+    left: 50px;
   }
 
-  .photo-right,
-  .photo-left,
-  .photo-center {
-    top: auto;
-    left: auto;
-    right: auto;
-    z-index: auto;
+  .pendidikan-row > .col-lg-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 
   .gallery-img {
     height: 160px; /* lebih kecil supaya pas di tablet/HP */
+  }
+}
+
+@media (max-width: 767px) {
+  .alumni-card {
+    max-width: 300px; /* Perkecil card, sesuaikan sesuai kebutuhan */
+    margin: 8px auto;
+    padding: 8px;
+  }
+  .alumni-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .pendidikan-row > .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .prestasi-card {
+    max-width: 340px;
+    margin: 12px auto;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  .prestasi-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 8px auto;
+    border-radius: 12px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
+  .gallery-img {
+    max-width: 95vw;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .detail-section {
+    margin-top: 70px !important;
   }
 }
 
@@ -2787,11 +2919,16 @@ body {
 
   .home-title h2,
   .tagline {
-    width: 90%;
+    width: 80%;
     font-size: 2.2rem;
   }
 
   .gallery-img {
-    height: 140px; /* lebih pendek di HP kecil */
+    height: 120px;
+    max-width: 95vw;
+    width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
   }
 }

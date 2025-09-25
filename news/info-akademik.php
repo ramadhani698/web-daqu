@@ -1,12 +1,20 @@
 <?php
 include('../admin/config/config.php');
+$page = 'info-akademik';
+$result = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='$page' LIMIT 1");
+$meta = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Info Akademik</title>
+  <title><?php echo $meta['title']; ?></title>
+  <meta name="description" content="<?php echo $meta['description']; ?>">
+  <meta name="keywords" content="<?php echo $meta['keywords']; ?>">
+  <meta property="og:title" content="<?php echo $meta['og_title']; ?>">
+  <meta property="og:description" content="<?php echo $meta['og_description']; ?>">
+  <meta property="og:image" content="<?php echo $meta['og_image']; ?>">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Fonts google -->
@@ -66,7 +74,7 @@ include('../admin/config/config.php');
           $pengumuman = $conn->query("SELECT * FROM pengumuman ORDER BY created_at DESC LIMIT 5");
           while($row = $pengumuman->fetch_assoc()):
           ?>
-          <div class="announcement-item warning <?= htmlspecialchars($row['tipe']) ?>">
+          <div class="announcement-item <?= htmlspecialchars($row['tipe']) ?>">
             <p class="announcement-text"><strong><?= htmlspecialchars($row['judul']) ?></strong></p>
             <p><?= strip_tags(($row['isi'])) ?></p>
           </div>

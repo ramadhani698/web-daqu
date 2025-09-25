@@ -1,9 +1,20 @@
+<?php
+include '../admin/config/config.php';
+$page = 'info-santri';
+$meta = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='$page' LIMIT 1"));
+?>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info Santri</title>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $meta['title']; ?></title>
+    <meta name="description" content="<?php echo $meta['description']; ?>">
+    <meta name="keywords" content="<?php echo $meta['keywords']; ?>">
+    <meta property="og:title" content="<?php echo $meta['og_title']; ?>">
+    <meta property="og:description" content="<?php echo $meta['og_description']; ?>">
+    <meta property="og:image" content="<?php echo $meta['og_image']; ?>">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -52,29 +63,6 @@
       </div>
     </section>
 
-    <!-- <section class="stat-section">
-      <div class="stat-container">
-        <div class="stat-grid">
-          <div class="stat-card">
-            <div class="stat-number">545</div>
-            <div class="stat-label">Total Santri</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">32</div>
-            <div class="stat-label">Asrama</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">45</div>
-            <div class="stat-label">Pengajar</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">17</div>
-            <div class="stat-label">Program Tahfiz</div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!-- Main Content -->
     <main class="main-container">
       <!-- Profile Section -->
@@ -85,12 +73,7 @@
 
           <!-- Pencarian -->
           <div class="santri-search-wrapper">
-            <input
-              type="text"
-              id="searchSantri"
-              placeholder="Cari nama santri..."
-              class="santri-search-input"
-            />
+            <input type="text" id="searchSantri" placeholder="Cari nama santri..." class="santri-search-input" />
           </div>
 
           <!-- Tabel Santri -->
@@ -108,8 +91,11 @@
               <tbody>
                 <?php
                 include __DIR__ . '/../admin/config/config.php';
-                $no = 1;
-                $result = $conn->query("SELECT * FROM santri ORDER BY id DESC LIMIT 10");
+                $perPage = 10;
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                $start = ($page - 1) * $perPage;
+                $total = $conn->query("SELECT COUNT(*) as total FROM santri")->fetch_assoc()['total'];
+                $result = $conn->query("SELECT * FROM santri ORDER BY nama ASC LIMIT $start, $perPage");                $no = $start + 1;
                 while ($row = $result->fetch_assoc()):
                 ?>
                   <tr>
@@ -127,28 +113,28 @@
           <!-- Info Jumlah Hasil -->
           <div class="santri-pagination-info">
             <p class="text-sm text-gray-700">
-              Menampilkan <span class="font-medium" id="startIndex">1</span>
-              sampai <span class="font-medium" id="endIndex"><?= $result->num_rows ?></span>
-              dari <span class="font-medium" id="totalResult"><?= $result->num_rows ?></span> hasil
+              Menampilkan <span class="font-medium" id="startIndex"><?= $start + 1 ?></span>
+              sampai <span class="font-medium" id="endIndex"><?= min($start + $perPage, $total) ?></span>
+              dari <span class="font-medium" id="totalResult"><?= $total ?></span> hasil
             </p>
           </div>
 
-          <!-- Navigasi Pagination (bisa diatur manual / AJAX nanti) -->
+          <!-- Navigasi Pagination -->
           <div class="santri-pagination-nav">
-            <nav
-              class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-              aria-label="Pagination"
-            >
-              <a href="#" class="pagination-btn prev-page">
-                <span class="sr-only">Sebelumnya</span>
-                <i class="fas fa-chevron-left"></i>
-              </a>
-              <a href="#" class="pagination-btn active">1</a>
-              <a href="#" class="pagination-btn">2</a>
-              <a href="#" class="pagination-btn next-page">
-                <span class="sr-only">Berikutnya</span>
-                <i class="fas fa-chevron-right"></i>
-              </a>
+            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+              <?php
+              $totalPages = ceil($total / $perPage);
+              if ($page > 1) {
+                echo '<a href="?page='.($page-1).'" class="pagination-btn prev-page"><span class="sr-only">Sebelumnya</span><i class="fas fa-chevron-left"></i></a>';
+              }
+              for ($i = 1; $i <= $totalPages; $i++) {
+                $active = $i == $page ? 'active' : '';
+                echo '<a href="?page='.$i.'" class="pagination-btn '.$active.'">'.$i.'</a>';
+              }
+              if ($page < $totalPages) {
+                echo '<a href="?page='.($page+1).'" class="pagination-btn next-page"><span class="sr-only">Berikutnya</span><i class="fas fa-chevron-right"></i></a>';
+              }
+              ?>
             </nav>
           </div>
         </div>
