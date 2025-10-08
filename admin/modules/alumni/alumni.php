@@ -17,6 +17,7 @@ $alumni = $conn->query("SELECT * FROM alumni ORDER BY created_at DESC");
           <th>Nama</th>
           <th>Tahun Lulus</th>
           <th>Profesi</th>
+          <th>Kategori</th>
           <th>Badge</th>
           <th>Juz Hafalan</th>
           <th>Aksi</th>
@@ -33,6 +34,7 @@ $alumni = $conn->query("SELECT * FROM alumni ORDER BY created_at DESC");
           <td><?= htmlspecialchars($a['nama']) ?></td>
           <td><?= htmlspecialchars($a['tahun_lulus']) ?></td>
           <td><?= htmlspecialchars($a['profesi']) ?></td>
+          <td><?= isset($a['kategori']) ? ($a['kategori'] == 'sebaran' ? 'Sebaran Alumni' : 'Kiprah Alumni') : '-' ?></td>
           <td><?= htmlspecialchars($a['badge']) ?></td>
           <td><?= htmlspecialchars($a['juz_hafalan']) ?> Juz</td>
           <td>

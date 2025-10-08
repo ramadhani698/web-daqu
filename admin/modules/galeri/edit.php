@@ -7,7 +7,6 @@ $data = $conn->query("SELECT * FROM galeri WHERE id=$id")->fetch_assoc();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $judul     = $_POST['judul'];
     $deskripsi = $_POST['deskripsi'];
-    $kategori  = $_POST['kategori'];
 
     $gambar = $data['gambar']; // default pakai gambar lama
 
@@ -49,14 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3">
             <label>Deskripsi</label>
             <textarea id="editor" name="deskripsi" class="form-control"><?= htmlspecialchars($data['deskripsi']) ?></textarea>
-        </div>
-        <div class="mb-3">
-            <label>Kategori</label>
-            <select name="kategori" class="form-control" required>
-                <option value="kegiatan" <?= $data['kategori']=='kegiatan'?'selected':'' ?>>Kegiatan</option>
-                <option value="prestasi" <?= $data['kategori']=='prestasi'?'selected':'' ?>>Prestasi</option>
-                <option value="fasilitas" <?= $data['kategori']=='fasilitas'?'selected':'' ?>>Fasilitas</option>
-            </select>
         </div>
         <div class="mb-3">
             <label>Gambar</label><br>

@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $tahun_lulus = $_POST['tahun_lulus'];
     $profesi = $_POST['profesi'];
+    $kategori = $_POST['kategori'];
     $deskripsi = $_POST['deskripsi'];
     $badge = $_POST['badge'];
     $juz_hafalan = $_POST['juz_hafalan'];
@@ -22,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt = $conn->prepare("INSERT INTO alumni (nama, tahun_lulus, profesi, deskripsi, foto, badge, juz_hafalan, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("sissssi", $nama, $tahun_lulus, $profesi, $deskripsi, $foto, $badge, $juz_hafalan);
+    $stmt = $conn->prepare("INSERT INTO alumni (nama, tahun_lulus, profesi, kategori, deskripsi, foto, badge, juz_hafalan, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("sisssssi", $nama, $tahun_lulus, $profesi, $kategori, $deskripsi, $foto, $badge, $juz_hafalan);
     $stmt->execute();
 
     header("Location: alumni.php");
@@ -41,6 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3"><label>Nama</label><input type="text" name="nama" class="form-control" required></div>
         <div class="mb-3"><label>Tahun Lulus</label><input type="number" name="tahun_lulus" class="form-control" required></div>
         <div class="mb-3"><label>Profesi</label><input type="text" name="profesi" class="form-control"></div>
+        <div class="mb-3">
+            <label>Kategori</label>
+            <select name="kategori" class="form-control" required>
+                <option value="sebaran">Sebaran Alumni</option>
+                <option value="kiprah">Kiprah Alumni</option>
+            </select>
+        </div>
         <div class="mb-3"><label>Deskripsi</label><textarea id="editor" name="deskripsi" class="form-control"></textarea></div>
         <div class="mb-3"><label>Badge</label><input type="text" name="badge" class="form-control"></div>
         <div class="mb-3"><label>Juz Hafalan</label><input type="number" name="juz_hafalan" class="form-control"></div>

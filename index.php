@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Daqu Al-Jannah</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,26 +14,18 @@
     require_once __DIR__ . '/admin/config/config.php';
     $seo = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='index' LIMIT 1");
     $meta = mysqli_fetch_assoc($seo);
-    echo '<title>'.$meta['title'].'</title>';
-    echo '<meta name="description" content="'.$meta['description'].'">';
-    echo '<meta name="keywords" content="'.$meta['keywords'].'">';
-    echo '<meta property="og:title" content="'.$meta['og_title'].'">';
-    echo '<meta property="og:description" content="'.$meta['og_description'].'">';
-    echo '<meta property="og:image" content="'.$meta['og_image'].'">';
+    echo '<title>' . htmlspecialchars($meta['title']) . '</title>';
+    echo '<meta name="description" content="' . htmlspecialchars($meta['description']) . '">';
+    echo '<meta name="keywords" content="' . htmlspecialchars($meta['keywords']) . '">';
+    echo '<meta property="og:title" content="' . htmlspecialchars($meta['og_title']) . '">';
+    echo '<meta property="og:description" content="' . htmlspecialchars($meta['og_description']) . '">';
+    echo '<meta property="og:image" content="' . htmlspecialchars($meta['og_image']) . '">';
     ?>
 
     <!-- Fonts google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!-- font awesome -->
     <link
@@ -47,6 +38,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <!-- My style -->
     <link rel="stylesheet" href="assets/css/reset.css" />
@@ -405,14 +397,21 @@
 
     <?php
     include __DIR__ . '/admin/config/config.php';
+    function createSlug($string) {
+      $slug = strtolower($string);
+      $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug); // Hapus karakter khusus
+      $slug = preg_replace('/[\s-]+/', '-', $slug);      // Ganti spasi dengan -
+      $slug = trim($slug, '-');
+      return $slug;
+    }
     $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT 6");
     ?>
 
     <section id="berita" class="news-section">
-      <div class="container">
+      <div class="container-berita">
         <h2 class="section-title-berita" data-aos="fade-up">Berita Terbaru</h2>
         
-        <div class="news-grid mb-5">
+        <div class="news-grid">
           <?php
             $delay = 200;
             while($b = $berita->fetch_assoc()): ?>
@@ -432,7 +431,7 @@
                   <p class="news-excerpt">
                     <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
                   </p>
-                  <a href="berita/detail.php?id=<?= $b['id'] ?>" class="read-more">
+                  <a href="berita/detail.php?slug=<?= createSlug($b['judul']) ?>&id=<?= $b['id'] ?>" class="read-more">
                     Baca Selengkapnya
                   </a>
                 </div>
@@ -442,12 +441,11 @@
             $delay += 200;
             endwhile; ?>
         </div>
-        <div class="text-center mb-4">
+        <div class="text-center mb-4 mt-5">
           <a href="news/berita.php" class="btn btn-karakter">Berita Lainnya</a>
         </div>
       </div>
     </section>
-
 
     <section id="alamat" class="alamat-section">
       <div class="container">

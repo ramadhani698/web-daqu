@@ -9,12 +9,13 @@ $meta = mysqli_fetch_assoc($result);
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><?php echo $meta['title']; ?></title>
-  <meta name="description" content="<?php echo $meta['description']; ?>">
-  <meta name="keywords" content="<?php echo $meta['keywords']; ?>">
-  <meta property="og:title" content="<?php echo $meta['og_title']; ?>">
-  <meta property="og:description" content="<?php echo $meta['og_description']; ?>">
-  <meta property="og:image" content="<?php echo $meta['og_image']; ?>">
+  <title><?php echo htmlspecialchars($meta['title']); ?></title>
+  <meta name="description" content="<?php echo htmlspecialchars($meta['description']); ?>">
+  <meta name="keywords" content="<?php echo htmlspecialchars($meta['keywords']); ?>">
+  <meta property="og:title" content="<?php echo htmlspecialchars($meta['og_title']); ?>">
+  <meta property="og:description" content="<?php echo htmlspecialchars($meta['og_description']); ?>">
+  <meta property="og:image" content="<?php echo htmlspecialchars($meta['og_image']); ?>">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Fonts google -->
@@ -108,7 +109,7 @@ $meta = mysqli_fetch_assoc($result);
       <section id="jadwal" class="content-section">
         <div class="section-header">
           <div class="section-bullet"></div>
-          <h2 class="section-title">Jadwal Harian Santri</h2>
+          <h2 class="section-title">Daily Activity</h2>
         </div>
         <div class="table-wrapper">
           <table class="schedule-table">

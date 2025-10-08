@@ -1,52 +1,86 @@
 <?php
-include __DIR__ . '/../../config/config.php';
+include __DIR__ . "/../../config/config.php";
 
-$id = $_GET['id'];
-$santri = $conn->query("SELECT * FROM santri WHERE id=$id")->fetch_assoc();
+$id = (int)$_GET['id'];
+$data = $conn->query("SELECT * FROM prestasi WHERE id=$id")->fetch_assoc();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $conn->real_escape_string($_POST['nama']);
-    $kelas = $conn->real_escape_string($_POST['kelas']);
-    $hafalan = $conn->real_escape_string($_POST['hafalan']);
-    $asal = $conn->real_escape_string($_POST['asal']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $judul     = $_POST['judul'];
+    $deskripsi = $_POST['deskripsi'];
+    $kategori  = $_POST['kategori'];
+    $nama      = $_POST['nama'];
+    $kelas     = $_POST['kelas'];
 
-    $conn->query("UPDATE santri SET nama='$nama', kelas='$kelas', hafalan='$hafalan', asal='$asal' WHERE id=$id");
-    header("Location: santri.php");
+    // default pakai gambar lama
+    $gambar = $data['gambar'];
+
+    if (!empty($_FILES['gambar']['name'])) {
+        $targetDir = __DIR__ . '/../../../uploads/'; // folder fisik
+        if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
+
+        $filename   = time() . "_" . basename($_FILES['gambar']['name']);
+        $targetFile = $targetDir . $filename;
+
+        if (move_uploaded_file($_FILES['gambar']['tmp_name'], $targetFile)) {
+            // hapus gambar lama
+            if (!empty($data['gambar']) && file_exists($targetDir . $data['gambar'])) {
+                unlink($targetDir . $data['gambar']);
+            }
+            // simpan hanya nama file (biar konsisten)
+            $gambar = $filename;
+        }
+    }
+
+    $stmt = $conn->prepare("UPDATE prestasi 
+        SET judul=?, deskripsi=?, kategori=?, nama=?, kelas=?, gambar=? 
+        WHERE id=?");
+    $stmt->bind_param("ssssssi", $judul, $deskripsi, $kategori, $nama, $kelas, $gambar, $id);
+    $stmt->execute();
+
+    header("Location: prestasi.php?updated=1");
     exit;
 }
 ?>
 
-<?php include __DIR__ . '/../../includes/header.php'; ?>
-<?php include __DIR__ . '/../../includes/navbar.php'; ?>
-<?php include __DIR__ . '/../../includes/sidebar.php'; ?>
+<?php include '../../includes/header.php'; ?>
+<?php include '../../includes/sidebar.php'; ?>
+<?php include '../../includes/navbar.php'; ?>
 
-<div class="content-wrapper">
-  <section class="content-header">
-    <h1>Edit Santri</h1>
-  </section>
-
-  <section class="content">
-    <form method="POST">
-      <div class="form-group">
-        <label>Nama</label>
-        <input type="text" name="nama" class="form-control" value="<?= $santri['nama'] ?>" required>
-      </div>
-      <div class="form-group">
-        <label>Kelas</label>
-        <input type="text" name="kelas" class="form-control" value="<?= $santri['kelas'] ?>" required>
-      </div>
-      <div class="form-group">
-        <label>Hafalan</label>
-        <input type="text" name="hafalan" class="form-control" value="<?= $santri['hafalan'] ?>" required>
-      </div>
-      <div class="form-group">
-        <label>Asal</label>
-        <input type="text" name="asal" class="form-control" value="<?= $santri['asal'] ?>" required>
-      </div>
-      <button type="submit" class="btn btn-success">Update</button>
-      <a href="santri.php" class="btn btn-secondary">Kembali</a>
+<div class="content-wrapper p-3">
+    <h1>Edit Prestasi</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>Judul</label>
+            <input type="text" name="judul" value="<?= htmlspecialchars($data['judul']) ?>" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Deskripsi</label>
+            <textarea id="editor" name="deskripsi" class="form-control" required><?= htmlspecialchars($data['deskripsi']) ?></textarea>
+        </div>
+        <div class="mb-3">
+            <label>Kategori</label>
+            <input type="text" name="kategori" value="<?= htmlspecialchars($data['kategori']) ?>" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Nama Santri/Tim</label>
+            <input type="text" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Kelas</label>
+            <input type="text" name="kelas" value="<?= htmlspecialchars($data['kelas']) ?>" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Gambar</label><br>
+            <?php if ($data['gambar']): ?>
+                <img src="../../../uploads/<?= htmlspecialchars($data['gambar']) ?>" width="150" class="mb-2"><br>
+            <?php endif; ?>
+            <input type="file" name="gambar" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
-  </section>
 </div>
 
-<?php include __DIR__ . '/../../includes/footer.php'; ?>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor.create(document.querySelector('#editor')).catch(error => console.error(error));
+</script>

@@ -54,24 +54,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($data['nama']) ?>" required>
               </div>
               <div class="form-group">
-                    <label>Jabatan</label>
-                    <select name="jabatan" class="form-control" id="jabatan-dropdown">
-                        <option value="Ketua OSTDAQU">Ketua OSTDAQU</option>
-                        <option value="Wakil Ketua">Wakil Ketua</option>
-                        <option value="Sekretaris">Sekretaris</option>
-                        <option value="Bendahara">Bendahara</option>
-                        <option value="Bagian Keamanan">Bagian Keamanan</option>
-                        <option value="Bagian Ta'mir Masjid">Bagian Ta'mir Masjid</option>
-                        <option value="Bagian Bahasa">Bagian Bahasa</option>
-                        <option value="Bagian Kebersihan">Bagian Kebersihan</option>
-                        <option value="Bagian Dapur">Bagian Dapur</option>
-                        <option value="Bagian Koperasi">Bagian Koperasi</option>
-                        <option value="Bagian Olahraga">Bagian Olahraga</option>
-                        <option value="Bagian Maintenance">Bagian Maintenance</option>
-                        <option value="Bagian Basatino">Bagian Basatino</option>
-                        <option value="Bagian Perpustakaan">Bagian Perpustakaan</option>
-                    </select>
-                </div>
+                <label>Jabatan</label>
+                <select name="jabatan" class="form-control" id="jabatan-dropdown">
+                    <option value="Ketua OSTDAQU" <?php if($data['jabatan'] == "Ketua OSTDAQU") echo "selected"; ?>>Ketua OSTDAQU</option>
+                    <option value="Wakil Ketua" <?php if($data['jabatan'] == "Wakil Ketua") echo "selected"; ?>>Wakil Ketua</option>
+                    <option value="Sekretaris" <?php if($data['jabatan'] == "Sekretaris") echo "selected"; ?>>Sekretaris</option>
+                    <option value="Bendahara" <?php if($data['jabatan'] == "Bendahara") echo "selected"; ?>>Bendahara</option>
+                    <option value="Bagian Keamanan" <?php if($data['jabatan'] == "Bagian Keamanan") echo "selected"; ?>>Bagian Keamanan</option>
+                    <option value="Bagian Ta'mir Masjid" <?php if($data['jabatan'] == "Bagian Ta'mir Masjid") echo "selected"; ?>>Bagian Ta'mir Masjid</option>
+                    <option value="Bagian Bahasa" <?php if($data['jabatan'] == "Bagian Bahasa") echo "selected"; ?>>Bagian Bahasa</option>
+                    <option value="Bagian Kebersihan" <?php if($data['jabatan'] == "Bagian Kebersihan") echo "selected"; ?>>Bagian Kebersihan</option>
+                    <option value="Bagian Dapur" <?php if($data['jabatan'] == "Bagian Dapur") echo "selected"; ?>>Bagian Dapur</option>
+                    <option value="Bagian Koperasi" <?php if($data['jabatan'] == "Bagian Koperasi") echo "selected"; ?>>Bagian Koperasi</option>
+                    <option value="Bagian Olahraga" <?php if($data['jabatan'] == "Bagian Olahraga") echo "selected"; ?>>Bagian Olahraga</option>
+                    <option value="Bagian Maintenance" <?php if($data['jabatan'] == "Bagian Maintenance") echo "selected"; ?>>Bagian Maintenance</option>
+                    <option value="Bagian Basatino" <?php if($data['jabatan'] == "Bagian Basatino") echo "selected"; ?>>Bagian Basatino</option>
+                    <option value="Bagian Perpustakaan" <?php if($data['jabatan'] == "Bagian Perpustakaan") echo "selected"; ?>>Bagian Perpustakaan</option>
+                </select>
+            </div>
               <div class="form-group">
                 <label>Urutan</label>
                 <input type="number" name="urutan" class="form-control" value="<?= htmlspecialchars($data['urutan']) ?>" required>

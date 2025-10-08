@@ -17,7 +17,6 @@ $galeri = $conn->query("SELECT * FROM galeri ORDER BY created_at DESC");
         <tr>
           <th>Gambar</th>
           <th>Judul</th>
-          <th>Kategori</th>
           <th>Deskripsi</th>
           <th>Aksi</th>
         </tr>
@@ -27,7 +26,6 @@ $galeri = $conn->query("SELECT * FROM galeri ORDER BY created_at DESC");
         <tr>
           <td><img src="../../../img/<?= htmlspecialchars($g['gambar']) ?>" width="100"></td>
           <td><?= htmlspecialchars($g['judul']) ?></td>
-          <td><?= htmlspecialchars($g['kategori']) ?></td>
           <td><?= strip_tags($g['deskripsi']) ?></td>
           <td>
             <a href="edit.php?id=<?= $g['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>

@@ -4,7 +4,6 @@ include __DIR__ . '/../../config/config.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $judul      = $_POST['judul'];
     $deskripsi  = $_POST['deskripsi'];
-    $kategori   = $_POST['kategori'];
 
     $gambar = null;
     if (!empty($_FILES['gambar']['name'])) {
@@ -15,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($_FILES['gambar']['tmp_name'], $targetDir . $gambar);
     }
 
-    $stmt = $conn->prepare("INSERT INTO galeri (judul, deskripsi, kategori, gambar, created_at) 
-    VALUES (?, ?, ?, ?, NOW())");
-    $stmt->bind_param("ssss", $judul, $deskripsi, $kategori, $gambar);
+    $stmt = $conn->prepare("INSERT INTO galeri (judul, deskripsi, gambar, created_at) 
+    VALUES (?, ?, ?, NOW())");
+    $stmt->bind_param("sss", $judul, $deskripsi, $gambar);
     $stmt->execute();
 
     header("Location: galeri.php?success=1");
@@ -39,14 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="mb-3">
             <label>Deskripsi</label>
             <textarea id="editor" name="deskripsi" class="form-control"></textarea>
-        </div>
-        <div class="mb-3">
-            <label>Kategori</label>
-            <select name="kategori" class="form-control" required>
-                <option value="kegiatan">Kegiatan</option>
-                <option value="prestasi">Prestasi</option>
-                <option value="fasilitas">Fasilitas</option>
-            </select>
         </div>
         <div class="mb-3">
             <label>Gambar</label>

@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $tahun_lulus = $_POST['tahun_lulus'];
     $profesi = $_POST['profesi'];
+    $kategori = $_POST['kategori'];
     $deskripsi = $_POST['deskripsi'];
     $badge = $_POST['badge'];
     $juz_hafalan = $_POST['juz_hafalan'];
@@ -28,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt = $conn->prepare("UPDATE alumni SET nama=?, tahun_lulus=?, profesi=?, deskripsi=?, foto=?, badge=?, juz_hafalan=? WHERE id=?");
-    $stmt->bind_param("sissssii", $nama, $tahun_lulus, $profesi, $deskripsi, $foto, $badge, $juz_hafalan, $id);
+    $stmt = $conn->prepare("UPDATE alumni SET nama=?, tahun_lulus=?, profesi=?, kategori=?, deskripsi=?, foto=?, badge=?, juz_hafalan=? WHERE id=?");
+    $stmt->bind_param("sisssssii", $nama, $tahun_lulus, $profesi, $kategori, $deskripsi, $foto, $badge, $juz_hafalan, $id);
     $stmt->execute();
 
     header("Location: alumni.php");
@@ -47,7 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3"><label>Nama</label><input type="text" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" class="form-control" required></div>
         <div class="mb-3"><label>Tahun Lulus</label><input type="number" name="tahun_lulus" value="<?= htmlspecialchars($data['tahun_lulus']) ?>" class="form-control" required></div>
         <div class="mb-3"><label>Profesi</label><input type="text" name="profesi" value="<?= htmlspecialchars($data['profesi']) ?>" class="form-control"></div>
-        <div class="mb-3"><label>Deskripsi</label><textarea id="editor" name="deskripsi" class="form-control"><?= htmlspecialchars($data['deskripsi']) ?></textarea></div>
+        <div class="mb-3">
+            <label>Kategori</label>
+            <select name="kategori" class="form-control" required>
+                <option value="sebaran" <?= (isset($data['kategori']) && $data['kategori'] == 'sebaran') ? 'selected' : '' ?>>Sebaran Alumni</option>
+                <option value="kiprah" <?= (isset($data['kategori']) && $data['kategori'] == 'kiprah') ? 'selected' : '' ?>>Kiprah Alumni</option>
+            </select>
+        </div>
+        <div class="mb-3"><label>Deskripsi</label><textarea id="editor" name="deskripsi" class="form-control"><?= isset($data['deskripsi']) ? htmlspecialchars($data['deskripsi']) : '' ?></textarea></div>
         <div class="mb-3"><label>Badge</label><input type="text" name="badge" value="<?= htmlspecialchars($data['badge']) ?>" class="form-control"></div>
         <div class="mb-3"><label>Juz Hafalan</label><input type="number" name="juz_hafalan" value="<?= htmlspecialchars($data['juz_hafalan']) ?>" class="form-control"></div>
         <div class="mb-3">

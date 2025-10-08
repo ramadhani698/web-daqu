@@ -95,15 +95,15 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/daqu-al-jannah/admin/modules/pendaftaran/dashboard.php" class="nav-link">
-            <i class="nav-icon fas fa-user-plus"></i>
-            <p>Pendaftaran</p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="/daqu-al-jannah/admin/modules/organisasi/organisasi.php" class="nav-link">
             <i class="nav-icon fas fa-sitemap"></i>
             <p>Organisasi</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/daqu-al-jannah/admin/modules/pendaftaran/dashboard.php" class="nav-link">
+            <i class="nav-icon fas fa-user-plus"></i>
+            <p>Pendaftaran</p>
           </a>
         </li>
       </ul>

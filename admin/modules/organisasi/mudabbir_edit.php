@@ -46,18 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" name="nama" class="form-control" required value="<?= htmlspecialchars($row['nama']) ?>">
                 </div>
                 <div class="form-group">
-                    <label for="group_name">Group</label>
-                    <select class="form-control" id="group_name" name="group_name" required>
-                        <option value="">-- Pilih Group --</option>
-                        <option value="Al-Fatih 201">Al-Fatih 201</option>
-                        <option value="Al-Fatih 202">Al-Fatih 202</option>
-                        <option value="Ar-Rahman 201">Ar-Rahman 201</option>
-                        <option value="Ar-Rahman 202">Ar-Rahman 202</option>
-                    </select>
-                </div>
-              <button type="submit" class="btn btn-primary">Update</button>
-              <a href="mudabbir.php" class="btn btn-secondary">Batal</a>
-            </form>
+                  <label for="group_name">Group</label>
+                  <select class="form-control" id="group_name" name="group_name" required>
+                      <option value="">-- Pilih Group --</option>
+                      <option value="Al-Fatih 201" <?php if($row['group_name'] == "Al-Fatih 201") echo "selected"; ?>>Al-Fatih 201</option>
+                      <option value="Al-Fatih 202" <?php if($row['group_name'] == "Al-Fatih 202") echo "selected"; ?>>Al-Fatih 202</option>
+                      <option value="Ar-Rahman 201" <?php if($row['group_name'] == "Ar-Rahman 201") echo "selected"; ?>>Ar-Rahman 201</option>
+                      <option value="Ar-Rahman 202" <?php if($row['group_name'] == "Ar-Rahman 202") echo "selected"; ?>>Ar-Rahman 202</option>
+                  </select>
+              </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="mudabbir.php" class="btn btn-secondary">Batal</a>
+              </form>
           </div>
         </div>
       </div>

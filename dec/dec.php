@@ -12,12 +12,13 @@ if ($result && mysqli_num_rows($result) > 0) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo isset($meta['title']) ? $meta['title'] : 'Daqu Economic Center'; ?></title>
-    <meta name="description" content="<?php echo isset($meta['description']) ? $meta['description'] : 'Produk berkualitas dari pesantren tahfidz Daarul Qur\'an Al-Jannah'; ?>">
-    <meta name="keywords" content="<?php echo isset($meta['keywords']) ? $meta['keywords'] : 'dec, produk, ekonomi, daqu'; ?>">
-    <meta property="og:title" content="<?php echo isset($meta['og_title']) ? $meta['og_title'] : 'Daqu Economic Center'; ?>">
-    <meta property="og:description" content="<?php echo isset($meta['og_description']) ? $meta['og_description'] : 'Produk berkualitas dari pesantren tahfidz Daarul Qur\'an Al-Jannah'; ?>">
-    <meta property="og:image" content="<?php echo isset($meta['og_image']) ? $meta['og_image'] : '/assets/img/logo.jpg'; ?>">
+    <title><?php echo isset($meta['title']) ? htmlspecialchars($meta['title']) : 'Daqu Economic Center'; ?></title>
+    <meta name="description" content="<?php echo isset($meta['description']) ? htmlspecialchars($meta['description']) : 'Produk berkualitas dari pesantren tahfidz Daarul Qur\'an Al-Jannah'; ?>">
+    <meta name="keywords" content="<?php echo isset($meta['keywords']) ? htmlspecialchars($meta['keywords']) : 'dec, produk, ekonomi, daqu'; ?>">
+    <meta property="og:title" content="<?php echo isset($meta['og_title']) ? htmlspecialchars($meta['og_title']) : 'Daqu Economic Center'; ?>">
+    <meta property="og:description" content="<?php echo isset($meta['og_description']) ? htmlspecialchars($meta['og_description']) : 'Produk berkualitas dari pesantren tahfidz Daarul Qur\'an Al-Jannah'; ?>">
+    <meta property="og:image" content="<?php echo isset($meta['og_image']) ? htmlspecialchars($meta['og_image']) : '/assets/img/logo.jpg'; ?>">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Fonts google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

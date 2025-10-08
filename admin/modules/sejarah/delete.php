@@ -1,20 +1,24 @@
 <?php
 include __DIR__ . '/../../config/config.php';
 
-$id = $_GET['id'];
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
 
-// Ambil data lama
-$data = $conn->query("SELECT image FROM sejarah WHERE id=$id")->fetch_assoc();
+    // ambil semua gambar terkait sejarah ini
+    $res = $conn->query("SELECT * FROM sejarah_gambar WHERE sejarah_id=$id");
+    while ($g = $res->fetch_assoc()) {
+        if ($g['image'] && file_exists(__DIR__ . '/../../../' . $g['image'])) {
+            unlink(__DIR__ . '/../../../' . $g['image']);
+        }
+    }
 
-$targetDir = "../../../uploads/";
+    // hapus data gambar di DB
+    $conn->query("DELETE FROM sejarah_gambar WHERE sejarah_id=$id");
 
-// Hapus file fisik kalau ada
-if ($data && $data['image'] && file_exists($targetDir . $data['image'])) {
-    unlink($targetDir . $data['image']);
+    // hapus data utama
+    $conn->query("DELETE FROM sejarah WHERE id=$id");
+
+    header("Location: sejarah.php?status=deleted");
+    exit;
 }
-
-// Hapus dari database
-$conn->query("DELETE FROM sejarah WHERE id=$id");
-
-header("Location: sejarah.php?success=1");
-exit;
+?>

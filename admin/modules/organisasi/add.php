@@ -70,11 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="Bagian Perpustakaan">Bagian Perpustakaan</option>
                     </select>
                 </div>
-                
-              <div class="form-group">
-                <label>Sub Kategori</label>
-                <input type="text" name="sub_kategori" class="form-control" placeholder="Contoh: Al-Fatih 201, atau kosong jika tidak ada">
-              </div>
+
               <div class="form-group">
                 <label>Urutan</label>
                 <input type="number" name="urutan" class="form-control" required>

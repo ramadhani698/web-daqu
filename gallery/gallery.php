@@ -12,12 +12,13 @@ if ($result && mysqli_num_rows($result) > 0) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo isset($meta['title']) ? $meta['title'] : 'Galeri Daqu Al Jannah'; ?></title>
-    <meta name="description" content="<?php echo isset($meta['description']) ? $meta['description'] : 'Kumpulan foto kegiatan dan fasilitas Daqu Al Jannah'; ?>">
-    <meta name="keywords" content="<?php echo isset($meta['keywords']) ? $meta['keywords'] : 'galeri, foto, kegiatan, daqu'; ?>">
-    <meta property="og:title" content="<?php echo isset($meta['og_title']) ? $meta['og_title'] : 'Galeri Daqu Al Jannah'; ?>">
-    <meta property="og:description" content="<?php echo isset($meta['og_description']) ? $meta['og_description'] : 'Kumpulan foto kegiatan dan fasilitas Daqu Al Jannah'; ?>">
-    <meta property="og:image" content="<?php echo isset($meta['og_image']) ? $meta['og_image'] : '/assets/img/logo.jpg'; ?>">
+    <title><?php echo isset($meta['title']) ? htmlspecialchars($meta['title']) : 'Galeri Daqu Al Jannah'; ?></title>
+    <meta name="description" content="<?php echo isset($meta['description']) ? htmlspecialchars($meta['description']) : 'Kumpulan foto kegiatan dan fasilitas Daqu Al Jannah'; ?>">
+    <meta name="keywords" content="<?php echo isset($meta['keywords']) ? htmlspecialchars($meta['keywords']) : 'galeri, foto, kegiatan, daqu'; ?>">
+    <meta property="og:title" content="<?php echo isset($meta['og_title']) ? htmlspecialchars($meta['og_title']) : 'Galeri Daqu Al Jannah'; ?>">
+    <meta property="og:description" content="<?php echo isset($meta['og_description']) ? htmlspecialchars($meta['og_description']) : 'Kumpulan foto kegiatan dan fasilitas Daqu Al Jannah'; ?>">
+    <meta property="og:image" content="<?php echo isset($meta['og_image']) ? htmlspecialchars($meta['og_image']) : '/assets/img/logo.jpg'; ?>">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Fonts Google -->
@@ -50,17 +51,12 @@ if ($result && mysqli_num_rows($result) > 0) {
           Berikut adalah dokumentasi kegiatan dan keseharian para santri dalam program tahfidz Al-Qur'an
         </p>
       </div>
-      <div class="gallery-filter" data-aos="fade-up" data-aos-delay="100">
-        <button class="filter-button active" data-filter="kegiatan">Kegiatan</button>
-        <button class="filter-button" data-filter="prestasi">Prestasi</button>
-        <button class="filter-button" data-filter="fasilitas">Fasilitas</button>
-      </div>
       <div class="gallery-grid">
         <?php
           $result = $conn->query("SELECT * FROM galeri ORDER BY id DESC");
           while ($row = $result->fetch_assoc()):
         ?>
-          <div class="gallery-item" data-category="<?= $row['kategori'] ?>" data-aos="zoom-in" data-aos-delay="200">
+          <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200" style="cursor: pointer;" onclick="openModal('<?= htmlspecialchars($row['gambar']) ?>', '<?= htmlspecialchars($row['judul']) ?>', '<?= strip_tags($row['deskripsi']) ?>')">
             <img src="../img/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['judul']) ?>" class="gallery-img" />
             <div class="gallery-overlay">
               <div class="gallery-caption">
@@ -85,56 +81,28 @@ if ($result && mysqli_num_rows($result) > 0) {
     </div>
     <?php include('../includes/footer.php') ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-  const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
-  const galleryItems = document.querySelectorAll(".gallery-item");
-  function applyFilter(filter) {
-    const f = (filter || "").trim().toLowerCase();
-    galleryItems.forEach((item) => {
-      const category = (item.dataset.category || "").trim().toLowerCase();
-      if (category === f) {
-        item.style.display = "";
-      } else {
-        item.style.display = "none";
-      }
-    });
-  }
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      filterButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
-      const filter = button.dataset.filter;
-      applyFilter(filter);
-    });
-  });
-  const defaultFilter = "kegiatan";
-  const defaultBtn = filterButtons.find(
-    (btn) => (btn.dataset.filter || "").trim().toLowerCase() === defaultFilter
-  );
-  if (defaultBtn) {
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
-    defaultBtn.classList.add("active");
-  }
-  applyFilter(defaultFilter);
-  const modal = new bootstrap.Modal(document.getElementById("galleryModal"));
-  const modalImage = document.getElementById("modalImage");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDesc = document.getElementById("modalDesc");
-  galleryItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      if (item.style.display === "none") return;
-      const img = item.querySelector("img");
-      const title = item.querySelector(".gallery-caption h3").innerText;
-      const desc = item.querySelector(".gallery-caption p").innerText;
-      modalImage.src = img.src;
-      modalImage.alt = img.alt;
-      modalTitle.innerText = title;
-      modalDesc.innerText = desc;
-      modal.show();
-    });
-  });
-});
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        const modal = new bootstrap.Modal(document.getElementById("galleryModal"));
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDesc = document.getElementById("modalDesc");
+
+        galleryItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            const img = item.querySelector("img");
+            const title = item.querySelector(".gallery-caption h3").innerText;
+            const desc = item.querySelector(".gallery-caption p").innerText;
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalTitle.innerText = title;
+            modalDesc.innerText = desc;
+            modal.show();
+          });
+        });
+      });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>AOS.init();</script>

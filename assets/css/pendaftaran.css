@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  background: #fff;
+  line-height: 1.6;
+}
+
+html {
+  scroll-padding-top: 80px;
+}
+
+.container-pendaftaran {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem;
+  padding: 0;
+}
+
+.pendaftaran {
+  max-width: 800px;
+  width: 100%;
+  background: rgba(240, 238, 238, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  text-align: center;
+  padding: 40px 30px 20px;
+  background: linear-gradient(135deg, #a70e13 0%, #f4c430 100%);
+  color: white;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Main Content */
+.main-content {
+  padding: 40px 30px;
+}
+
+.info-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #4e733a;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.info-list li {
+  padding: 10px 0;
+  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 20px;
+}
+
+.info-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4e733a;
+  font-weight: bold;
+}
+
+.card-desc {
+  text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 15px;
+}
+
+/* Call-to-Action Button */
+.cta-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #90d66a 0%, #4e733a 100%);
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(159, 245, 79, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(159, 245, 79, 0.3);
+  background: linear-gradient(135deg, #98e46f 0%, #76c44d 100%);
+}

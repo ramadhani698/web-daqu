@@ -1,53 +1,42 @@
 <?php
 include __DIR__ . '/../../config/config.php';
-$santri = $conn->query("SELECT * FROM santri ORDER BY id DESC");
+$prestasi = $conn->query("SELECT * FROM prestasi ORDER BY created_at DESC");
 ?>
-<?php include __DIR__ . '/../../includes/header.php'; ?>
-<?php include __DIR__ . '/../../includes/navbar.php'; ?>
-<?php include __DIR__ . '/../../includes/sidebar.php'; ?>
 
-<div class="content-wrapper">
-  <section class="content-header">
-    <h1>Info Santri</h1>
+<?php include '../../includes/header.php' ?>
+<?php include '../../includes/navbar.php' ?>
+<?php include '../../includes/sidebar.php' ?>
+
+<div class="content-wrapper p-3">
+    <h1>Kelola Prestasi</h1>
     <div class="mb-3">
-        <a href="add.php" class="btn btn-primary">+ Tambah Santri</a>
-        <a href="prestasi.php" class="btn btn-primary">Lihat Prestasi Santri</a>
+        <a href="add.php" class="btn btn-primary">+ Tambah Prestasi Santri</a>
     </div>
-  </section>
-
-  <section class="content">
-    <div class="card">
-      <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama</th>
-              <th>Kelas</th>
-              <th>Hafalan</th>
-              <th>Asal</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php $no=1; while($row = $santri->fetch_assoc()): ?>
-            <tr>
-              <td><?= $no++ ?></td>
-              <td><?= htmlspecialchars($row['nama']) ?></td>
-              <td><?= htmlspecialchars($row['kelas']) ?></td>
-              <td><?= htmlspecialchars($row['hafalan']) ?></td>
-              <td><?= htmlspecialchars($row['asal']) ?></td>
-              <td>
-                <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau hapus?')"><i class="fas fa-trash"></i></a>
-              </td>
-            </tr>
-            <?php endwhile; ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Gambar</th>
+          <th>Judul</th>
+          <th>Kategori</th>
+          <th>Nama</th>
+          <th>Kelas</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while($p = $prestasi->fetch_assoc()): ?>
+        <tr>
+          <td><img src="../../../uploads/<?= htmlspecialchars($p['gambar']) ?>" width="100"></td>
+          <td><?= htmlspecialchars($p['judul']) ?></td>
+          <td><?= htmlspecialchars($p['kategori']) ?></td>
+          <td><?= htmlspecialchars($p['nama']) ?></td>
+          <td><?= htmlspecialchars($p['kelas']) ?></td>
+          <td>
+            <a href="edit.php?id=<?= $p['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="delete.php?id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></a>
+          </td>
+        </tr>
+        <?php endwhile; ?>
+      </tbody>
+    </table>
 </div>
-
-<?php include __DIR__ . '/../../includes/footer.php'; ?>

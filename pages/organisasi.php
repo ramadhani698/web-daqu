@@ -158,28 +158,31 @@
               </div>
 
             <!-- Daftar Ketua Asrama -->
-              <div id="asrama-section" class="asrama-section animated-section" style="display:none; gap:16px; margin-top:16px;">
-                <div class="position-card">
-                    <div class="position-icon">🏢</div>
-                    <h3>Ketua Asrama <br>Al-Fatih 201</h3>
-                    <p>Koordinator Al-Fatih 201</p>
+              <?php
+                // Ambil data ketua asrama dari database
+                $asrama_data = [];
+                $sql_asrama = "SELECT * FROM ketua_asrama ORDER BY urutan ASC";
+                $result_asrama = mysqli_query($conn, $sql_asrama);
+
+                while ($row = mysqli_fetch_assoc($result_asrama)) {
+                    $asrama_data[$row['asrama']][] = $row['nama'];
+                }
+                ?>
+                <div id="asrama-section" class="asrama-section animated-section" style="display:none; gap:16px; margin-top:16px;">
+                  <?php if (!empty($asrama_data)): ?>
+                    <?php foreach ($asrama_data as $asrama => $names): ?>
+                      <div class="position-card">
+                        <div class="position-icon">🏢</div>
+                        <h3>Ketua Asrama <br><?= htmlspecialchars($asrama) ?></h3>
+                        <?php foreach ($names as $nama): ?>
+                          <p><?= htmlspecialchars($nama) ?></p>
+                        <?php endforeach; ?>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <div>Tidak ada data ketua asrama.</div>
+                  <?php endif; ?>
                 </div>
-                <div class="position-card">
-                    <div class="position-icon">🏢</div>
-                    <h3>Ketua Asrama <br>Al-Fatih 202</h3>
-                    <p>Koordinator Al-Fatih 202</p>
-                </div>
-                <div class="position-card">
-                    <div class="position-icon">🏢</div>
-                    <h3>Ketua Asrama <br>Ar-Rahman 201</h3>
-                    <p>Koordinator >Ar-Rahman 201</p>
-                </div>
-                <div class="position-card">
-                    <div class="position-icon">🏢</div>
-                    <h3>Ketua Asrama <br>Ar-Rahman 202</h3>
-                    <p>Koordinator Ar-Rahman 202</p>
-                </div>
-              </div>
           </div>
         </section>
       </div>
