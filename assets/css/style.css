@@ -1366,6 +1366,25 @@ body {
   margin-top: 3rem;
 }
 
+.page-link {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 2px;
+  background: #eee;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.page-link.active {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+.page-link:hover {
+  background: #0056b3;
+  color: #fff;
+}
+
 /* Gallery Pages */
 .hero-gallery {
   height: 60vh;
@@ -1513,6 +1532,25 @@ body {
 .gallery-caption p {
   font-size: 0.9rem;
   opacity: 0.8;
+}
+
+.page-link {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 2px;
+  background: #eee;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.page-link.active {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+.page-link:hover {
+  background: #0056b3;
+  color: #fff;
 }
 
 /* Modal */
@@ -2188,12 +2226,15 @@ body {
     max-width: 100%;
   }
 
+  .news-card,
   .prestasi-card {
     max-width: 340px;
     margin: 12px auto;
     padding: 12px;
     box-sizing: border-box;
   }
+
+  .news-image,
   .prestasi-image {
     max-width: 100%;
     height: auto;

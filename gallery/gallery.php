@@ -53,7 +53,19 @@ if ($result && mysqli_num_rows($result) > 0) {
       </div>
       <div class="gallery-grid">
         <?php
-          $result = $conn->query("SELECT * FROM galeri ORDER BY id DESC");
+          // Pagination setup
+          $limit = 20; // jumlah gambar per halaman
+          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+          if ($page < 1) $page = 1;
+          $offset = ($page - 1) * $limit;
+
+          // Hitung total data galeri
+          $result_total = $conn->query("SELECT COUNT(*) as total FROM galeri");
+          $total_galeri = $result_total->fetch_assoc()['total'];
+          $total_pages = ceil($total_galeri / $limit);
+
+          // Query galeri dengan limit dan offset
+          $result = $conn->query("SELECT * FROM galeri ORDER BY id DESC LIMIT $limit OFFSET $offset");
           while ($row = $result->fetch_assoc()):
         ?>
           <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200" style="cursor: pointer;" onclick="openModal('<?= htmlspecialchars($row['gambar']) ?>', '<?= htmlspecialchars($row['judul']) ?>', '<?= strip_tags($row['deskripsi']) ?>')">
@@ -66,6 +78,20 @@ if ($result && mysqli_num_rows($result) > 0) {
             </div>
           </div>
         <?php endwhile; ?>
+      </div>
+      <!-- Pagination Navigation -->
+      <div class="pagination" style="text-align:center; margin-top:20px;">
+        <?php
+        if ($total_pages < 1) $total_pages = 1;
+        if ($page > 1): ?>
+          <a href="?page=<?= $page - 1 ?>" class="page-link">&laquo; Prev</a>
+        <?php endif; ?>
+        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+          <a href="?page=<?= $i ?>" class="page-link<?= ($i == $page) ? ' active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+        <?php if ($page < $total_pages): ?>
+          <a href="?page=<?= $page + 1 ?>" class="page-link">Next &raquo;</a>
+        <?php endif; ?>
       </div>
     </section>
     <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">

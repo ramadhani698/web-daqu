@@ -4,16 +4,18 @@ $page = 'berita';
 $result = mysqli_query($conn, "SELECT * FROM seo_meta WHERE page='$page' LIMIT 1");
 $meta = mysqli_fetch_assoc($result);
 
-function createSlug($string) {
-    $slug = strtolower($string);
-    $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug);
-    $slug = preg_replace('/[\s-]+/', '-', $slug);
-    $slug = trim($slug, '-');
-    return $slug;
-}
+// Pagination setup
+$limit = 9; // jumlah berita per halaman
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($current_page < 1) $current_page = 1;
+$offset = ($current_page - 1) * $limit;
 
-// Ambil semua berita dari DB, urutkan terbaru
-$berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
+// Hitung total berita
+$total_berita = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM berita"))[0];
+$total_pages = ceil($total_berita / $limit);
+
+// Ambil berita sesuai halaman
+$berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT $limit OFFSET $offset");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +84,7 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
                 <p class="news-excerpt">
                   <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
                 </p>
-                  <a href="../berita/detaill.php?slug=<?= createSlug($b['judul']) ?>&id=<?= $b['id'] ?>" class="read-more">Baca Selengkapnya</a>
+                  <a href="../berita/<?= htmlspecialchars($b['slug']) ?>" class="read-more">Baca Selengkapnya</a>
               </div>
             </div>
           </div>
@@ -90,6 +92,29 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
           $delay += 200;
           endwhile; ?>
       </div>
+
+      <!-- Pagination -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+          <?php if($current_page > 1): ?>
+            <li class="page-item">
+              <a class="page-link" href="?page=<?php echo $current_page-1; ?>">Sebelumnya</a>
+            </li>
+          <?php endif; ?>
+          <?php for($i = 1; $i <= $total_pages; $i++): ?>
+            <li class="page-item <?php if($i == $current_page) echo 'active'; ?>">
+              <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            </li>
+          <?php endfor; ?>
+          <?php if($current_page < $total_pages): ?>
+            <li class="page-item">
+              <a class="page-link" href="?page=<?php echo $current_page+1; ?>">Berikutnya</a>
+            </li>
+          <?php endif; ?>
+        </ul>
+      </nav>
+      <!-- End Pagination -->
+
     </div>
 
     <?php include('../includes/footer.php') ?>

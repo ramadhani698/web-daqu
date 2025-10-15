@@ -1,10 +1,25 @@
 <?php
 include __DIR__ . "/../../config/config.php";
 
+// Fungsi untuk membuat slug dari judul
+function createSlug($string) {
+    $slug = strtolower($string);
+    $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug);
+    $slug = preg_replace('/[\s-]+/', '-', $slug);
+    $slug = trim($slug, '-');
+    return $slug;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $judul = $_POST['judul'];
     $deskripsi = $_POST['deskripsi'];
     $link = $_POST['link'];
+    $slug = trim($_POST['slug']);
+
+    // Jika slug kosong, generate dari judul
+    if (empty($slug)) {
+        $slug = createSlug($judul);
+    }
 
     $gambar = null;
     if (!empty($_FILES['gambar']['name'])) {
@@ -19,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt = $conn->prepare("INSERT INTO berita (judul, deskripsi, gambar, link, created_at) VALUES (?, ?, ?, ?, NOW())");
-    $stmt->bind_param("ssss", $judul, $deskripsi, $gambar, $link);
+    $stmt = $conn->prepare("INSERT INTO berita (judul, deskripsi, gambar, link, slug, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("sssss", $judul, $deskripsi, $gambar, $link, $slug);
     $stmt->execute();
 
     header("Location: berita.php");

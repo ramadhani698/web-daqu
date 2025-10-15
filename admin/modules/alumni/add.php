@@ -41,13 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST" enctype="multipart/form-data">
         <div class="mb-3"><label>Nama</label><input type="text" name="nama" class="form-control" required></div>
         <div class="mb-3"><label>Tahun Lulus</label><input type="number" name="tahun_lulus" class="form-control" required></div>
-        <div class="mb-3"><label>Profesi</label><input type="text" name="profesi" class="form-control"></div>
         <div class="mb-3">
             <label>Kategori</label>
-            <select name="kategori" class="form-control" required>
+            <select name="kategori" id="kategori" class="form-control" required>
                 <option value="sebaran">Sebaran Alumni</option>
                 <option value="kiprah">Kiprah Alumni</option>
             </select>
+        </div>
+        <div class="mb-3">
+            <label id="label-profesi">Profesi</label>
+            <input type="text" name="profesi" class="form-control">
         </div>
         <div class="mb-3"><label>Deskripsi</label><textarea id="editor" name="deskripsi" class="form-control"></textarea></div>
         <div class="mb-3"><label>Badge</label><input type="text" name="badge" class="form-control"></div>
@@ -60,3 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- CKEditor 5 -->
 <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 <script>ClassicEditor.create(document.querySelector('#editor')).catch(console.error);</script>
+
+<script>
+    // Script untuk mengubah label profesi/universitas sesuai kategori
+    document.getElementById('kategori').addEventListener('change', function() {
+        var label = document.getElementById('label-profesi');
+        if (this.value === 'kiprah') {
+            label.textContent = 'Kampus';
+        } else {
+            label.textContent = 'Profesi';
+        }
+    });
+</script>

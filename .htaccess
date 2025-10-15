@@ -7,4 +7,4 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # Redirect pretty URLs for news detail using slug
-RewriteRule ^berita/([0-9]+)/([a-zA-Z0-9-]+)$ berita/detail.php?id=$1&slug=$2 [L,QSA]
+RewriteRule ^berita/([a-zA-Z0-9\-]+)$ berita/detaill.php?slug=$1 [L,QSA]

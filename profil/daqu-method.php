@@ -68,7 +68,7 @@
           <div class="underline"></div>
         </div>
         <div class="content-grid">
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-nilai">
             <div class="number">1</div>
             <h3>Shalat Berjamaah & Jaga Hati, Jaga Sikap</h3>
             <p>
@@ -77,7 +77,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-nilai">
             <div class="number">2</div>
             <h3>Tahajjud, Dhuha & Qabliyah Ba'diyah</h3>
             <p>
@@ -86,7 +86,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-nilai">
             <div class="number">3</div>
             <h3>Menghafal & Tadabbur Al-Qur'an</h3>
             <p>
@@ -95,7 +95,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-nilai">
             <div class="number">4</div>
             <h3>Sedekah & Puasa Sunnah</h3>
             <p>
@@ -104,7 +104,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-nilai">
             <div class="number">5</div>
             <h3>Belajar & Mengajar</h3>
             <p>
@@ -113,7 +113,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="500">
+          <div class="card-nilai">
             <div class="number">6</div>
             <h3>Doa, Mendoakan & Minta Didoakan</h3>
             <p>
@@ -122,7 +122,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="600">
+          <div class="card-nilai">
             <div class="number">7</div>
             <h3>Ikhlas, Sabar, Syukur & Ridho</h3>
             <p>
@@ -139,7 +139,7 @@
           <div class="underline"></div>
         </div>
         <div class="content-grid">
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-nilai">
             <div class="number">1</div>
             <h3>Keikhlasan</h3>
             <p>
@@ -147,13 +147,13 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-nilai">
             <div class="number">2</div>
             <h3>Kesederhanaan</h3>
             <p>Hidup sederhana dan tidak berlebih-lebihan dalam segala hal.</p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-nilai">
             <div class="number">3</div>
             <h3>Berdikari</h3>
             <p>
@@ -162,7 +162,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-nilai">
             <div class="number">4</div>
             <h3>Ukhuwah Islamiyah</h3>
             <p>
@@ -170,7 +170,7 @@
             </p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-nilai">
             <div class="number">5</div>
             <h3>Kebebasan</h3>
             <p>
@@ -187,25 +187,25 @@
           <div class="underline"></div>
         </div>
         <div class="content-grid">
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-nilai">
             <div class="number">1</div>
             <h3>Berbudi Luhur</h3>
             <p>Menjunjung tinggi akhlak mulia dalam setiap aspek kehidupan.</p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-nilai">
             <div class="number">2</div>
             <h3>Berbadan Sehat</h3>
             <p>Menjaga kesehatan jasmani dan rohani agar dapat beraktivitas dengan optimal setiap hari.</p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-nilai">
             <div class="number">3</div>
             <h3>Berpengetahuan Luas</h3>
             <p>Menguasai berbagai ilmu pengetahuan untuk kemaslahatan umat.</p>
           </div>
 
-          <div class="card-nilai" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-nilai">
             <div class="number">4</div>
             <h3>Berpikiran Kritis</h3>
             <p>Mengembangkan kemampuan analitis dan pemikiran yang mendalam.</p>

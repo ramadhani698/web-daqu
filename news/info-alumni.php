@@ -75,8 +75,6 @@ $kiprah_alumni = $conn->query($kiprah_alumni_query);
         </div>
     </section>
 
-
-
     <!-- Sebaran Alumni Section -->
     <section class="alumni-prestasi" id="sebaran-alumni">
         <div class="container">
@@ -85,12 +83,23 @@ $kiprah_alumni = $conn->query($kiprah_alumni_query);
                 Para alumni yang telah tersebar di masyarakat dan sukses dalam berbagai bidang.
             </p>
 
+            <?php
+            // Pagination Sebaran Alumni
+            $limit = 6;
+            $page_sebaran = isset($_GET['page_sebaran']) ? (int)$_GET['page_sebaran'] : 1;
+            if ($page_sebaran < 1) $page_sebaran = 1;
+            $offset_sebaran = ($page_sebaran - 1) * $limit;
+
+            $result_total_sebaran = $conn->query("SELECT COUNT(*) as total FROM alumni WHERE kategori = 'sebaran'");
+            $total_sebaran = $result_total_sebaran->fetch_assoc()['total'];
+            $total_pages_sebaran = ceil($total_sebaran / $limit);
+
+            $sebaran_alumni = $conn->query("SELECT * FROM alumni WHERE kategori = 'sebaran' ORDER BY tahun_lulus ASC LIMIT $limit OFFSET $offset_sebaran");
+            $delay = 200;
+            ?>
+
             <div class="alumni-container">
-              <?php 
-              $sebaran_alumni = $conn->query("SELECT * FROM alumni WHERE kategori = 'sebaran' ORDER BY tahun_lulus ASC");
-              $delay = 200; 
-              while($row = $sebaran_alumni->fetch_assoc()): 
-              ?>
+              <?php while($row = $sebaran_alumni->fetch_assoc()): ?>
                   <div class="wrapper" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="alumni-card">
                         <div class="alumni-img">
@@ -115,6 +124,22 @@ $kiprah_alumni = $conn->query($kiprah_alumni_query);
                 </div>
               <?php $delay += 200; endwhile; ?>
             </div>
+
+            <!-- Pagination Navigation Sebaran Alumni -->
+            <div class="pagination" style="text-align:center; margin-top:20px;">
+              <?php
+              // Selalu tampilkan pagination minimal satu halaman
+              if ($total_pages_sebaran < 1) $total_pages_sebaran = 1;
+              if ($page_sebaran > 1): ?>
+                  <a href="?page_sebaran=<?= $page_sebaran - 1 ?>#sebaran-alumni" class="page-link">&laquo; Prev</a>
+              <?php endif; ?>
+              <?php for ($i = 1; $i <= $total_pages_sebaran; $i++): ?>
+                  <a href="?page_sebaran=<?= $i ?>#sebaran-alumni" class="page-link<?= ($i == $page_sebaran) ? ' active' : '' ?>"><?= $i ?></a>
+              <?php endfor; ?>
+              <?php if ($page_sebaran < $total_pages_sebaran): ?>
+                  <a href="?page_sebaran=<?= $page_sebaran + 1 ?>#sebaran-alumni" class="page-link">Next &raquo;</a>
+              <?php endif; ?>
+            </div>
         </div>
     </section>
 
@@ -126,12 +151,22 @@ $kiprah_alumni = $conn->query($kiprah_alumni_query);
                 Para alumni yang sedang melanjutkan pendidikan di universitas.
             </p>
 
+            <?php
+            // Pagination Kiprah Alumni
+            $page_kiprah = isset($_GET['page_kiprah']) ? (int)$_GET['page_kiprah'] : 1;
+            if ($page_kiprah < 1) $page_kiprah = 1;
+            $offset_kiprah = ($page_kiprah - 1) * $limit;
+
+            $result_total_kiprah = $conn->query("SELECT COUNT(*) as total FROM alumni WHERE kategori = 'kiprah'");
+            $total_kiprah = $result_total_kiprah->fetch_assoc()['total'];
+            $total_pages_kiprah = ceil($total_kiprah / $limit);
+
+            $kiprah_alumni = $conn->query("SELECT * FROM alumni WHERE kategori = 'kiprah' ORDER BY tahun_lulus ASC LIMIT $limit OFFSET $offset_kiprah");
+            $delay = 200;
+            ?>
+
             <div class="alumni-container">
-              <?php 
-              $kiprah_alumni = $conn->query("SELECT * FROM alumni WHERE kategori = 'kiprah' ORDER BY tahun_lulus ASC");
-              $delay = 200; 
-              while($row = $kiprah_alumni->fetch_assoc()): 
-              ?>
+              <?php while($row = $kiprah_alumni->fetch_assoc()): ?>
                   <div class="wrapper" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
                     <div class="alumni-card">
                         <div class="alumni-img">
@@ -146,7 +181,7 @@ $kiprah_alumni = $conn->query($kiprah_alumni_query);
                         <div class="alumni-info">
                             <h3><?= htmlspecialchars($row['nama']) ?></h3>
                             <p>Tahun Lulus: <?= htmlspecialchars($row['tahun_lulus']) ?></p>
-                            <p>Universitas: <?= htmlspecialchars($row['profesi']) ?></p>
+                            <p>Kampus: <?= htmlspecialchars($row['profesi']) ?></p>
                             <p><?= strip_tags($row['deskripsi']) ?></p>
                             <?php if (!empty($row['juz_hafalan'])): ?>
                               <span class="alumni-juz">Hafal <?= htmlspecialchars($row['juz_hafalan']) ?> Juz</span>
@@ -156,6 +191,22 @@ $kiprah_alumni = $conn->query($kiprah_alumni_query);
                 </div>
               <?php $delay += 200; endwhile; ?>
             </div>
+
+            <!-- Pagination Navigation Kiprah Alumni -->
+            <div class="pagination" style="text-align:center; margin-top:20px;">
+              <?php
+              // Selalu tampilkan pagination minimal satu halaman
+              if ($total_pages_kiprah < 1) $total_pages_kiprah = 1;
+              if ($page_kiprah > 1): ?>
+                  <a href="?page_kiprah=<?= $page_kiprah - 1 ?>#kiprah-alumni" class="page-link">&laquo; Prev</a>
+              <?php endif; ?>
+              <?php for ($i = 1; $i <= $total_pages_kiprah; $i++): ?>
+                  <a href="?page_kiprah=<?= $i ?>#kiprah-alumni" class="page-link<?= ($i == $page_kiprah) ? ' active' : '' ?>"><?= $i ?></a>
+              <?php endfor; ?>
+              <?php if ($page_kiprah < $total_pages_kiprah): ?>
+                  <a href="?page_kiprah=<?= $page_kiprah + 1 ?>#kiprah-alumni" class="page-link">Next &raquo;</a>
+              <?php endif; ?>
+          </div>
         </div>
     </section>
 

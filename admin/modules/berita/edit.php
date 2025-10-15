@@ -3,10 +3,25 @@ include __DIR__ . "/../../config/config.php";
 $id = (int)$_GET['id'];
 $data = $conn->query("SELECT * FROM berita WHERE id=$id")->fetch_assoc();
 
+// Fungsi untuk membuat slug dari judul
+function createSlug($string) {
+    $slug = strtolower($string);
+    $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug);
+    $slug = preg_replace('/[\s-]+/', '-', $slug);
+    $slug = trim($slug, '-');
+    return $slug;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $judul = $_POST['judul'];
     $deskripsi = $_POST['deskripsi'];
     $link = $_POST['link'];
+    $slug = trim($_POST['slug']);
+
+    // Jika slug kosong, generate dari judul
+    if (empty($slug)) {
+        $slug = createSlug($judul);
+    }
 
     $gambar = $data['gambar'];
     if (!empty($_FILES['gambar']['name'])) {
@@ -25,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt = $conn->prepare("UPDATE berita SET judul=?, deskripsi=?, gambar=?, link=? WHERE id=?");
-    $stmt->bind_param("ssssi", $judul, $deskripsi, $gambar, $link, $id);
+    $stmt = $conn->prepare("UPDATE berita SET judul=?, deskripsi=?, gambar=?, link=?, slug=? WHERE id=?");
+    $stmt->bind_param("sssssi", $judul, $deskripsi, $gambar, $link, $slug, $id);
     $stmt->execute();
 
     header("Location: berita.php");

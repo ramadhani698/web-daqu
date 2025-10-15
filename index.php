@@ -58,7 +58,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu yang bisa di-collapse -->
+                <!-- Menu yang bisa di-collapse -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
@@ -82,6 +82,7 @@
             <li class="nav-item"><a href="./gallery/gallery.php" class="nav-link">Galeri</a></li>
             <li class="nav-item"><a href="./dec/dec.php" class="nav-link">DEC</a></li>
             <li class="nav-item"><a href="./pendaftaran/pendaftaran.php" class="nav-link">Pendaftaran</a></li>
+            <li class="nav-item"><a href="./donasi/donasi.php" class="nav-link">Donasi</a></li>
           </ul>
         </div>
       </div>
@@ -346,7 +347,7 @@
                     <?php endif; ?>
                   </div>
                 <?php 
-                  $active = ""; // hanya item pertama yang "active"
+                  $active = "";
                   endwhile; 
                 ?>
               </div>
@@ -397,13 +398,6 @@
 
     <?php
     include __DIR__ . '/admin/config/config.php';
-    function createSlug($string) {
-      $slug = strtolower($string);
-      $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug); // Hapus karakter khusus
-      $slug = preg_replace('/[\s-]+/', '-', $slug);      // Ganti spasi dengan -
-      $slug = trim($slug, '-');
-      return $slug;
-    }
     $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC LIMIT 6");
     ?>
 
@@ -431,7 +425,7 @@
                   <p class="news-excerpt">
                     <?= substr(strip_tags($b['deskripsi']), 0, 120) ?>...
                   </p>
-                  <a href="berita/detail.php?slug=<?= createSlug($b['judul']) ?>&id=<?= $b['id'] ?>" class="read-more">
+                  <a href="berita/<?= htmlspecialchars($b['slug']) ?>" class="read-more">
                     Baca Selengkapnya
                   </a>
                 </div>
@@ -442,7 +436,7 @@
             endwhile; ?>
         </div>
         <div class="text-center mb-4 mt-5">
-          <a href="news/berita.php" class="btn btn-karakter">Berita Lainnya</a>
+          <a href="index.php" class="btn btn-karakter">Berita Lainnya</a>
         </div>
       </div>
     </section>

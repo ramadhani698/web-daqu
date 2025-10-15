@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pendaftaran Santri - Pesantren Tahfidz Daarul Qur'an Al-Jannah</title>
-    <meta name="description" content="Formulir pendaftaran santri baru di Pesantren Tahfidz Daarul Qur'an Al-Jannah">
-    <meta name="keywords" content="pendaftaran, santri, pesantren, daqu, tahfidz">
-    <meta property="og:title" content="Pendaftaran Santri - Pesantren Tahfidz Daarul Qur'an Al-Jannah">
-    <meta property="og:description" content="Formulir pendaftaran santri baru di Pesantren Tahfidz Daarul Qur'an Al-Jannah">
-    <meta property="og:image" content="/assets/img/logo.jpg">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
+
+    <title>Pendaftaran Santri - Pesantren Tahfidz Daarul Qur'an Al-Jannah</title>
+    <meta name="description" content="Formulir pendaftaran santri baru di Pesantren Tahfidz Daarul Qur'an Al-Jannah">
+    <meta name="keywords" content="pendaftaran, santri, pesantren, daqu, tahfidz">
+    <meta property="og:title" content="Pendaftaran Santri - Pesantren Tahfidz Daarul Qur'an Al-Jannah">
+    <meta property="og:description" content="Formulir pendaftaran santri baru di Pesantren Tahfidz Daarul Qur'an Al-Jannah">
+    <meta property="og:image" content="/assets/img/logo.jpg">
 
     <!-- Fonts google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,8 +82,8 @@
           </div>
 
           <div class="cta-section">
-            <a href="https://forms.gle/LotuWbDLJx3pUwhh7" class="cta-button" target="_blank">
-              Daftar Sekarang via Google Form
+            <a href="https://forms.gle/SFmtHPSJuXvpVZ6N6" class="cta-button" target="_blank">
+              Daftar Sekarang
             </a>
           </div>
         </main>

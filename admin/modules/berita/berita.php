@@ -16,6 +16,7 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
           <th>Gambar</th>
           <th>Judul</th>
           <th>Deskripsi</th>
+          <th>Slug</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@ $berita = $conn->query("SELECT * FROM berita ORDER BY created_at DESC");
           <td><img src="../../../<?= htmlspecialchars($b['gambar']) ?>" width="100"></td>
           <td><?= htmlspecialchars($b['judul']) ?></td>
           <td><?= strip_tags(mb_strimwidth($b['deskripsi'],0,50,"...")) ?></td>
+          <td><?= htmlspecialchars($b['slug']) ?></td>
           <td>
             <a href="edit.php?id=<?= $b['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
             <a href="delete.php?id=<?= $b['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></a>

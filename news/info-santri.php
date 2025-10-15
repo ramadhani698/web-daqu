@@ -103,8 +103,6 @@ $meta = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM seo_meta WHERE pag
             </div>
         </div>
     </section>
-
-
     <?php include('../includes/footer.php') ?>
   
     <script

@@ -1,18 +1,25 @@
 <?php
 include "../admin/config/config.php";
 
-// Ambil ID dari URL
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Ambil slug dari URL
+$slug = isset($_GET['slug']) ? $_GET['slug'] : '';
 
-// Ambil data berita dari database
-$stmt = $conn->prepare("SELECT * FROM berita WHERE id = ?");
-$stmt->bind_param("i", $id);
+// Validasi slug
+if (empty($slug)) {
+    echo "<h2>Slug tidak ditemukan</h2>";
+    exit;
+}
+
+// Query berita berdasarkan slug
+$query = "SELECT * FROM berita WHERE slug = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $slug);
 $stmt->execute();
 $result = $stmt->get_result();
 $berita = $result->fetch_assoc();
 
-// Jika berita tidak ditemukan
 if (!$berita) {
+    // Jika tidak ditemukan, bisa tampilkan pesan error atau redirect
     echo "<h2>Berita tidak ditemukan</h2>";
     exit;
 }
@@ -51,7 +58,7 @@ if (!$berita) {
       <?= nl2br($berita['deskripsi']) ?>
     </div>
 
-    <a href="../index.php#berita" class="btn btn-secondary mt-4">← Kembali</a>
+    <a href="../index.php" class="btn btn-secondary mt-4">← Kembali</a>
   </div>
   <?php include('../includes/footer.php') ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
