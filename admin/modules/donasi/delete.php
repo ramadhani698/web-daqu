@@ -11,6 +11,6 @@ if ($data && !empty($data['gambar'])) {
 
 $conn->query("DELETE FROM carousel_donasi WHERE id=$id");
 
-header("Location: carousel.php?deleted=1");
+header("Location: carousel_donasi.php?deleted=1");
 exit;
 ?>

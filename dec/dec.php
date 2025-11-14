@@ -76,7 +76,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 $nama_produk = ($row['nama'] == 'air mineral') ? "aiq'30" : $row['nama'];
                 $pesan = "halo, saya ingin memesan " . $nama_produk . " ini";
               ?>
-              <a href="https://wa.me/6281288674507?text=<?= urlencode($pesan) ?>" class="btn-produk" target="_blank">Info Pesan</a>
+              <a href="https://wa.me/6285885428128?text=<?= urlencode($pesan) ?>" class="btn-produk" target="_blank">Info Pesan</a>
             </div>
           </div>
         </div>

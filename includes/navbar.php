@@ -32,7 +32,7 @@
               </ul>
             </li>
             <li class="nav-item"><a href="../gallery/gallery.php" class="nav-link">Galeri</a></li>
-            <li class="nav-item"><a href="../dec/dec.php" class="nav-link">DEC</a></li>
+            <li class="nav-item"><a href="../dec/dec.php" class="nav-link">Produk Pesantren</a></li>
             <li class="nav-item"><a href="../pendaftaran/pendaftaran.php" class="nav-link">Pendaftaran</a></li>
             <li class="nav-item"><a href="../donasi/donasi.php" class="nav-link">Donasi</a></li>
           </ul>

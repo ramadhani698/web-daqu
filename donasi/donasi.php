@@ -92,117 +92,59 @@
       </section>
 
       <section class="donation-categories">
-        <div class="category">
-          <img
-            src="../assets/img/icondonasi1.png"
-            alt="Zakat Icon"
-          />
-          <p>Zakat</p>
-        </div>
-        <div class="category">
-          <img
-            src="../assets/img/icondonasi2.png"
-            alt="Sedekah Icon"
-          />
+        <a href="kategori.php?kategori=sedekah" class="category text-decoration-none text-dark">
+          <img src="../assets/img/icondonasi2.png" alt="Sedekah Icon" />
           <p>Sedekah</p>
-        </div>
-        <div class="category">
-          <img
-            src="https://img.icons8.com/color/48/000000/giving.png"
-            alt="Wakaf Icon"
-          />
+        </a>
+
+        <a href="kategori.php?kategori=zakat" class="category text-decoration-none text-dark">
+          <img src="../assets/img/icondonasi1.png" alt="Zakat Icon" />
+          <p>Zakat</p>
+        </a>
+
+        <a href="kategori.php?kategori=wakaf" class="category text-decoration-none text-dark">
+          <img src="https://img.icons8.com/color/48/000000/giving.png" alt="Wakaf Icon" />
           <p>Wakaf</p>
-        </div>
-        <div class="category">
-          <img
-            src="https://img.icons8.com/color/48/000000/heart-with-pulse.png"
-            alt="Donasi Otomatis Icon"
-          />
-          <p>Donasi Otomatis</p>
-        </div>
+        </a>
       </section>
+
     
       <!-- PROGRAM DONASI -->
       <section class="program" id="program">
         <div data-aos="fade-up">
           <h2>Program Donasi</h2>
 
-          <!-- Bagian Sedekah -->
-          <h3 style="margin-top:1rem; margin-bottom:1rem; font-size:1rem; text-align:left; font-weight:bold; color:#222;">Sedekah</h3>
-          <div id="slider-sedekah" class="splide">
-            <div class="splide__track">
-              <ul class="splide__list">
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi1.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 60%"></div></div>
-                    <small>Terkumpul: Rp60.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi2.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 45%"></div></div>
-                    <small>Terkumpul: Rp45.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi3.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 75%"></div></div>
-                    <small>Terkumpul: Rp75.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi2.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 45%"></div></div>
-                    <small>Terkumpul: Rp45.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi1.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 60%"></div></div>
-                    <small>Terkumpul: Rp60.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-              </ul>
+          <?php
+          $kategoriList = ['sedekah', 'zakat', 'wakaf'];
+          foreach ($kategoriList as $kategori):
+            $result = mysqli_query($conn, "SELECT * FROM program_donasi WHERE kategori='$kategori' ORDER BY id DESC");
+          ?>
+            <h3 style="margin-top:2rem; margin-bottom:1rem; font-size:1rem; text-align:left; font-weight:bold; color:#222;">
+              <?= ucfirst($kategori) ?>
+            </h3>
+            <div id="slider-<?= $kategori ?>" class="splide">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                    <li class="splide__slide">
+                      <a href="detail_donasi.php?id=<?= $row['id'] ?>" class="card-link">
+                        <div class="card">
+                          <img src="../admin/modules/donasi/uploads/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['judul']) ?>">
+                          <?php
+                            $persen = $row['target'] > 0 ? ($row['terkumpul'] / $row['target']) * 100 : 0;
+                          ?>
+                          <div class="progress"><div class="bar" style="width: <?= $persen ?>%"></div></div>
+                          <small>Terkumpul: Rp<?= number_format($row['terkumpul'],0,',','.') ?> dari Rp<?= number_format($row['target'],0,',','.') ?></small>
+                        </div>
+                      </a>
+                    </li>
+                  <?php endwhile; ?>
+                </ul>
+              </div>
             </div>
-          </div>
-
-          <!-- Bagian Zakat -->
-          <h3 style="margin-top:2rem; margin-bottom:1rem; font-size:1rem; text-align:left; font-weight:bold; color:#222;">Zakat</h3>
-          <div id="slider-zakat" class="splide">
-            <div class="splide__track">
-              <ul class="splide__list">
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi1.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 60%"></div></div>
-                    <small>Terkumpul: Rp60.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi2.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 45%"></div></div>
-                    <small>Terkumpul: Rp45.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-                <li class="splide__slide">
-                  <div class="card">
-                    <img src="../assets/img/donasi3.jpeg" alt="">
-                    <div class="progress"><div class="bar" style="width: 75%"></div></div>
-                    <small>Terkumpul: Rp75.000.000 dari Rp100.000.000</small>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
       </section>
-
     
       <!-- STATISTIK -->
       <section class="statistik">
@@ -241,31 +183,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    
-      <!-- FORM DONASI -->
-      <section class="form-donasi" id="donasi">
-        <div data-aos="fade-up">
-          <h2>Formulir Donasi</h2>
-          <form>
-            <input type="text" placeholder="Nama Lengkap" required />
-            <input type="text" placeholder="Nomor HP / Email" required />
-            <div class="nominal">
-              <button type="button">Rp50.000</button>
-              <button type="button">Rp100.000</button>
-              <button type="button">Rp250.000</button>
-              <button type="button">Rp500.000</button>
-            </div>
-            <input type="number" placeholder="Nominal Lainnya" />
-            <select>
-              <option>Pilih Metode Pembayaran</option>
-              <option>Transfer Bank</option>
-              <option>QRIS</option>
-              <option>E-Wallet</option>
-            </select>
-            <button type="submit" class="btn-primary">Kirim Donasi</button>
-          </form>
         </div>
       </section>
 

@@ -31,4 +31,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setupSlider("#slider-sedekah");
   setupSlider("#slider-zakat");
+  setupSlider("#slider-wakaf");
 });

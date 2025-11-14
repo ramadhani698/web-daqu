@@ -54,7 +54,7 @@
     <?php include('../includes/navbar.php') ?>
 
     <?php
-include __DIR__ . '/../admin/config/config.php';
+    include __DIR__ . '/../admin/config/config.php';
 
 // Ambil data sejarah pesantren
 $pesantren = $conn->query("SELECT * FROM sejarah WHERE section='pesantren' ORDER BY id DESC LIMIT 1")->fetch_assoc();

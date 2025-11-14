@@ -238,18 +238,32 @@ body {
   color: var(--bg-color);
 }
 
+/* @font-face {
+  font-family: "Trajan";
+  src: url("fonts/TrajanPro-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+} */
+@font-face {
+  font-family: "Trajan";
+  src: url("fonts/TrajanPro-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Ubah bagian style .home-title h2 */
 .home-title h2 {
   margin: 0 auto;
-  font-size: 5rem;
-  font-family: "Merriweather", serif;
+  font-size: 4.5rem;
+  font-family: "Trajan", serif;
   font-weight: 900;
   text-align: center;
   color: var(--bg-color);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   width: 100%;
 }
 
-.home-title p {
+/* .home-title p {
   margin-top: 2rem;
   font-size: 1.2rem;
   font-weight: 400;
@@ -260,7 +274,7 @@ body {
   text-shadow: 1px 1px 1px #000;
   overflow: hidden;
   width: 100%;
-}
+} */
 
 /* Benefit Section */
 .why-section h3 {

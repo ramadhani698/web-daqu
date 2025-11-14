@@ -80,7 +80,7 @@
               </ul>
             </li>
             <li class="nav-item"><a href="./gallery/gallery.php" class="nav-link">Galeri</a></li>
-            <li class="nav-item"><a href="./dec/dec.php" class="nav-link">DEC</a></li>
+            <li class="nav-item"><a href="./dec/dec.php" class="nav-link">Produk Pesantren</a></li>
             <li class="nav-item"><a href="./pendaftaran/pendaftaran.php" class="nav-link">Pendaftaran</a></li>
             <li class="nav-item"><a href="./donasi/donasi.php" class="nav-link">Donasi</a></li>
           </ul>
@@ -140,11 +140,6 @@
             <h2 data-aos="zoom-in" data-aos-delay="150">
               Daarul Qur'an Al-Jannah
             </h2>
-            <!-- <p data-aos="fade-up" data-aos-delay="400">
-              Tempat tumbuhnya generasi Qur'ani yang berakhlak mulia dan cinta ilmu.
-              Bergabunglah dalam lingkungan islami yang damai, inspiratif, dan penuh
-              keberkahan.
-            </p> -->
           </div>
         </div>
       </div>
@@ -160,7 +155,7 @@
           ?>
           <div class="col-md-6" data-aos="fade-right">
             <div class="why-section">
-              <h3 class="mb-4">Kenapa Sih, Harus Mondok Di DaQu Al-Jannah?</h3>
+              <h3 class="mb-4">Kenapa sih, Harus Mondok Di DaQu Al-Jannah?</h3>
             </div>
             <ul class="list-unstyled">
               <?php 

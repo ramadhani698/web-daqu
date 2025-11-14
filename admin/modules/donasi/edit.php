@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("ssii", $gambar, $alt, $urutan, $id);
     $stmt->execute();
 
-    header("Location: carousel.php?updated=1");
+    header("Location: carousel_donasi.php?updated=1");
     exit;
 }
 ?>
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php include __DIR__ . '/../../includes/navbar.php'; ?>
 <?php include __DIR__ . '/../../includes/sidebar.php'; ?>
 <div class="content-wrapper p-3">
-    <h2>Edit Carousel</h2>
+    <h2>Edit Carousel Donasi</h2>
     <form method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="gambar" class="form-label">Gambar</label><br>
