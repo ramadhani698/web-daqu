@@ -15,6 +15,23 @@ $galeri_preview = mysqli_query($conn, "SELECT gambar FROM galeri ORDER BY id DES
 $jumlah_stats = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM stats"))[0];
 ?>
 
+<?php
+// Query donasi bulanan untuk grafik
+$donasi_bulanan = mysqli_query($conn, "
+    SELECT DATE_FORMAT(created_at, '%M %Y') AS bulan, SUM(nominal) AS total
+FROM transaksi_donasi
+WHERE status = 'paid'
+GROUP BY DATE_FORMAT(created_at, '%Y-%m'), DATE_FORMAT(created_at, '%M %Y')
+");
+
+$bulan_arr = [];
+$total_arr = [];
+while($row = mysqli_fetch_assoc($donasi_bulanan)) {
+    $bulan_arr[] = $row['bulan'];
+    $total_arr[] = $row['total'] ?? 0;
+}
+?>
+
 <?php include 'includes/header.php'; ?>
 
 <div class="wrapper">
@@ -91,6 +108,20 @@ $jumlah_stats = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM stats
                     </div>
                 <!-- End Ringkasan Data -->
 
+                <!-- Grafik Donasi Bulanan -->
+                    <div class="card shadow-sm mt-4">
+                        <div class="small-box bg-light">
+                            <div class="card-header">
+                                <h3 class="card-title">Grafik Donasi Bulanan</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="donasiChart" height="100"></canvas>
+                            </div>
+                            <a href="modules/donasi/dashboard_analitik.php" class="small-box-footer">Lihat Semua <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                <!-- End Grafik Donasi Bulanan -->
+
                 <!-- Ringkasan Galeri -->
                 <div class="row">
                     <div class="col-12">
@@ -129,3 +160,34 @@ $jumlah_stats = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM stats
     <?php include 'includes/footer.php'; ?>
 
 </div>
+
+<!-- Tambahkan Chart.js dari CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('donasiChart').getContext('2d');
+    const donasiChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($bulan_arr); ?>,
+            datasets: [{
+                label: 'Total Donasi (Rp)',
+                data: <?= json_encode($total_arr); ?>,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return 'Rp ' + value.toLocaleString('id-ID');
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

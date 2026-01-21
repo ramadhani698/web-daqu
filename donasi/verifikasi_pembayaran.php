@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("si", $fileName, $id);
             $stmt->execute();
 
-            echo "<script>alert('Bukti pembayaran berhasil dikirim. Tunggu verifikasi dari admin.'); window.location='detail_donasi.php?id={$transaksi['program_id']}';</script>";
+            echo "<script>alert('Bukti pembayaran berhasil dikirim. Tunggu verifikasi dari admin.'); window.location='donasi.php';</script>";
         } else {
             echo "<script>alert('Gagal mengupload bukti pembayaran.'); history.back();</script>";
         }

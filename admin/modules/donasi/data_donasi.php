@@ -4,97 +4,233 @@ include '../../includes/header.php';
 include '../../includes/navbar.php';
 include '../../includes/sidebar.php';
 
-$program_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$kategoriList = ['sedekah', 'zakat', 'wakaf'];
 
-// Ambil nama program
-$program = $conn->query("SELECT judul FROM program_donasi WHERE id = $program_id")->fetch_assoc();
+// -------------------------------------------------------------------------
+// FILTER TANGGAL
+// -------------------------------------------------------------------------
+$tanggal_awal  = isset($_GET['tanggal_awal']) ? $_GET['tanggal_awal'] : '';
+$tanggal_akhir = isset($_GET['tanggal_akhir']) ? $_GET['tanggal_akhir'] : '';
+
+$filterQuery = "";
+if (!empty($tanggal_awal) && !empty($tanggal_akhir)) {
+    $filterQuery = " AND DATE(d.created_at) BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ";
+}
+
+// -------------------------------------------------------------------------
+// PAGINATION
+// -------------------------------------------------------------------------
+$limit = 5;  // Jumlah data per halaman
+$page  = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $limit;
 ?>
 
 <div class="content-wrapper p-4">
+  
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Data Donasi Masuk - <?= htmlspecialchars($program['judul'] ?? 'Semua Program') ?></h2>
+    <h2>Data Donasi Masuk</h2>
   </div>
 
-  <?php
-  $query = "
-    SELECT d.*, p.judul 
-    FROM transaksi_donasi d 
-    JOIN program_donasi p ON d.program_id = p.id
-  ";
+  <!-- ========================== FILTER FORM ============================== -->
+  <form method="GET" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <label>Dari Tanggal</label>
+      <input type="date" name="tanggal_awal" class="form-control" value="<?= $tanggal_awal ?>">
+    </div>
 
-  if ($program_id > 0) {
-    $query .= " WHERE d.program_id = $program_id";
-  }
+    <div class="col-md-3">
+      <label>Sampai Tanggal</label>
+      <input type="date" name="tanggal_akhir" class="form-control" value="<?= $tanggal_akhir ?>">
+    </div>
 
-  $query .= " ORDER BY d.id DESC";
-  $result = $conn->query($query);
-  ?>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-primary me-2">Filter</button>
+      <a href="data_donasi.php" class="btn btn-secondary">Reset</a>
+    </div>
+  </form>
 
-  <table class="table table-bordered table-striped align-middle">
-    <thead class="table-light">
-      <tr>
-        <th width="5%">#</th>
-        <th width="15%">Program</th>
-        <th width="12%">Nama</th>
-        <th width="13%">Email</th>
-        <th width="10%">Nominal</th>
-        <th width="10%">Metode</th>
-        <th width="15%">Pesan</th>
-        <th width="10%">Tanggal</th>
-        <th width="10%">Bukti Transfer</th>
-        <th width="10%">Status</th>
-        <th width="10%">Aksi</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php if ($result->num_rows > 0): $no=1; while ($row = $result->fetch_assoc()): ?>
+  <!-- ========================== TABLE BY KATEGORI ======================== -->
+  <?php foreach ($kategoriList as $kategori): ?>
+
+    <h4 class="mt-4 text-capitalize"><?= $kategori ?></h4>
+
+    <?php
+      // hitung total data untuk pagination
+      $countQuery = "
+        SELECT COUNT(*) AS total
+        FROM transaksi_donasi d
+        JOIN program_donasi p ON d.program_id = p.id
+        WHERE p.kategori = '$kategori'
+        $filterQuery
+      ";
+      $countResult = $conn->query($countQuery);
+      $totalData   = $countResult->fetch_assoc()['total'];
+      $totalPages  = ceil($totalData / $limit);
+
+      // query data dengan LIMIT
+      $query = "
+        SELECT d.*, p.judul
+        FROM transaksi_donasi d
+        JOIN program_donasi p ON d.program_id = p.id
+        WHERE p.kategori = '$kategori'
+        $filterQuery
+        ORDER BY d.id DESC
+        LIMIT $start, $limit
+      ";
+      $result = $conn->query($query);
+    ?>
+
+    <table class="table table-bordered table-striped align-middle mt-3">
+      <thead class="table-light">
         <tr>
-          <td><?= $no++ ?></td>
-          <td><?= htmlspecialchars($row['judul']) ?></td>
-          <td><?= htmlspecialchars($row['nama']) ?></td>
-          <td><?= htmlspecialchars($row['email'] ?: '-') ?></td>
-          <td>Rp<?= number_format($row['nominal'], 0, ',', '.') ?></td>
-          <td><?= htmlspecialchars($row['metode']) ?></td>
-          <td><?= nl2br(htmlspecialchars($row['pesan'] ?: '-')) ?></td>
-          <td><?= date('d M Y H:i', strtotime($row['created_at'])) ?></td>
+          <th>#</th>
+          <th>Program</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Nominal</th>
+          <th>Metode</th>
+          <th>Pesan</th>
+          <th>Tanggal</th>
+          <th>Bukti</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
 
-          <td class="text-center">
-            <?php if (!empty($row['bukti_transfer'])): ?>
-              <a href="../../modules/donasi/uploads/bukti/<?= htmlspecialchars($row['bukti_transfer']) ?>" target="_blank">
-                <img src="../../modules/donasi/uploads/bukti/<?= htmlspecialchars($row['bukti_transfer']) ?>" 
-                     alt="Bukti Transfer" width="80" style="border-radius:5px;">
+      <tbody>
+        <?php if ($result->num_rows > 0): $no = $start + 1; while ($row = $result->fetch_assoc()): ?>
+          <tr>
+            <td><?= $no++ ?></td>
+            <td><?= htmlspecialchars(stripslashes($row['judul'])) ?></td>
+            <td><?= htmlspecialchars($row['nama']) ?></td>
+            <td><?= htmlspecialchars($row['email'] ?: '-') ?></td>
+            <td>Rp<?= number_format($row['nominal'], 0, ',', '.') ?></td>
+            <td><?= htmlspecialchars($row['metode']) ?></td>
+            <td><?= nl2br(htmlspecialchars($row['pesan'] ?: '-')) ?></td>
+            <td><?= date('d M Y H:i', strtotime($row['created_at'])) ?></td>
+
+            <td>
+              <?php if (!empty($row['bukti_transfer'])): ?>
+                <a href="uploads/bukti/<?= $row['bukti_transfer'] ?>" target="_blank" class="btn btn-sm btn-primary">Lihat
+                </a>
+              <?php else: ?>
+                <span class="text-muted">Belum ada</span>
+              <?php endif; ?>
+            </td>
+
+            <td>
+              <?php if ($row['status'] == 'paid'): ?>
+                <span class="badge bg-success">Terverifikasi</span>
+              <?php elseif ($row['status'] == 'menunggu_verifikasi'): ?>
+                <span class="badge bg-warning text-dark">Pending</span>
+              <?php else: ?>
+                <span class="badge bg-danger">Ditolak</span>
+                <br>
+                <small class="text-muted">Alasan: <?= htmlspecialchars($row['alasan_penolakan'] ?: '-') ?></small>
+              <?php endif; ?>
+            </td>
+
+            <td>
+              <?php if ($row['status'] == 'menunggu_verifikasi' && !empty($row['bukti_transfer'])): ?>
+                <a href="konfirmasi_donasi.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-success">Konfirmasi</a>
+
+                <button class="btn btn-sm btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalTolak"
+                        onclick="setTolakId(<?= $row['id'] ?>)">
+                  Tolak
+                </button>
+
+              <?php else: ?>
+                <a href="delete_data_donasi.php?id=<?= $row['id'] ?>"
+                   onclick="return confirm('Yakin ingin menghapus donasi ini?')"
+                   class="btn btn-sm btn-danger">Hapus</a>
+              <?php endif; ?>
+            </td>
+
+          </tr>
+        <?php endwhile; else: ?>
+          <tr>
+            <td colspan="11" class="text-center text-muted">Tidak ada data.</td>
+          </tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+
+    <!-- ==================== PAGINATION NAV ============================= -->
+    <?php if ($totalPages > 1): ?>
+      <nav>
+        <ul class="pagination">
+
+          <!-- Prev -->
+          <?php if ($page > 1): ?>
+            <li class="page-item">
+              <a class="page-link"
+                href="?page=<?= $page - 1 ?>&tanggal_awal=<?= $tanggal_awal ?>&tanggal_akhir=<?= $tanggal_akhir ?>">
+                Prev
               </a>
-            <?php else: ?>
-              <span class="text-muted">Belum ada</span>
-            <?php endif; ?>
-          </td>
+            </li>
+          <?php endif; ?>
 
-          <td>
-            <?php if ($row['status'] == 'paid'): ?>
-              <span class="badge bg-success">Sudah Diverifikasi</span>
-            <?php elseif ($row['status'] == 'menunggu_verifikasi'): ?>
-              <span class="badge bg-warning text-dark">Menunggu</span>
-            <?php else: ?>
-              <span class="badge bg-secondary">Belum Bayar</span>
-            <?php endif; ?>
-          </td>
+          <!-- Page numbers -->
+          <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <li class="page-item <?= ($i == $page ? 'active' : '') ?>">
+              <a class="page-link"
+                href="?page=<?= $i ?>&tanggal_awal=<?= $tanggal_awal ?>&tanggal_akhir=<?= $tanggal_akhir ?>">
+                <?= $i ?>
+              </a>
+            </li>
+          <?php endfor; ?>
 
-          <td>
-            <?php if ($row['status'] != 'paid' && !empty($row['bukti_transfer'])): ?>
-              <a href="konfirmasi_donasi.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-success" 
-                 onclick="return confirm('Konfirmasi pembayaran ini?')">Konfirmasi</a>
-            <?php else: ?>
-              <button class="btn btn-sm btn-secondary" disabled>-</button>
-            <?php endif; ?>
-          </td>
-        </tr>
-      <?php endwhile; else: ?>
-        <tr>
-          <td colspan="11" class="text-center text-muted">Belum ada data donasi masuk.</td>
-        </tr>
-      <?php endif; ?>
-    </tbody>
-  </table>
+          <!-- Next -->
+          <?php if ($page < $totalPages): ?>
+            <li class="page-item">
+              <a class="page-link"
+                href="?page=<?= $page + 1 ?>&tanggal_awal=<?= $tanggal_awal ?>&tanggal_akhir=<?= $tanggal_akhir ?>">
+                Next
+              </a>
+            </li>
+          <?php endif; ?>
+
+        </ul>
+      </nav>
+    <?php endif; ?>
+
+  <?php endforeach; ?>
+
 </div>
+
+<!-- MODAL TOLAK -->
+<div class="modal fade" id="modalTolak" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="tolak_donasi.php" method="POST">
+        <div class="modal-header">
+          <h5 class="modal-title">Tolak Donasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="id" id="tolakId">
+          <div class="mb-3">
+            <label>Alasan Penolakan:</label>
+            <textarea name="alasan" class="form-control" rows="4" required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-danger">Tolak Donasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function setTolakId(id) {
+    document.getElementById('tolakId').value = id;
+}
+</script>
 
 <?php include '../../includes/footer.php'; ?>

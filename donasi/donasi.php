@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
     <!-- Bootstrap 5 CDN -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -35,7 +35,6 @@
                       </span>
                   </div>
               </div>
-          <!-- <a href="#donasi" class="btn-primary">Donasi Sekarang</a> -->
           </div>
       </header>
     
@@ -80,7 +79,6 @@
                     beasiswa, serta dukungan penuh agar dapat fokus menghafal Al-Qur’an dan menuntut ilmu.
                     Bersama kita wujudkan generasi Qur’ani yang berakhlak mulia!
                 </p>
-                <!-- <a href="#program" class="about-link">Lihat Program</a> -->
             </div>
             <div class="about-img" data-aos="fade-left">
                 <img
@@ -92,17 +90,17 @@
       </section>
 
       <section class="donation-categories">
-        <a href="kategori.php?kategori=sedekah" class="category text-decoration-none text-dark">
+        <a href="form_donasi.php?kategori=sedekah" class="category text-decoration-none text-dark">
           <img src="../assets/img/icondonasi2.png" alt="Sedekah Icon" />
           <p>Sedekah</p>
         </a>
 
-        <a href="kategori.php?kategori=zakat" class="category text-decoration-none text-dark">
+        <a href="form_donasi.php?kategori=zakat" class="category text-decoration-none text-dark">
           <img src="../assets/img/icondonasi1.png" alt="Zakat Icon" />
           <p>Zakat</p>
         </a>
 
-        <a href="kategori.php?kategori=wakaf" class="category text-decoration-none text-dark">
+        <a href="form_donasi.php?kategori=wakaf" class="category text-decoration-none text-dark">
           <img src="https://img.icons8.com/color/48/000000/giving.png" alt="Wakaf Icon" />
           <p>Wakaf</p>
         </a>

@@ -1,0 +1,41 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.form-wrapper {
+  max-width: 520px;
+  padding: 20px;
+  margin-top: 70px;
+}
+
+.form-container {
+  border-radius: 18px;
+}
+
+input,
+select,
+textarea {
+  border-radius: 10px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  border-color: #0d6efd;
+}
+
+.btn-primary {
+  border-radius: 12px;
+  font-weight: bold;
+  padding: 12px;
+}
+
+.btn-primary:hover {
+  background-color: #0656c7;
+}
+
+footer {
+  font-size: 0.85rem;
+  padding: 20px 0;
+}

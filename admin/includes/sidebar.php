@@ -152,8 +152,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </a>
                 </li>
                 <!-- DONASI -->
-                <li class="nav-item has-treeview <?php echo ($current_page == 'donasi.php' || $current_page == 'carousel_donasi.php' || $current_page == 'data_donasi.php') ? 'menu-open' : ''; ?>">
-                    <a href="#" class="nav-link <?php echo ($current_page == 'donasi.php' || $current_page == 'carousel_donasi.php' || $current_page == 'data_donasi.php') ? 'active' : ''; ?>">
+                <li class="nav-item has-treeview <?php echo ($current_page == 'donasi.php' || $current_page == 'carousel_donasi.php' || $current_page == 'data_donasi.php' || $current_page == 'index.php') ? 'menu-open' : ''; ?>">
+                    <a href="#" class="nav-link <?php echo ($current_page == 'donasi.php' || $current_page == 'carousel_donasi.php' || $current_page == 'data_donasi.php' || $current_page == 'index.php') ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-hand-holding-heart"></i>
                         <p>
                             Donasi
@@ -176,7 +176,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <li class="nav-item">
                             <a href="/daqu-al-jannah/admin/modules/donasi/data_donasi.php" class="nav-link <?php echo $current_page == 'data_donasi.php' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Donasi Masuk</p>
+                                <p>Donasi Program</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/daqu-al-jannah/admin/modules/donasi_non_program/index.php" class="nav-link <?php echo $current_page == 'index.php' ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Donasi Non-Program</p>
                             </a>
                         </li>
                     </ul>

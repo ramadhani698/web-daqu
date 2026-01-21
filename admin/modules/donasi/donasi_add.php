@@ -2,38 +2,34 @@
 include __DIR__ . '/../../config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil dan bersihkan input
-    $kategori   = mysqli_real_escape_string($conn, $_POST['kategori']);
+
+    $kategori   = strtolower(mysqli_real_escape_string($conn, $_POST['kategori']));
     $judul      = mysqli_real_escape_string($conn, $_POST['judul']);
-    $deskripsi  = $_POST['deskripsi']; // CKEditor bisa mengandung HTML, jadi tidak perlu escape di sini
+    $deskripsi  = $_POST['deskripsi'];
     $terkumpul  = (int) preg_replace('/\D/', '', $_POST['terkumpul']);
     $target     = (int) preg_replace('/\D/', '', $_POST['target']);
 
-    // Upload gambar
+    // Upload
     $gambar     = $_FILES['gambar']['name'];
     $tmp        = $_FILES['gambar']['tmp_name'];
-    $ext        = pathinfo($gambar, PATHINFO_EXTENSION);
+    $ext        = strtolower(pathinfo($gambar, PATHINFO_EXTENSION));
 
-    // Validasi ekstensi gambar
-    $allowed_ext = ['jpg', 'jpeg', 'png', 'webp'];
-    if (!in_array(strtolower($ext), $allowed_ext)) {
-        die("Format gambar tidak diizinkan. Gunakan JPG, PNG, atau WEBP.");
+    $allowed_ext = ['jpg','jpeg','png','webp'];
+    if (!in_array($ext, $allowed_ext)) {
+        die("Format gambar tidak diizinkan.");
     }
 
-    // Buat nama file unik
-    $newName   = uniqid() . '.' . $ext;
-    $uploadDir = __DIR__ . '/uploads/';
+    $newName   = uniqid() . "." . $ext;
+    $uploadDir = __DIR__ . "/uploads/";
 
-    // Pastikan folder upload ada
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
+    if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
     move_uploaded_file($tmp, $uploadDir . $newName);
 
-    // Simpan ke database
-    $stmt = $conn->prepare("INSERT INTO program_donasi (kategori, judul, deskripsi, gambar, terkumpul, target)
-                            VALUES (?, ?, ?, ?, ?, ?)");
+    // Simpan
+    $stmt = $conn->prepare("
+      INSERT INTO program_donasi (kategori,judul,deskripsi,gambar,terkumpul,target)
+      VALUES (?,?,?,?,?,?)");
     $stmt->bind_param("ssssii", $kategori, $judul, $deskripsi, $newName, $terkumpul, $target);
     $stmt->execute();
 
@@ -52,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3">
             <label for="kategori" class="form-label">Kategori</label>
             <select class="form-control" name="kategori" required>
-                <option value="">-- Pilih Kategori --</option>
-                <option value="Sedekah">Sedekah</option>
-                <option value="Zakat">Zakat</option>
-                <option value="Wakaf">Wakaf</option>
-            </select>
+              <option value="">-- Pilih Kategori --</option>
+              <option value="sedekah">Sedekah</option>
+              <option value="zakat">Zakat</option>
+              <option value="wakaf">Wakaf</option>
+          </select>
         </div>
 
         <div class="mb-3">
@@ -66,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="mb-3">
             <label for="deskripsi" class="form-label">Deskripsi</label>
-            <textarea id="editor" class="form-control" name="deskripsi" rows="5" placeholder="Tuliskan deskripsi program donasi..." required></textarea>
+            <textarea id="editor" class="form-control" name="deskripsi" rows="5" placeholder="Tuliskan deskripsi program donasi..."></textarea>
         </div>
 
         <div class="mb-3">

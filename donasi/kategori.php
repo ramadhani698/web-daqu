@@ -91,7 +91,7 @@ $result = $stmt->get_result();
 
           <div class="program-content">
             <h5><?= htmlspecialchars($row['judul']) ?></h5>
-            <p><?= nl2br(htmlspecialchars(substr($row['deskripsi'], 0, 180))) ?>...</p>
+            <p><?= nl2br(htmlspecialchars(substr(strip_tags($row['deskripsi']), 0, 180))) ?>...</p>
 
             <?php
               $persen = $row['target'] > 0 ? ($row['terkumpul'] / $row['target']) * 100 : 0;
@@ -103,7 +103,7 @@ $result = $stmt->get_result();
               Terkumpul: Rp<?= number_format($row['terkumpul'],0,',','.') ?> /
               Rp<?= number_format($row['target'],0,',','.') ?>
             </small>
-            <a href="#" class="btn btn-donasi">Donasi Sekarang</a>
+            <a href="detail_donasi.php?id=<?= $row['id'] ?>" class="btn btn-donasi">Donasi Sekarang</a>
           </div>
         </div>
       <?php endwhile; ?>

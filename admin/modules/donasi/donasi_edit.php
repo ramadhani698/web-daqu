@@ -74,15 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-group mb-3">
       <label for="kategori" class="form-label">Kategori</label>
       <select name="kategori" class="form-control" required>
-        <option value="Sedekah" <?= $data['kategori'] == 'Sedekah' ? 'selected' : '' ?>>Sedekah</option>
-        <option value="Zakat" <?= $data['kategori'] == 'Zakat' ? 'selected' : '' ?>>Zakat</option>
-        <option value="Wakaf" <?= $data['kategori'] == 'Wakaf' ? 'selected' : '' ?>>Wakaf</option>
+        <option value="sedekah" <?= $data['kategori'] == 'sedekah' ? 'selected' : '' ?>>Sedekah</option>
+        <option value="zakat" <?= $data['kategori'] == 'zakat' ? 'selected' : '' ?>>Zakat</option>
+        <option value="wakaf" <?= $data['kategori'] == 'wakaf' ? 'selected' : '' ?>>Wakaf</option>
       </select>
     </div>
 
     <div class="form-group mb-3">
       <label for="judul" class="form-label">Judul</label>
-      <input type="text" class="form-control" name="judul" value="<?= htmlspecialchars($data['judul']) ?>" required>
+      <input type="text" class="form-control" name="judul" value="<?= htmlspecialchars(stripslashes($data['judul'])) ?>" required>
     </div>
 
     <div class="form-group mb-3">
